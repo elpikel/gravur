@@ -1,13 +1,13 @@
 defmodule GravurWeb.RegistrationController do
   use GravurWeb, :controller
-  alias Gravur.Auth
+  alias Gravur.Identity
 
   def new(conn, _params) do
     render conn, "new.html", changeset: conn
   end
 
   def create(conn, %{"registration" => registration_params}) do
-    case Auth.register(registration_params) do
+    case Identity.register(registration_params) do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)

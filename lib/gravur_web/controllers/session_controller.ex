@@ -1,13 +1,13 @@
 defmodule GravurWeb.SessionController do
   use GravurWeb, :controller
-  alias Gravur.Auth
+  alias Gravur.Identity
 
   def new(conn, _params) do
     render conn, "new.html", changeset: conn
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
-    case Auth.sign_in(email, password) do
+    case Identity.sign_in(email, password) do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
@@ -23,7 +23,7 @@ defmodule GravurWeb.SessionController do
 
   def delete(conn, _params) do
     conn
-    |> Auth.sign_out()
+    |> Identity.sign_out()
     |> redirect(to: "/")
   end
 end

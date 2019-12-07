@@ -1,6 +1,6 @@
-defmodule Gravur.Auth do
+defmodule Gravur.Identity do
   alias Gravur.Repo
-  alias Gravur.Auth.User
+  alias Gravur.Identity.User
 
   def sign_in(email, password) do
     user = Repo.get_by(User, email: email)

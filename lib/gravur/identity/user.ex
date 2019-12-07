@@ -1,4 +1,4 @@
-defmodule Gravur.Auth.User do
+defmodule Gravur.Identity.User do
   use Ecto.Schema
   import Ecto.Changeset
 
