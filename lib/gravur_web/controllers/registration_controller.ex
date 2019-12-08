@@ -12,7 +12,7 @@ defmodule GravurWeb.RegistrationController do
         conn
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "You have successfully signed up!")
-        |> redirect(to: "/")
+        |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

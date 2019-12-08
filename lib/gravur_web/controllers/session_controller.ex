@@ -12,7 +12,7 @@ defmodule GravurWeb.SessionController do
         conn
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "You have successfully signed in!")
-        |> redirect(to: "/")
+        |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
 
       {:error, _reason} ->
         conn

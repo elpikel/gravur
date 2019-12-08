@@ -14,6 +14,7 @@
           <%= if Gravur.Identity.user_signed_in?(@conn) do %>
             Signed in as: <strong><%= Gravur.Identity.current_user(@conn).email %></strong>
             <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete, class: "btn btn-outline-primary" %>
+            <%= link "Books", to: Routes.book_path(@conn, :index), class: "btn btn-outline-primary" %>
           <% else %>
             <%= link "Sign In", to: Routes.session_path(@conn, :new), class: "btn btn-outline-primary" %>
             <%= link "Sign Up", to: Routes.registration_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
