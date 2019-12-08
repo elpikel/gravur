@@ -60,14 +60,17 @@ config :gravur, Gravur.Repo,
   ssl: true,
   url: System.get_env("DATABASE_URL")
 
-
 config :arc,
   storage: Arc.Storage.S3,
   bucket: {:system, "S3_BUCKET"},
-  access_key_id: {:system, "AWS_ACCESS_KEY_ID"},
-  secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"},
+  virtual_host: true
+
+config :ex_aws,
+  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
+  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role],
+  region: "eu-west-1",
   s3: [
-    scheme: {:system, "S3_SCHEME"} || "https://",
-    host: {:system, "S3_HOST"} || "s3-eu-west-1.amazonaws.com",
-    region: {:system, "S3_REGION"} || "eu-west-1"
+    scheme: "https://",
+    host: "s3.eu-west-1.amazonaws.com",
+    region: "eu-west-1"
   ]
