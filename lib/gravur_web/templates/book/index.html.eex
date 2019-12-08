@@ -1,6 +1,7 @@
 <h1>Books</h1>
 <%= for book <- @books do %>
   <%= book.cover_text %>
+  <img src="<%= Gravur.Utils.Image.url({ book.title_page_image, book }) %>" width="300" />
   </br>
 <% end %>
 </br>

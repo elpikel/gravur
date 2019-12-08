@@ -1,5 +1,5 @@
 <div class="auth-form-wrapper">
-  <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, class: "form-signin"], fn f -> %>
+  <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
     <div class="text-center mb-4">
       <h1 class="h3 mb-3 font-weight-normal">Create book</h1>
     </div>
@@ -36,7 +36,7 @@
 
     <div class="form-label-group">
       <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
-      <%= text_input f, :title_page_image, class: "form-control", placeholder: "Tile page image", required: true, autofocus: true %>
+      <%= file_input f, :title_page_image, class: "form-control" %>
       <%= error_tag f, :title_page_image %>
     </div>
 

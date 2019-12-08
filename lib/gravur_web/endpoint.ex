@@ -5,6 +5,7 @@ defmodule GravurWeb.Endpoint do
     websocket: true,
     longpoll: false
 
+  plug Plug.Static, at: "/uploads", from: "uploads"
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -29,7 +30,8 @@ defmodule GravurWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Phoenix.json_library()
+    json_decoder: Phoenix.json_library(),
+    length: 100_000_000
 
   plug Plug.MethodOverride
   plug Plug.Head

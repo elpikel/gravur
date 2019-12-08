@@ -30,6 +30,5 @@ defmodule GravurWeb.BookController do
       {:error, changeset} ->
       render(conn, "new.html", changeset: changeset)
     end
-    render(conn, "new.html", changeset: conn)
   end
 end

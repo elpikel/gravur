@@ -1,0 +1,7 @@
+<h1>Greetings</h1>
+<%= for greeting <- @greetings do %>
+  <%= greeting.text %>
+  </br>
+<% end %>
+</br>
+<%= link "New greeting", to: Routes.book_greeting_path(@conn, :new, @book), class: "btn btn-outline-primary ml-md-3" %>

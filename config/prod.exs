@@ -59,3 +59,15 @@ config :gravur, Gravur.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true,
   url: System.get_env("DATABASE_URL")
+
+
+config :arc,
+  storage: Arc.Storage.S3,
+  bucket: {:system, "S3_BUCKET"},
+  access_key_id: {:system, "AWS_ACCESS_KEY_ID"},
+  secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"},
+  s3: [
+    scheme: {:system, "S3_SCHEME"} || "https://",
+    host: {:system, "S3_HOST"} || "s3.amazonaws.com",
+    region: {:system, "S3_REGION"} || "us-east-1"
+  ]
