@@ -20,6 +20,7 @@ defmodule GravurWeb.BookController do
   def create(conn, %{"book" => book_params}) do
     user = Gravur.Identity.current_user(conn)
     book_params = Map.put(book_params, "user_id", user.id)
+
     case Gravur.Operator.create_book(book_params) do
       {:ok, _} ->
         conn

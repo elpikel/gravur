@@ -8,6 +8,7 @@ defmodule Gravur.Operator do
   end
 
   def create_book(book_params) do
+    book_params = Map.put(book_params, "invitation_code", Ecto.UUID.generate)
     Book.changeset(%Book{}, book_params) |> Repo.insert()
   end
 end
