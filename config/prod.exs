@@ -68,6 +68,6 @@ config :arc,
   secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"},
   s3: [
     scheme: {:system, "S3_SCHEME"} || "https://",
-    host: {:system, "S3_HOST"} || "s3.amazonaws.com",
+    host: {:system, "S3_HOST"} || "s3-eu-west-1.amazonaws.com",
     region: {:system, "S3_REGION"} || "eu-west-1"
   ]
