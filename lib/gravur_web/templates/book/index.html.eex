@@ -1,0 +1,7 @@
+<h1>Books</h1>
+<%= for book <- @books do %>
+  <%= book.cover_text %>
+  </br>
+<% end %>
+</br>
+<%= link "New book", to: Routes.book_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>

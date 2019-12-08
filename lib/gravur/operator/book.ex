@@ -21,7 +21,7 @@ defmodule Gravur.Operator.Book do
   @doc false
   def changeset(book, attrs) do
     book
-    |> cast(attrs, [:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :invitation_code])
-    |> validate_required([:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :invitation_code])
+    |> cast(attrs, [:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :user_id])
+    |> validate_required([:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :user_id])
   end
 end

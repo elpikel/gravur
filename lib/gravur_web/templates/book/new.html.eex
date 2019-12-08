@@ -1,0 +1,45 @@
+<div class="auth-form-wrapper">
+  <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, class: "form-signin"], fn f -> %>
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Create book</h1>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :cover_title, "Cover title", class: "control-label" %>
+      <%= text_input f, :cover_title, class: "form-control", placeholder: "Cover title", required: true, autofocus: true %>
+      <%= error_tag f, :cover_title %>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :cover_text, "Cover text", class: "control-label" %>
+      <%= text_input f, :cover_text, class: "form-control", placeholder: "Cover text", required: true, autofocus: true %>
+      <%= error_tag f, :cover_text %>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :font_style, "Font style", class: "control-label" %>
+      <%= text_input f, :font_style, class: "form-control", placeholder: "Font style", required: true, autofocus: true %>
+      <%= error_tag f, :font_style %>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :title_page_title, "Tile page title", class: "control-label" %>
+      <%= text_input f, :title_page_title, class: "form-control", placeholder: "Tile page title", required: true, autofocus: true %>
+      <%= error_tag f, :title_page_title %>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :title_page_text, "Tile page text", class: "control-label" %>
+      <%= text_input f, :title_page_text, class: "form-control", placeholder: "Tile page text", required: true, autofocus: true %>
+      <%= error_tag f, :title_page_text %>
+    </div>
+
+    <div class="form-label-group">
+      <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
+      <%= text_input f, :title_page_image, class: "form-control", placeholder: "Tile page image", required: true, autofocus: true %>
+      <%= error_tag f, :title_page_image %>
+    </div>
+
+    <%= submit "Create", class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+</div>
