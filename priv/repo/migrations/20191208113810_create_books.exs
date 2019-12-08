@@ -2,7 +2,8 @@ defmodule Gravur.Repo.Migrations.CreateBooks do
   use Ecto.Migration
 
   def change do
-    create table(:books) do
+    create table(:books, primary_key: false) do
+      add :id, :binary_id, primary_key: true
       add :cover_title, :string
       add :cover_text, :string
       add :font_style, :string

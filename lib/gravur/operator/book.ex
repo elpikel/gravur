@@ -4,6 +4,8 @@ defmodule Gravur.Operator.Book do
 
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+
   schema "books" do
     field :cover_text, :string
     field :cover_title, :string

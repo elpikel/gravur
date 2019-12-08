@@ -6,7 +6,7 @@ defmodule Gravur.Repo.Migrations.CreateGreetings do
       add :image, :string
       add :text, :string
       add :signature, :string
-      add :book_id, references(:books)
+      add :book_id, references(:books, type: :binary_id)
 
       timestamps()
     end
