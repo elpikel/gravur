@@ -69,5 +69,5 @@ config :arc,
   s3: [
     scheme: {:system, "S3_SCHEME"} || "https://",
     host: {:system, "S3_HOST"} || "s3.amazonaws.com",
-    region: {:system, "S3_REGION"} || "us-east-1"
+    region: {:system, "S3_REGION"} || "eu-west-1"
   ]
