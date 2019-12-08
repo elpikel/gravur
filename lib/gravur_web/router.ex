@@ -20,6 +20,9 @@ defmodule GravurWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create]
     resources "/registrations", RegistrationController, only: [:new, :create]
     delete "/sign_out", SessionController, :delete
+
+    resources "/books", BookController
+    resources "/greetings", GreetingController
   end
 
   # Other scopes may use custom stacks.
