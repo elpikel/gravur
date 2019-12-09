@@ -19,7 +19,7 @@ defmodule Gravur.Identity do
   end
 
   def user_signed_in?(conn) do
-    !!current_user(conn)
+    !!Plug.Conn.get_session(conn, :current_user_id)
   end
 
   def sign_out(conn) do
