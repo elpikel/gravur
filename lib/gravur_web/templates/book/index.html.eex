@@ -2,6 +2,7 @@
 <%= for book <- @books do %>
   <%= book.cover_text %>
   <img src="<%= Gravur.Utils.Image.url({ book.title_page_image, book }) %>" width="300" />
+  <%= link "Greetings", to: Routes.book_greeting_path(@conn, :index, book), class: "btn btn-outline-primary ml-md-3" %>
   </br>
 <% end %>
 </br>

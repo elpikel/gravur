@@ -1,6 +1,7 @@
 <h1>Greetings</h1>
-<%= for greeting <- @greetings do %>
+<%= for greeting <- @book.greetings do %>
   <%= greeting.text %>
+  <img src="<%= Gravur.Utils.Image.url({ greeting.image, greeting }) %>" width="300" />
   </br>
 <% end %>
 </br>

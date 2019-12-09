@@ -3,10 +3,11 @@ defmodule Gravur.Guest.Greeting do
   import Ecto.Changeset
 
   schema "greetings" do
-    field :image, :string
+    field :image, Gravur.Utils.Image.Type
     field :signature, :string
     field :text, :string
-    belongs_to :book, Gravur.Operator.Book
+
+    belongs_to :book, Gravur.Operator.Book, type: :binary_id
 
     timestamps()
   end
@@ -14,7 +15,7 @@ defmodule Gravur.Guest.Greeting do
   @doc false
   def changeset(greeting, attrs) do
     greeting
-    |> cast(attrs, [:image, :text, :signature])
+    |> cast(attrs, [:image, :text, :signature, :book_id])
     |> validate_required([:image, :text, :signature])
   end
 end

@@ -14,4 +14,9 @@ defmodule Gravur.Operator do
   def get_book(book_id) do
     Repo.get_by(Book, id: book_id)
   end
+
+  def get_book_with_greetings(book_id) do
+    book = Repo.get_by(Book, id: book_id)
+    Repo.preload(book, :greetings)
+  end
 end

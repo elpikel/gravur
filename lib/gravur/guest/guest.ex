@@ -2,9 +2,10 @@ defmodule Gravur.Guest do
   alias Gravur.Repo
   alias Gravur.Guest.Greeting
 
-  def get_all_greetings(user) do
-    # user = Repo.preload(user, :books)
-    # user.books
+  import Ecto.Query
+
+  def get_all_greetings(book_id) do
+    Greeting |> where(book_id: ^book_id) |> Repo.all
   end
 
   def create_greeting(greeting_params) do

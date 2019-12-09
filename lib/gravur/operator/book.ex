@@ -10,7 +10,6 @@ defmodule Gravur.Operator.Book do
     field :cover_text, :string
     field :cover_title, :string
     field :font_style, :string
-    field :invitation_code, Ecto.UUID
     field :title_page_image, Gravur.Utils.Image.Type
     field :title_page_text, :string
     field :title_page_title, :string
