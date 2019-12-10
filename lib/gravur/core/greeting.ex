@@ -1,4 +1,4 @@
-defmodule Gravur.Guest.Greeting do
+defmodule Gravur.Core.Greeting do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,7 +7,7 @@ defmodule Gravur.Guest.Greeting do
     field :signature, :string
     field :text, :string
 
-    belongs_to :book, Gravur.Operator.Book, type: :binary_id
+    belongs_to :book, Gravur.Core.Book, type: :binary_id
 
     timestamps()
   end

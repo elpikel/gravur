@@ -1,4 +1,4 @@
-defmodule Gravur.Operator.Book do
+defmodule Gravur.Core.Book do
   use Ecto.Schema
   use Arc.Ecto.Schema
 
@@ -15,8 +15,8 @@ defmodule Gravur.Operator.Book do
     field :title_page_title, :string
 
     belongs_to :user, Gravur.Identity.User
-    belongs_to :template, Gravur.Operator.Template
-    has_many :greetings, Gravur.Guest.Greeting
+    belongs_to :template, Gravur.Core.Template
+    has_many :greetings, Gravur.Core.Greeting
 
     timestamps()
   end

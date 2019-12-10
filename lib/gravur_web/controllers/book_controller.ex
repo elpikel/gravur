@@ -8,7 +8,7 @@ defmodule GravurWeb.BookController do
       |> send_resp(401, "unauthorized") # move to plug
       |> halt()
     else
-      books = Gravur.Operator.get_all_books(user)
+      books = Gravur.Core.get_all_books(user.id)
       render(conn, "index.html", books: books)
     end
   end
@@ -21,7 +21,7 @@ defmodule GravurWeb.BookController do
     user = Gravur.Identity.current_user(conn)
     book_params = Map.put(book_params, "user_id", user.id)
 
-    case Gravur.Operator.create_book(book_params) do
+    case Gravur.Core.create_book(book_params) do
       {:ok, _} ->
         conn
         |> put_flash(:info, "You have successfully created a book!")

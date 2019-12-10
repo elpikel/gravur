@@ -7,7 +7,6 @@ defmodule Gravur.Identity.User do
     field :encrypted_password, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
-    has_many :books, Gravur.Operator.Book
 
     timestamps()
   end

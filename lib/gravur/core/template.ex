@@ -1,11 +1,11 @@
-defmodule Gravur.Operator.Template do
+defmodule Gravur.Core.Template do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "templates" do
     field :name, :string
 
-    has_many :greetings, Gravur.Operator.Book
+    has_many :greetings, Gravur.Core.Book
 
     timestamps()
   end
