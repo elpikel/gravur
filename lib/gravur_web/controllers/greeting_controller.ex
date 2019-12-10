@@ -1,6 +1,8 @@
 defmodule GravurWeb.GreetingController do
   use GravurWeb, :controller
 
+  plug :put_layout, "mobile.html"
+
   def index(conn, params) do
     book = Gravur.Core.get_book_with_greetings(params["book_id"])
     render(conn, "index.html", book: book)

@@ -5,7 +5,7 @@ defmodule Gravur.Core.Template do
   schema "templates" do
     field :name, :string
 
-    has_many :greetings, Gravur.Core.Book
+    has_many :books, Gravur.Core.Book
 
     timestamps()
   end
