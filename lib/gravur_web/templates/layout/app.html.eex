@@ -10,15 +10,39 @@
   <body>
     <header>
       <section class="container">
-        <nav role="navigation">
-          <%= if Gravur.Identity.user_signed_in?(@conn) do %>
-            Signed in as: <strong><%= Gravur.Identity.current_user(@conn).email %></strong>
-            <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete, class: "btn btn-outline-primary" %>
-            <%= link "Books", to: Routes.book_path(@conn, :index), class: "btn btn-outline-primary" %>
-          <% else %>
-            <%= link "Sign In", to: Routes.session_path(@conn, :new), class: "btn btn-outline-primary" %>
-            <%= link "Sign Up", to: Routes.registration_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
-          <% end %>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">Gravur</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <span class="nav-link disabled">O produkcie</span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link disabled">Wybor planu</span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link disabled">FAQ</span>
+              </li>
+              <%= if Gravur.Identity.user_signed_in?(@conn) do %>
+                <li class="nav-item">
+                  <%= link "Zaloz ksiege", to: Routes.book_path(@conn, :index), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Wyloguj", to: Routes.session_path(@conn, :delete), method: :delete, class: "nav-link" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link "Zaloguj", to: Routes.session_path(@conn, :new), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Zaloz konto", to: Routes.registration_path(@conn, :new), class: "nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </nav>
       </section>
     </header>
