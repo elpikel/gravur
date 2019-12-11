@@ -26,7 +26,9 @@ defmodule Gravur.Core do
   end
 
   def get_book_with_greetings(book_id) do
-    book = Repo.get_by(Book, id: book_id)
-    Repo.preload(book, :greetings)
+    Repo.one(from b in Book,
+       join: g in assoc(b, :greetings),
+       where: b.id == ^book_id,
+       preload: [greetings: g])
   end
 end

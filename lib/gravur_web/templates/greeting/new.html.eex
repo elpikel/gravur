@@ -1,27 +1,29 @@
-<div class="auth-form-wrapper">
-  <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
-    <div class="text-center mb-4">
-      <h1 class="h3 mb-3 font-weight-normal">Create greeting</h1>
-    </div>
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
+      <div class="mb-4">
+        <%= link "Wróć do wpisów", to: Routes.book_path(@conn, :new), class: "" %>
+      </div>
 
-    <div class="form-label-group">
-      <%= label f, :text, "Text", class: "control-label" %>
-      <%= text_input f, :text, class: "form-control", placeholder: "Text", required: true, autofocus: true %>
-      <%= error_tag f, :text %>
-    </div>
+      <div class="form-group">
+        <%= label f, :image, "Dodaj zdjecie", class: "control-label" %>
+        <%= file_input f, :image %>
+        <%= error_tag f, :image %>
+      </div>
 
-    <div class="form-label-group">
-      <%= label f, :signature, "Signature", class: "control-label" %>
-      <%= text_input f, :signature, class: "form-control", placeholder: "Signature", required: true, autofocus: true %>
-      <%= error_tag f, :signature %>
-    </div>
+      <div class="form-group">
+        <%= label f, :text, "Text (max 500 znaków)", class: "control-label" %>
+        <%= textarea f, :text, class: "form-control", placeholder: "Text", required: true, autofocus: true %>
+        <%= error_tag f, :text %>
+      </div>
 
-    <div class="form-label-group">
-      <%= label f, :image, "Image", class: "control-label" %>
-      <%= file_input f, :image, class: "form-control" %>
-      <%= error_tag f, :image %>
-    </div>
+      <div class="form-group">
+        <%= label f, :signature, "Podpis", class: "control-label" %>
+        <%= text_input f, :signature, class: "form-control", placeholder: "Podpis", required: true, autofocus: true %>
+        <%= error_tag f, :signature %>
+      </div>
 
-    <%= submit "Create", class: "btn btn-lg btn-primary btn-block" %>
-  <% end %>
+      <%= submit "Dodaj wpis", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

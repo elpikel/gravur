@@ -1,8 +1,16 @@
-<h1>Greetings</h1>
-<%= for greeting <- @book.greetings do %>
-  <%= greeting.text %>
-  <img src="<%= Gravur.Utils.Image.url({ greeting.image, greeting }) %>" width="300" />
-  </br>
-<% end %>
-</br>
-<%= link "New greeting", to: Routes.book_greeting_path(@conn, :new, @book), class: "btn btn-outline-primary ml-md-3" %>
+<div class="justify-content-center">
+  <%= for greeting <- @book.greetings do %>
+    <div class="card mb-5">
+      <img class="card-img-top" src="<%= Gravur.Utils.Image.url({ greeting.image, greeting }) %>" />
+      <div class="card-body">
+        <p class="card-text"><%= greeting.text %></p>
+        <h5 class="card-title"><%= greeting.signature %></h5>
+      </div>
+    </div>
+  <% end %>
+  <div class="fixed-bottom mb-5 text-center">
+    <%= link to: Routes.book_greeting_path(@conn, :new, @book), class: "btn btn-secondary btn-circle btn-xl" do %>
+      <i class="fa fa-plus bt-circle-icon"></i>
+    <% end %>
+  </div>
+</div>
