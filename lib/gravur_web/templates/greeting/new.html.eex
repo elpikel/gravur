@@ -2,12 +2,15 @@
   <div class="w-50">
     <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
       <div class="mb-4">
-        <%= link "Wróć do wpisów", to: Routes.book_path(@conn, :new), class: "" %>
+        <%= link to: Routes.book_greeting_path(@conn, :index, @book), class: "text-secondary"  do %>
+          <i class="fa fa-arrow-left"></i><span class="ml-2">Wróć do wpisów</span>
+        <% end %>
       </div>
 
       <div class="form-group">
         <%= label f, :image, "Dodaj zdjecie", class: "control-label" %>
-        <%= file_input f, :image %>
+        <%= file_input f, :image, onchange: "readURL(this);" %>
+        <img id="image-preview" src="" />
         <%= error_tag f, :image %>
       </div>
 
