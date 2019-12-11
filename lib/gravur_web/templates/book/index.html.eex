@@ -1,9 +1,24 @@
-<h1>Books</h1>
+<div class="row mb-4">
+  <div class="col-auto"><h3>Moja księga</h3></div>
+  <div class="col mt-2"><hr></div>
+</div>
 <%= for book <- @books do %>
-  <%= book.cover_text %>
-  <img src="<%= Gravur.Utils.Image.url({ book.title_page_image, book }) %>" width="300" />
-  <%= link "Greetings", to: Routes.book_greeting_path(@conn, :index, book), class: "btn btn-outline-primary ml-md-3" %>
-  </br>
+  <div class="row mt-1">
+    <div class="col-sm">
+      <img src="<%= Gravur.Utils.Image.url({ book.title_page_image, book }) %>" width="300" />
+    </div>
+    <div class="col-sm">
+      <div class="row">
+        <span>Udostępnij księgę swoim gościom...</span>
+      </div>
+      <div class="row">
+        <%= link Routes.book_greeting_path(@conn, :index, book) , to: Routes.book_greeting_path(@conn, :index, book), class: "light" %>
+      </div>
+      <div class="row mt-3">
+        <%= link "Przygotuj do druku", to: Routes.book_greeting_path(@conn, :index, book), class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
 <% end %>
 </br>
 <%= link "New book", to: Routes.book_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
