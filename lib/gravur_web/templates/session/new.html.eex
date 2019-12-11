@@ -15,7 +15,7 @@
         <%= password_input f, :password, class: "form-control", placeholder: "Hasło", required: true %>
       </div>
 
-      <%= submit "Zaloguj się", class: "btn btn-primary" %>
+      <%= submit "Zaloguj się", class: "btn btn-secondary" %>
     <% end %>
   </div>
 </div>
