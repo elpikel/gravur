@@ -8,9 +8,21 @@
       </div>
 
       <div class="form-group">
-        <%= label f, :image, "Dodaj zdjecie", class: "control-label" %>
-        <%= file_input f, :image, onchange: "readURL(this);" %>
-        <img id="image-preview" src="" />
+        <div class="row">
+          <div class="col-sm">
+            <a onclick="openFilePicker();" style="cursor: pointer;">
+              <div class="btn btn-secondary btn-circle">
+                <i class="fa fa-plus bt-circle-icon"></i>
+              </div>
+              <span class="ml-3">Dodaj zdjecie</span>
+            </a>
+          </div>
+          <div class="col-sm text-right">
+            <img id="image-preview" src="" />
+          </div>
+        </div>
+        <%= file_input f, :image, id: "file-picker", onchange: "readURL(this);", hidden: "true" %>
+
         <%= error_tag f, :image %>
       </div>
 
@@ -21,12 +33,32 @@
       </div>
 
       <div class="form-group">
-        <%= label f, :signature, "Podpis", class: "control-label" %>
+        <%= label f, :signature, "Podpis (max 100 znaków)", class: "control-label" %>
         <%= text_input f, :signature, class: "form-control", placeholder: "Podpis", required: true, autofocus: true %>
         <%= error_tag f, :signature %>
       </div>
 
-      <%= submit "Dodaj wpis", class: "btn btn-primary" %>
+      <%= submit "Dodaj wpis", class: "btn btn-secondary btn-lg btn-block" %>
     <% end %>
   </div>
 </div>
+
+<script>
+  function openFilePicker() {
+    document.getElementById("file-picker").click();
+  }
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        document
+          .getElementById("image-preview")
+          .setAttribute("src", e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

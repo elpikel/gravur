@@ -9,7 +9,6 @@ import css from "../css/app.css";
 //
 // Import dependencies
 //
-import "phoenix_html";
 
 import 'bootstrap';
 
@@ -17,15 +16,3 @@ import 'bootstrap';
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
-
-export default function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#image-preview').attr('src', e.target.result);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}

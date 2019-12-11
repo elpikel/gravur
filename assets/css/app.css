@@ -24,6 +24,14 @@
   line-height: 1.42857;
 }
 
-.bt-circle-icon {
+.bt-circle-icon.btn-xl {
   padding-top: 16px;
+}
+
+.bt-circle-icon {
+  padding-top: 3px;
+}
+
+#image-preview {
+  width: 100px;
 }
