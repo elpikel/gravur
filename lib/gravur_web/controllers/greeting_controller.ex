@@ -19,7 +19,6 @@ defmodule GravurWeb.GreetingController do
     case Gravur.Core.create_greeting(greeting_params) do
       {:ok, _} ->
         conn
-        |> put_flash(:info, "You have successfully created a greeting!")
         |> redirect(to: GravurWeb.Router.Helpers.book_greeting_path(GravurWeb.Endpoint, :index, book))
 
       {:error, changeset} ->

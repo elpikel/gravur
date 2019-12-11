@@ -24,7 +24,6 @@ defmodule GravurWeb.BookController do
     case Gravur.Core.create_book(book_params) do
       {:ok, _} ->
         conn
-        |> put_flash(:info, "You have successfully created a book!")
         |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
 
       {:error, changeset} ->
