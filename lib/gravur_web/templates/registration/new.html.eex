@@ -23,7 +23,7 @@
         <%= error_tag f, :password_confirmation %>
       </div>
 
-      <%= submit "Załóż konto", class: "btn btn-secondary" %>
+      <%= submit "Załóż konto", class: "btn btn-secondary btn-lg btn-block mt-5" %>
     <% end %>
   </div>
 </div>
