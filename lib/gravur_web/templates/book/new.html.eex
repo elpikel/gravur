@@ -22,49 +22,123 @@
     </div>
 
     <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        <div class="form-group">
+          <%= label f, :cover_title, "Tytuł (np. wasze imiona)", class: "control-label" %>
+          <%= text_input f, :cover_title, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <%= error_tag f, :cover_title %>
+        </div>
 
+        <div class="form-group">
+          <%= label f, :cover_text, "Tekst (np. miejsce wydazenia i daty)", class: "control-label" %>
+          <%= text_input f, :cover_text, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <%= error_tag f, :cover_text %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :font_style, "Wybierz styl", class: "control-label" %>
+          <%= text_input f, :font_style, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <%= error_tag f, :font_style %>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <div class="btn btn-secondary btn-block" onclick="toBookTemplatePage()">
+              Wroc
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="btn btn-secondary btn-block" onclick="toBookTitlePage()">
+              Dalej
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-label-group">
-      <%= label f, :cover_title, "Cover title", class: "control-label" %>
-      <%= text_input f, :cover_title, class: "form-control", placeholder: "Cover title", required: true, autofocus: true %>
-      <%= error_tag f, :cover_title %>
+  </div>
+
+  <div id="book-title-page" style="display: none">
+    <div class="row mb-4">
+      <div class="col-auto"><h3>Krok 2: Strona tytułowa</h3></div>
+      <div class="col mt-2"><hr></div>
     </div>
 
-    <div class="form-label-group">
-      <%= label f, :cover_text, "Cover text", class: "control-label" %>
-      <%= text_input f, :cover_text, class: "form-control", placeholder: "Cover text", required: true, autofocus: true %>
-      <%= error_tag f, :cover_text %>
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        <div class="form-group">
+          <%= label f, :title_page_title, "Tytuł", class: "control-label" %>
+          <%= text_input f, :title_page_title, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <%= error_tag f, :title_page_title %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :title_page_text, "Tekst", class: "control-label" %>
+          <%= text_input f, :title_page_text, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <%= error_tag f, :title_page_text %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
+          <%= file_input f, :title_page_image, class: "form-control" %>
+          <%= error_tag f, :title_page_image %>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <div class="btn btn-secondary btn-block" onclick="toBookCoverPage()">
+              Wroc
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="btn btn-secondary btn-block" onclick="toBookSampleGreeting()">
+              Dalej
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="book-sample-greeting" style="display: none">
+    <div class="row mb-4">
+      <div class="col-auto"><h3>Krok 3: Przykładowy wpis</h3></div>
+      <div class="col mt-2"><hr></div>
     </div>
 
-    <div class="form-label-group">
-      <%= label f, :font_style, "Font style", class: "control-label" %>
-      <%= text_input f, :font_style, class: "form-control", placeholder: "Font style", required: true, autofocus: true %>
-      <%= error_tag f, :font_style %>
+    <div class="row">
+      <div class="col-sm">
+        <div class="card mb-5">
+          <img class="card-img-top" src="" id="greeting-image" />
+          <div class="card-body">
+            <p class="card-text">Jakies pozdrowienia</p>
+            <h5 class="card-title">Jakis podpis </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <div class="btn btn-secondary btn-block" onclick="toBookTitlePage()">
+              Wroc
+            </div>
+          </div>
+          <div class="col-sm">
+            <%= submit "Zapisz ksiege", class: "btn btn-secondary btn-block" %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="form-label-group">
-      <%= label f, :title_page_title, "Tile page title", class: "control-label" %>
-      <%= text_input f, :title_page_title, class: "form-control", placeholder: "Tile page title", required: true, autofocus: true %>
-      <%= error_tag f, :title_page_title %>
-    </div>
-
-    <div class="form-label-group">
-      <%= label f, :title_page_text, "Tile page text", class: "control-label" %>
-      <%= text_input f, :title_page_text, class: "form-control", placeholder: "Tile page text", required: true, autofocus: true %>
-      <%= error_tag f, :title_page_text %>
-    </div>
-
-    <div class="form-label-group">
-      <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
-      <%= file_input f, :title_page_image, class: "form-control" %>
-      <%= error_tag f, :title_page_image %>
-    </div>
-
-    <%= submit "Create", class: "btn btn-lg btn-primary btn-block" %>
   </div>
 <% end %>
 
 <script>
+  let selectedTemplate = "";
+
   function selectTemplate(template, templateId) {
     let parent = template.parentElement.parentElement;
     for (let i = 0; i < parent.children.length; i++) {
@@ -75,8 +149,35 @@
     }
     template.className = "card border border-secondary";
     document.getElementById('template_' + templateId).checked = true;
+    document.getElementById('greeting-image').src = template.children[0].src;
+    toBookCoverPage();
+  }
 
+  function toBookCoverPage() {
     document.getElementById('book-template').style.display = "none";
+    document.getElementById('book-title-page').style.display = "none";
+    document.getElementById('book-sample-greeting').style.display = "none";
     document.getElementById('book-cover').style.display = "block";
+  }
+
+  function toBookTemplatePage() {
+    document.getElementById('book-template').style.display = "block";
+    document.getElementById('book-title-page').style.display = "none";
+    document.getElementById('book-sample-greeting').style.display = "none";
+    document.getElementById('book-cover').style.display = "none";
+  }
+
+  function toBookTitlePage() {
+    document.getElementById('book-template').style.display = "none";
+    document.getElementById('book-title-page').style.display = "block";
+    document.getElementById('book-sample-greeting').style.display = "none";
+    document.getElementById('book-cover').style.display = "none";
+  }
+
+  function toBookSampleGreeting() {
+    document.getElementById('book-template').style.display = "none";
+    document.getElementById('book-title-page').style.display = "none";
+    document.getElementById('book-sample-greeting').style.display = "block";
+    document.getElementById('book-cover').style.display = "none";
   }
 </script>
