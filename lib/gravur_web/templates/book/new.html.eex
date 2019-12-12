@@ -1,9 +1,29 @@
-<div class="auth-form-wrapper">
-  <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
-    <div class="text-center mb-4">
-      <h1 class="h3 mb-3 font-weight-normal">Create book</h1>
+<%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
+
+  <div id="book-template">
+    <div class="row">
+      <%= for template <- @templates do %>
+        <div class="col-sm">
+          <div class="card border" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
+            <img class="card-img-top" src="<%= template.image %>" />
+            <div class="card-body">
+              <h5 class="card-title"><%= template.name %></h5>
+            </div>
+          </div>
+        </div>
+        <%= radio_button f, :template_id, template.id, hidden: "true", id: "template_#{template.id}" %>
+      <% end %>
+    </div>
+  </div>
+  <div id="book-cover" style="display: none">
+    <div class="row mb-4">
+      <div class="col-auto"><h3>Krok 1: Okładka</h3></div>
+      <div class="col mt-2"><hr></div>
     </div>
 
+    <div class="row">
+
+    </div>
     <div class="form-label-group">
       <%= label f, :cover_title, "Cover title", class: "control-label" %>
       <%= text_input f, :cover_title, class: "form-control", placeholder: "Cover title", required: true, autofocus: true %>
@@ -41,5 +61,22 @@
     </div>
 
     <%= submit "Create", class: "btn btn-lg btn-primary btn-block" %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<script>
+  function selectTemplate(template, templateId) {
+    let parent = template.parentElement.parentElement;
+    for (let i = 0; i < parent.children.length; i++) {
+      if(parent.children[i].className == "col-sm"
+        && parent.children[i].children[0].className == "card border border-secondary") {
+        parent.children[i].children[0].className = "card border";
+      }
+    }
+    template.className = "card border border-secondary";
+    document.getElementById('template_' + templateId).checked = true;
+
+    document.getElementById('book-template').style.display = "none";
+    document.getElementById('book-cover').style.display = "block";
+  }
+</script>

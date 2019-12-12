@@ -2,6 +2,7 @@ defmodule Gravur.Core do
   alias Gravur.Repo
   alias Gravur.Core.Greeting
   alias Gravur.Core.Book
+  alias Gravur.Core.Template
 
   import Ecto.Query
 
@@ -31,5 +32,9 @@ defmodule Gravur.Core do
        where: b.id == ^book_id,
        order_by: [desc: g.inserted_at],
        preload: [greetings: g])
+  end
+
+  def get_templates do
+    Template |> Repo.all
   end
 end
