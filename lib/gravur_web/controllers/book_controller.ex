@@ -9,7 +9,13 @@ defmodule GravurWeb.BookController do
       |> halt()
     else
       books = Gravur.Core.get_all_books(user.id)
-      render(conn, "index.html", books: books)
+
+      if length(books) != 0 do
+        render(conn, "index.html", books: books)
+      else
+        conn
+        |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
+      end
     end
   end
 
