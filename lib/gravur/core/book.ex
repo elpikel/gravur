@@ -24,8 +24,8 @@ defmodule Gravur.Core.Book do
   @doc false
   def changeset(book, attrs) do
     book
-    |> cast(attrs, [:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :user_id])
+    |> cast(attrs, [:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :user_id, :template_id])
     |> cast_attachments(attrs, [:title_page_image])
-    |> validate_required([:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :user_id])
+    |> validate_required([:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :title_page_image, :user_id, :template_id])
   end
 end
