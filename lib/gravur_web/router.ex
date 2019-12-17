@@ -23,6 +23,7 @@ defmodule GravurWeb.Router do
 
     resources "/books", BookController do
       resources "/greetings", GreetingController
+      resources "/printings", PrintingController, only: [:create]
     end
   end
 

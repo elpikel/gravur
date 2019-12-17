@@ -50,7 +50,8 @@ defmodule Gravur.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
-      {:sweet_xml, "~> 0.6.6"}
+      {:sweet_xml, "~> 0.6.6"},
+      {:pdf_generator, ">=0.6.0" }
     ]
   end
 
