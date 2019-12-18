@@ -2,26 +2,18 @@ defmodule GravurWeb.PrintingController do
   use GravurWeb, :controller
 
   def create(conn, %{"book_id" => book_id}) do
-    html = Gravur.Core.get_book_with_greetings(book_id)
-      |> generate_html
+    book = Gravur.Core.get_book_with_greetings(book_id)
+    html = generate_html(book)
 
-    {:ok, filename}    = PdfGenerator.generate(html, page_size: "A5")
+    {:ok, filename} = PdfGenerator.generate(html, page_size: "A5")
     {:ok, pdf_content} = File.read(filename)
 
-    # upload to aws and update book
-
-    # bucket_name = "S3_BUCKET"
-    # s3_path = "uploads"
-    # filename
-    #   |> ExAws.S3.Upload.stream_file
-    #   |> ExAws.S3.upload(bucket_name, s3_path)
-    #   |> ExAws.request!
+    {:ok, stored_pdf} = Gravur.Utils.Upload.store({ filename, book })
+    Gravur.Core.update_pdf(book, stored_pdf)
 
     conn
       |> put_resp_content_type("application/pdf")
-      |> put_resp_header(
-        "content-disposition",
-        "attachment; filename=\"#{filename}\"")
+      |> put_resp_header("content-disposition", "attachment; filename=\"#{filename}\"")
       |> send_resp(200, pdf_content)
   end
 
@@ -33,7 +25,7 @@ defmodule GravurWeb.PrintingController do
   end
 
   defp get_image_url(greeting) do
-    url = Gravur.Utils.Image.url({ greeting.image, greeting })
+    url = Gravur.Utils.Upload.url({ greeting.image, greeting })
 
     if String.starts_with?(url, "https:") do
       url

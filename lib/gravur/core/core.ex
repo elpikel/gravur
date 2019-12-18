@@ -22,6 +22,10 @@ defmodule Gravur.Core do
     Book.changeset(%Book{}, book_params) |> Repo.insert()
   end
 
+  def update_pdf(book, file_name) do
+    Ecto.Changeset.change(book, pdf: %{ file_name: file_name, updated_at: nil }) |> Gravur.Repo.update!
+  end
+
   def get_book(book_id) do
     Repo.get_by(Book, id: book_id)
   end

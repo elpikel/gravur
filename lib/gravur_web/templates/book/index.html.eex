@@ -5,7 +5,7 @@
 <%= for book <- @books do %>
   <div class="row mt-1">
     <div class="col-sm">
-      <img src="<%= Gravur.Utils.Image.url({ book.title_page_image, book }) %>" width="300" />
+      <img src="<%= Gravur.Utils.Upload.url({ book.title_page_image, book }) %>" width="300" />
     </div>
     <div class="col-sm">
       <div class="row">
