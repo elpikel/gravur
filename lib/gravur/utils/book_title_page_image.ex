@@ -4,7 +4,7 @@ defmodule Gravur.Utils.BookTitlePageImage do
 
   @versions [:original]
 
-  def storage_dir(version, {file, scope}) do
+  def storage_dir(_version, {_file, scope}) do
     "uploads/user/#{scope.user_id}/book_title_page_image"
   end
 end

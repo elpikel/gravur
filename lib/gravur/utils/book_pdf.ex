@@ -4,7 +4,7 @@ defmodule Gravur.Utils.BookPdf do
 
   @versions [:original]
 
-  def storage_dir(version, {file, scope}) do
+  def storage_dir(_version, {_file, scope}) do
     "uploads/book/#{scope.id}/pdf"
   end
 end
