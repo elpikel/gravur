@@ -5,7 +5,7 @@ defmodule Gravur.Core.Greeting do
   import Ecto.Changeset
 
   schema "greetings" do
-    field :image, Gravur.Utils.Upload.Type
+    field :image, Gravur.Utils.GreetingImage.Type
     field :signature, :string
     field :text, :string
 
@@ -16,6 +16,7 @@ defmodule Gravur.Core.Greeting do
 
   @doc false
   def changeset(greeting, attrs) do
+    attrs = Gravur.Utils.Image.put_random_filename(attrs)
     greeting
     |> cast(attrs, [:text, :signature, :book_id])
     |> cast_attachments(attrs, [:image])

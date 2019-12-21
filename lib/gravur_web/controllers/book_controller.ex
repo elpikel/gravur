@@ -28,9 +28,9 @@ defmodule GravurWeb.BookController do
       {:ok, _} ->
         conn
         |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
-
       {:error, changeset} ->
-      render(conn, "new.html", changeset: changeset)
+        templates = Gravur.Core.get_templates()
+        render(conn, "new.html", changeset: changeset, templates: templates)
     end
   end
 end

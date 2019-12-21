@@ -10,7 +10,7 @@ defmodule GravurWeb.PrintingController do
     {:ok, filename} = PdfGenerator.generate(html, page_size: "A5")
     {:ok, pdf_content} = File.read(filename)
 
-    {:ok, stored_pdf} = Gravur.Utils.Upload.store({ filename, book })
+    {:ok, stored_pdf} = Gravur.Utils.BookPdf.store({ filename, book })
     Gravur.Core.update_pdf(book, stored_pdf)
 
     conn
@@ -27,7 +27,7 @@ defmodule GravurWeb.PrintingController do
   end
 
   defp get_image_url(greeting) do
-    url = Gravur.Utils.Upload.url({ greeting.image, greeting })
+    url = Gravur.Utils.GreetingImage.url({ greeting.image, greeting })
 
     if String.starts_with?(url, "https:") do
       url
