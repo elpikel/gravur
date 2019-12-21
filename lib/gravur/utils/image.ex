@@ -3,6 +3,12 @@ defmodule Gravur.Utils.Image do
     image = %Plug.Upload{image | filename: random_filename(name)}
     %{params | "image" => image}
   end
+
+  def put_random_filename(%{"title_page_image" => %Plug.Upload{filename: name} = image} = params) do
+    image = %Plug.Upload{image | filename: random_filename(name)}
+    %{params | "title_page_image" => image}
+  end
+
   def put_random_filename(params), do: params
 
   defp random_filename(name) do
