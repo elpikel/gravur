@@ -10,9 +10,8 @@ defmodule GravurWeb.SessionController do
     case Identity.sign_in(email, password) do
       {:ok, user} ->
         conn
-        |> put_session(:current_user_id, user.id)
+        |> put_session(:user_id, user.id)
         |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
-
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Invalid Email or Password")

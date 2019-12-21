@@ -1,21 +1,17 @@
 defmodule GravurWeb.BookController do
   use GravurWeb, :controller
 
-  def index(conn, _params) do
-    user = Gravur.Identity.current_user(conn)
-    unless user do
-      conn
-      |> send_resp(401, "unauthorized") # move to plug
-      |> halt()
-    else
-      books = Gravur.Core.get_all_books(user.id)
+  plug GravurWeb.Authorize
 
-      if length(books) != 0 do
-        render(conn, "index.html", books: books)
-      else
-        conn
-        |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
-      end
+  def index(conn, _params) do
+    books = Gravur.Identity.current_user_id(conn)
+      |> Gravur.Core.get_all_books()
+
+    if length(books) != 0 do
+      render(conn, "index.html", books: books)
+    else
+      conn
+      |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
     end
   end
 
@@ -25,8 +21,8 @@ defmodule GravurWeb.BookController do
   end
 
   def create(conn, %{"book" => book_params}) do
-    user = Gravur.Identity.current_user(conn)
-    book_params = Map.put(book_params, "user_id", user.id)
+    user_id = Gravur.Identity.current_user_id(conn)
+    book_params = Map.put(book_params, "user_id", user_id)
 
     case Gravur.Core.create_book(book_params) do
       {:ok, _} ->

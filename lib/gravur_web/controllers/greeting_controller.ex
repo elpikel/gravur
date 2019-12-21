@@ -20,9 +20,8 @@ defmodule GravurWeb.GreetingController do
       {:ok, _} ->
         conn
         |> redirect(to: GravurWeb.Router.Helpers.book_greeting_path(GravurWeb.Endpoint, :index, book))
-
       {:error, changeset} ->
-      render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset)
     end
   end
 end
