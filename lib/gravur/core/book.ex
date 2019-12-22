@@ -24,7 +24,7 @@ defmodule Gravur.Core.Book do
 
   @doc false
   def changeset(book, attrs) do
-    attrs = Gravur.Utils.Image.put_random_filename(attrs)
+    attrs = Gravur.Utils.Image.put_random_filename("title_page_image", attrs)
     book
     |> cast(attrs, [:cover_title, :cover_text, :font_style, :title_page_title, :title_page_text, :user_id, :template_id])
     |> cast_attachments(attrs, [:title_page_image, :pdf])
