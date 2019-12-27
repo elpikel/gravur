@@ -14,14 +14,51 @@
       <div class="row">
         <%= link Routes.book_greeting_path(@conn, :index, book) , to: Routes.book_greeting_path(@conn, :index, book), class: "light" %>
       </div>
-      <div class="row mt-1">
-        <%= if book.pdf do %>
-          <a href="<%= Gravur.Utils.BookPdf.url({ book.pdf, book }) %>" class="btn btn-secondary mr-2">pdf</a>
-        <% end %>
-        <%= link "Przygotuj do druku", to: Routes.book_printing_path(@conn, :create, book), method: :post, class: "btn btn-secondary" %>
+      <div class="row mt-1" id="<%= book.id %>">
+        <a href="<%= Gravur.Utils.BookPdf.url({ book.pdf, book }) %>" class="btn btn-secondary mr-2 pdf-link" style="<%= unless book.pdf do 'display: none' end %>">pdf</a>
+        <a href="#" class="btn btn-secondary generate-pdf">
+          <div class="link-text">Przygotuj do druku</div>
+          <div class="spinner-border text-light" style="display: none" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 <% end %>
 </br>
 <%= link "New book", to: Routes.book_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
+
+<script>
+  $(function() {
+    $(".generate-pdf").bind('click', function(event) {
+      const bookRow = $(this).parent();
+      const spinner = bookRow.find(".spinner-border");
+      const linkText = bookRow.find(".link-text");
+      const pdfLink = bookRow.find(".pdf-link");
+
+      spinner.show();
+      linkText.hide();
+
+      $.post({
+        url: `/books/${bookRow.attr('id')}/printings`,
+        data: "",
+        headers: {
+          "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
+        },
+        success: function (data) {
+          spinner.hide();
+          linkText.show();
+
+          pdfLink.attr("href", data.url);
+          pdfLink.show();
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          //what to do in error
+        }
+      });
+
+      return false;
+    });
+  });
+</script>

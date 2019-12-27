@@ -9,9 +9,6 @@ defmodule GravurWeb.PrintingController do
 
     Gravur.Core.update_pdf(book, pdf.url)
 
-    conn
-      |> put_resp_content_type("application/pdf")
-      |> put_resp_header("content-disposition", "attachment; filename=\"#{pdf.filename}\"")
-      |> send_resp(200, pdf.content)
+    json(conn, %{url: Gravur.Utils.BookPdf.url({ pdf.url, book })})
   end
 end
