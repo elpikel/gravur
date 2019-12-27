@@ -27,7 +27,11 @@
     </div>
 
     <div class="row">
-      <div class="col-sm">
+      <div class="col-sm text-center">
+        <div class="mt-5">
+          <div id="cover_title_show"></div>
+          <div id="cover_text_show"></div>
+        </div>
       </div>
       <div class="col-sm">
         <div class="form-group">
@@ -72,6 +76,13 @@
 
     <div class="row">
       <div class="col-sm">
+        <div class="card mb-5" id="greeting_preview" style="display: none">
+          <img class="card-img-top" src="" id="greeting_image_show" />
+          <div class="card-body">
+            <p class="card-text" id="text_page_show"></p>
+            <h5 class="card-title" id="title_page_show"></h5>
+          </div>
+        </div>
       </div>
       <div class="col-sm">
         <div class="form-group">
@@ -88,7 +99,7 @@
 
         <div class="form-group">
           <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
-          <%= file_input f, :title_page_image, class: "form-control" %>
+          <%= file_input f, :title_page_image, onchange: "readURL(this);", class: "form-control" %>
           <%= error_tag f, :title_page_image %>
         </div>
 
@@ -142,6 +153,37 @@
 <% end %>
 
 <script>
+  $('#book_cover_title').keyup(function(){
+    $("#cover_title_show").text(this.value);
+  });
+
+  $('#book_cover_text').keyup(function(){
+    $("#cover_text_show").text(this.value);
+  });
+
+  $('#book_title_page_title').keyup(function(){
+    $("#title_page_show").text(this.value);
+    $('#greeting_preview').show();
+  });
+
+  $('#book_title_page_text').keyup(function(){
+    $("#text_page_show").text(this.value);
+    $('#greeting_preview').show();
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#greeting_image_show").attr("src", e.target.result);
+        $('#greeting_preview').show();
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
   let selectedTemplate = "";
 
   function selectTemplate(template, templateId) {
