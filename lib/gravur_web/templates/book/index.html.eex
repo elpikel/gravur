@@ -12,7 +12,7 @@
         <span>Udostępnij księgę swoim gościom...</span>
       </div>
       <div class="row">
-        <%= link Routes.book_greeting_path(@conn, :index, book) , to: Routes.book_greeting_path(@conn, :index, book), class: "light" %>
+        <%= link Routes.book_greeting_url(@conn, :index, book) , to: Routes.book_greeting_path(@conn, :index, book), class: "light" %>
       </div>
       <div class="row mt-1" id="<%= book.id %>">
         <a href="<%= Gravur.Utils.BookPdf.url({ book.pdf, book }) %>" class="btn btn-secondary mr-2 pdf-link" style="<%= unless book.pdf do 'display: none' end %>">pdf</a>
