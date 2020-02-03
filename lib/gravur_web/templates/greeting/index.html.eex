@@ -3,18 +3,13 @@
     Brak wpisow / Czy pokazac strone tytulowa?
   <% else %>
     <%= for greeting <- @book.greetings do %>
-      <div class="card mb-5">
-        <img class="card-img-top" src="<%= Gravur.Utils.GreetingImage.url({ greeting.image, greeting }) %>" />
+      <div>
+        <img class="card-img" style="border-radius: 0;" src="<%= Gravur.Utils.GreetingImage.url({ greeting.image, greeting }) %>" />
         <div class="card-body">
           <p class="card-text"><%= greeting.text %></p>
-          <h5 class="card-title"><%= greeting.signature %></h5>
+          <h6 class="card-title" style="text-align:right;font-weight: normal;"><%= greeting.signature %></h6>
         </div>
       </div>
     <% end %>
   <% end %>
-  <div class="fixed-bottom mb-5 text-center">
-    <%= link to: Routes.book_greeting_path(@conn, :new, @book), class: "btn btn-secondary btn-circle btn-xl" do %>
-      <i class="fa fa-plus bt-circle-icon btn-xl"></i>
-    <% end %>
-  </div>
 </div>

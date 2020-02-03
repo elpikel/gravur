@@ -35,3 +35,21 @@
 #image-preview {
   width: 100px;
 }
+
+.top-bar {
+  background-color: #F2EFED;
+  border-bottom: 1px solid #95989A;
+}
+
+.mobile-app-name {
+  color: #6F6D6C;
+  text-align: center;
+}
+
+.mobile-body {
+  margin-top:75px;
+}
+
+.mobile-bottom {
+  background-color:#F5F3F2;
+}
