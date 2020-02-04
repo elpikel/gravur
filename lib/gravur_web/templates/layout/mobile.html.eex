@@ -20,13 +20,21 @@
       <div class="fixed-bottom mobile-bottom p-3">
         <div class="row">
           <div class="col ml-4">
-            <%= link to: Routes.book_greeting_path(@conn, :index, @book) do %>
+            <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :index, @book) do %>
               <img src="/images/home.svg">
+            <% else %>
+              <%= link to: Routes.book_greeting_path(@conn, :index, @book) do %>
+                <img src="/images/home-active.svg">
+              <% end %>
             <% end %>
           </div>
           <div class="col text-right mr-4">
-            <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
+            <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :new, @book) do %>
               <img src="/images/add.svg">
+            <% else %>
+              <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
+                <img src="/images/add-active.svg">
+              <% end %>
             <% end %>
           </div>
         </div>
