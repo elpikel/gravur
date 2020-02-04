@@ -1,6 +1,13 @@
 <div class="justify-content-center">
   <%= if length(@book.greetings) == 0 do %>
-    Brak wpisow / Czy pokazac strone tytulowa?
+    <div class="mobile-empty-greetings">
+      <p>Księga Gości jest jeszcze pusta. Dodaj wpis jako pierwszy!</p>
+      <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
+        <button type="button" class="btn btn-primary px-4 py-2" style="background-color: #2E4E43;">
+          DODAJ WPIS
+        </button>
+      <% end %>
+    </div>
   <% else %>
     <%= for greeting <- @book.greetings do %>
       <div>
