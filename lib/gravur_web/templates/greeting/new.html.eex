@@ -65,8 +65,11 @@
 
       reader.readAsDataURL(input.files[0]);
 
-      document.getElementById("image-preview-container").style.display = "block";
-      document.getElementById("image-form").style.display = "none";
+      setTimeout(function(){
+        document.getElementById("image-preview-container").style.display = "block";
+        document.getElementById("image-form").style.display = "none";
+      }, 100);
+
     }
   }
 
