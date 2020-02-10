@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center pt-4">
   <div class="w-50">
     <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
       <div class="form-group">
@@ -14,10 +14,9 @@
         <div id="signature-counter" class="text-right">0/100</div>
         <%= error_tag f, :signature %>
       </div>
-
       <div class="form-group">
         <div class="row">
-          <div class="col-sm">
+          <div id="image-form" class="col-sm">
             <a onclick="openFilePicker();" style="cursor: pointer;">
               <div>
                 <img src="/images/camera.svg">
@@ -25,8 +24,11 @@
               </div>
             </a>
           </div>
-          <div class="col-sm text-right">
-            <img id="image-preview" src="" />
+          <div id="image-preview-container" class="col-sm text-center" style="display:none;">
+            <button type="button" class="close-button" aria-label="Close" onclick="clearImage();" style="position:absolute">
+              &times;
+            </button>
+            <img id="image-preview" src="" style="padding-top:13px;padding-left:7px;"/>
           </div>
         </div>
         <%= file_input f, :image, id: "file-picker", onchange: "readURL(this);", hidden: "true" %>
@@ -45,6 +47,12 @@
     document.getElementById("file-picker").click();
   }
 
+  function clearImage() {
+    document.getElementById("image-preview").setAttribute("src", "");
+    document.getElementById("image-preview-container").style.display = "none";
+    document.getElementById("image-form").style.display = "block";
+  }
+
   function readURL(input) {
     if (input.files && input.files[0]) {
       const reader = new FileReader();
@@ -56,12 +64,16 @@
       };
 
       reader.readAsDataURL(input.files[0]);
+
+      document.getElementById("image-preview-container").style.display = "block";
+      document.getElementById("image-form").style.display = "none";
     }
   }
 
   document.getElementById("body").oninput = function(e) {
     document.getElementById("body-counter").innerHTML = `${e.target.value.length}/500`;
   };
+
   document.getElementById("signature").oninput = function(e) {
     document.getElementById("signature-counter").innerHTML = `${e.target.value.length}/100`;
   };
