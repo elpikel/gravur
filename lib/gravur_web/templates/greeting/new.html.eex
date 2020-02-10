@@ -2,14 +2,14 @@
   <div class="w-50">
     <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
       <div class="form-group">
-        <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj tresc wpisu.*", required: true, autofocus: true, maxlength: "500" %>
+        <%= textarea f, :text, class: "app-textarea", id: "body", placeholder: "Tutaj dodaj tresc wpisu.*", required: true, autofocus: true, maxlength: "500" %>
         <hr style="margin-bottom:0"/>
         <div id="body-counter" class="text-right">0/500</div>
         <%= error_tag f, :text %>
       </div>
 
       <div class="form-group">
-        <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", required: true, autofocus: true, maxlength: "100" %>
+        <%= text_input f, :signature, class: "app-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", required: true, autofocus: true, maxlength: "100" %>
         <hr style="margin-bottom:0"/>
         <div id="signature-counter" class="text-right">0/100</div>
         <%= error_tag f, :signature %>

@@ -2,6 +2,8 @@ defmodule GravurWeb.RegistrationController do
   use GravurWeb, :controller
   alias Gravur.Identity
 
+  plug :put_layout, "login.html"
+
   def new(conn, _params) do
     render conn, "new.html", changeset: conn
   end

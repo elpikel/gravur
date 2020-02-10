@@ -71,27 +71,32 @@
   color: #FFFFFF;
 }
 
-.mobile-input {
+.app-input {
   background-color:transparent;
   border: 0px solid;
   height:30px;
   width:100%;
 }
-.mobile-input:focus {
+.app-input:focus {
   outline:none;
 }
 
-.mobile-textarea {
+.app-textarea {
   background-color:transparent;
   border: 0px solid;
   height:230px;
   width:100%;
 }
-.mobile-textarea:focus {
+.app-textarea:focus {
   outline:none;
 }
 
 .close-button {
   border-radius: 50%;
   color: #6F6D6C;
+}
+
+.login-form{
+  padding: 5%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }

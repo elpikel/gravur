@@ -1,21 +1,23 @@
  <div class="d-flex justify-content-center">
-  <div class="w-50">
+  <div class="w-50 card login-form">
     <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "form-signin"], fn f -> %>
       <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
       </div>
 
-      <div class="form-group">
-        <%= label f, :email, "Email", class: "control-label" %>
-        <%= text_input f, :email, class: "form-control", placeholder: "Email", required: true, autofocus: true %>
+      <div class="form-group mt-5">
+        <%= text_input f, :email, class: "app-input", placeholder: "Email", required: true, autofocus: true %>
+        <hr style="margin:0"/>
       </div>
 
-      <div class="form-group">
-        <%= label f, :password, "Hasło", class: "control-label" %>
-        <%= password_input f, :password, class: "form-control", placeholder: "Hasło", required: true %>
+      <div class="form-group mt-5">
+        <%= password_input f, :password, class: "app-input", placeholder: "Hasło", required: true %>
+        <hr style="margin:0"/>
       </div>
 
-      <%= submit "Zaloguj się", class: "btn btn-secondary btn-lg btn-block mt-5" %>
+      <div class="text-center">
+        <%= submit "ZALOGUJ SIĘ", class: "btn px-4 py-2 app-button mt-5" %>
+      </div>
     <% end %>
   </div>
 </div>
