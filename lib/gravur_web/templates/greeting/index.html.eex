@@ -3,7 +3,7 @@
     <div class="mobile-empty-greetings">
       <p>Księga Gości jest jeszcze pusta. Dodaj wpis jako pierwszy!</p>
       <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
-        <button type="button" class="btn btn-primary px-4 py-2" style="background-color: #2E4E43;">
+        <button type="button" class="btn px-4 py-2 app-button">
           DODAJ WPIS
         </button>
       <% end %>

@@ -61,3 +61,32 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+.app-button {
+  color: #FFFFFF;
+  background-color: #2E4E43;
+}
+
+.app-button:hover {
+  color: #FFFFFF;
+}
+
+.mobile-input {
+  background-color:transparent;
+  border: 0px solid;
+  height:30px;
+  width:100%;
+}
+.mobile-input:focus {
+  outline:none;
+}
+
+.mobile-textarea {
+  background-color:transparent;
+  border: 0px solid;
+  height:230px;
+  width:100%;
+}
+.mobile-textarea:focus {
+  outline:none;
+}
