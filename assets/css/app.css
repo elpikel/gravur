@@ -40,8 +40,8 @@ body {
 }
 
 .top-bar {
-  background-color: #F2EFED;
-  border-bottom: 1px solid #95989A;
+  background-color: #E0E0E0;
+  border-bottom: 1px solid #707070;
 }
 
 .mobile-app-name {
@@ -54,7 +54,7 @@ body {
 }
 
 .mobile-bottom {
-  background-color:#F5F3F2;
+  background-color:#E0E0E0;
 }
 
 .mobile-empty-greetings {
@@ -85,14 +85,28 @@ body {
   outline:none;
 }
 
-.app-textarea {
+.mobile-input {
+  background-color:transparent;
+  border: 0px solid;
+  height:30px;
+  width:100%;
+}
+.mobile-input:focus {
+  outline:none;
+}
+
+.mobile-textarea {
   background-color:transparent;
   border: 0px solid;
   height:230px;
   width:100%;
 }
-.app-textarea:focus {
+.mobile-textarea:focus {
   outline:none;
+}
+
+.mobile-form-line {
+  margin-bottom:0;
 }
 
 .close-button {
