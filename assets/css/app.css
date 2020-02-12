@@ -130,3 +130,8 @@ body {
 .app-name {
   font-size: 36px;
 }
+
+.app-logo {
+  font-size: 36px;
+  font-weight: bold;
+}

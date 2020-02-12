@@ -26,8 +26,6 @@
     </div>
   </div>
 <% end %>
-</br>
-<%= link "New book", to: Routes.book_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
 
 <script>
   $(function() {
