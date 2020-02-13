@@ -1,18 +1,22 @@
 <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
 
   <div id="book-template">
-    <div class="row mb-4">
-      <div class="col-auto"><h3>Stwórz swoją księgę</h3></div>
-      <div class="col mt-2"><hr></div>
+    <div class="no-book-info px-3">
+      <img class="mr-3" src="/images/book.svg" />Nie masz jeszcze gotowego projektu księgi. Stwórz swoją księgę gości - zacznij od wyboru jednego z poniższych szablonów!
+    </div>
+    <div class="row mb-4 mt-5">
+      <div class="col-auto" style="font-size: 1.2rem">Wybierz szablon do swojej księgi</div>
     </div>
 
     <div class="row">
       <%= for template <- @templates do %>
         <div class="col-sm">
-          <div class="card border" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
+          <div class="card no-book-info" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
             <img class="card-img-top" src="<%= template.image %>" />
-            <div class="card-body">
-              <h5 class="card-title"><%= template.name %></h5>
+            <div class="card-body text-center">
+              <div class="btn px-5 py-2 app-button">
+                WYBIERZ SZABLON
+              </div>
             </div>
           </div>
         </div>
