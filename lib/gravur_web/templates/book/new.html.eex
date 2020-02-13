@@ -1,8 +1,13 @@
 <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
 
   <div id="book-template">
-    <div class="no-book-info px-3">
-      <img class="mr-3" src="/images/book.svg" />Nie masz jeszcze gotowego projektu księgi. Stwórz swoją księgę gości - zacznij od wyboru jednego z poniższych szablonów!
+    <div class="no-book-info px-3 row">
+      <div class="">
+        <img src="/images/book.svg" />
+      </div>
+      <div class="col-10 align-self-center">
+        Nie masz jeszcze gotowego projektu księgi. Stwórz swoją księgę gości - zacznij od wyboru jednego z poniższych szablonów!
+      </div>
     </div>
     <div class="row mb-4 mt-5">
       <div class="col-auto" style="font-size: 1.2rem">Wybierz szablon do swojej księgi</div>
@@ -39,19 +44,19 @@
       </div>
       <div class="col-sm">
         <div class="form-group">
-          <%= label f, :cover_title, "Tytuł (np. wasze imiona)", class: "control-label" %>
+          <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label" %>
           <%= text_input f, :cover_title, class: "form-control", placeholder: "", required: true, autofocus: true %>
           <%= error_tag f, :cover_title %>
         </div>
 
         <div class="form-group">
-          <%= label f, :cover_text, "Tekst (np. miejsce wydazenia i daty)", class: "control-label" %>
+          <%= label f, :cover_text, "Tekst (np. miejsce wydarzenia i daty)", class: "control-label" %>
           <%= text_input f, :cover_text, class: "form-control", placeholder: "", required: true, autofocus: true %>
           <%= error_tag f, :cover_text %>
         </div>
 
         <div class="form-group">
-          <%= label f, :font_style, "Wybierz styl", class: "control-label" %>
+          <%= label f, :font_style, "Wybierz font w całej księdze", class: "control-label" %>
           <%= text_input f, :font_style, class: "form-control", placeholder: "", required: true, autofocus: true %>
           <%= error_tag f, :font_style %>
         </div>
