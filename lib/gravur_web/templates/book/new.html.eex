@@ -31,45 +31,46 @@
   </div>
   <div id="book-cover" style="display: none">
     <div class="row mb-4">
-      <div class="col-auto"><h3>Krok 1: Okładka</h3></div>
-      <div class="col mt-2"><hr></div>
+      <div class="col-auto" style="font-size: 1.2rem">Projektowanie księgi</div>
     </div>
 
     <div class="row">
-      <div class="col-sm text-center">
+      <div class="col-sm text-center no-book-info">
         <div class="mt-5">
           <div id="cover_title_show"></div>
           <div id="cover_text_show"></div>
         </div>
       </div>
-      <div class="col-sm">
-        <div class="form-group">
-          <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label" %>
-          <%= text_input f, :cover_title, class: "form-control", placeholder: "", required: true, autofocus: true %>
+      <div class="col-sm no-book-info p-5">
+        <div class="form-group mt-5">
+          <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label app-label" %>
+          <%= text_input f, :cover_title, class: "app-input", required: true, autofocus: true %>
           <%= error_tag f, :cover_title %>
         </div>
 
-        <div class="form-group">
-          <%= label f, :cover_text, "Tekst (np. miejsce wydarzenia i daty)", class: "control-label" %>
-          <%= text_input f, :cover_text, class: "form-control", placeholder: "", required: true, autofocus: true %>
+        <div class="form-group mt-5">
+          <%= label f, :cover_text, "Wpisz tekst dodatkowy (np. data ślubu)", class: "control-label" %>
+          <%= text_input f, :cover_text, class: "app-input", placeholder: "", required: true, autofocus: true %>
           <%= error_tag f, :cover_text %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-5">
           <%= label f, :font_style, "Wybierz font w całej księdze", class: "control-label" %>
-          <%= text_input f, :font_style, class: "form-control", placeholder: "", required: true, autofocus: true %>
+          <hr />
+          <%= select f , :font_style, [Arial: "Arial", Calibri: "Calibri", Courier: "Courier", Verdana: "Verdana"], class: "app-select" %>
+          <hr class="form-line" />
           <%= error_tag f, :font_style %>
         </div>
 
         <div class="row align-items-center">
           <div class="col-sm">
-            <div class="btn btn-secondary btn-block" onclick="toBookTemplatePage()">
-              Wroc
+            <div class="btn px-5 py-2 app-button mt-5" onclick="toBookTemplatePage()">
+              WRÓĆ
             </div>
           </div>
-          <div class="col-sm">
-            <div class="btn btn-secondary btn-block" onclick="toBookTitlePage()">
-              Dalej
+          <div class="col-sm text-right">
+            <div class="btn px-5 py-2 app-button mt-5" onclick="toBookTitlePage()">
+              DALEJ
             </div>
           </div>
         </div>

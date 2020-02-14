@@ -85,6 +85,16 @@ body {
   outline:none;
 }
 
+.app-select {
+  background-color:transparent;
+  border: 0px solid;
+  height:30px;
+  width:100%;
+}
+.app-select:focus {
+  outline:none;
+}
+
 .mobile-input {
   background-color:transparent;
   border: 0px solid;
@@ -105,7 +115,7 @@ body {
   outline:none;
 }
 
-.mobile-form-line {
+.form-line {
   margin-bottom:0;
 }
 
