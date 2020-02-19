@@ -15,11 +15,15 @@ defmodule Gravur.Core do
   end
 
   def get_all_books(user_id) do
-    Book |> where(user_id: ^user_id) |> Repo.all
+    Book |> where(user_id: ^user_id) |> preload(:template) |> Repo.all
   end
 
   def create_book(book_params) do
     Book.changeset(%Book{}, book_params) |> Repo.insert()
+  end
+
+  def has_book(user_id) do
+    Book |> where(user_id: ^user_id) |> Repo.exists?
   end
 
   def update_pdf(book, file_name) do

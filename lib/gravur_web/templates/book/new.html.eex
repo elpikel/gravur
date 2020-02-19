@@ -1,14 +1,16 @@
 <%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
 
   <div id="book-template">
-    <div class="no-book-info px-3 row">
-      <div class="">
-        <img src="/images/book.svg" />
+    <%= unless @has_book do %>
+      <div class="no-book-info px-3 row">
+        <div class="">
+          <img src="/images/book.svg" />
+        </div>
+        <div class="col-10 align-self-center">
+          Nie masz jeszcze gotowego projektu księgi. Stwórz swoją księgę gości - zacznij od wyboru jednego z poniższych szablonów!
+        </div>
       </div>
-      <div class="col-10 align-self-center">
-        Nie masz jeszcze gotowego projektu księgi. Stwórz swoją księgę gości - zacznij od wyboru jednego z poniższych szablonów!
-      </div>
-    </div>
+    <% end%>
     <div class="row mb-4 mt-5">
       <div class="col-auto" style="font-size: 1.2rem">Wybierz szablon do swojej księgi</div>
     </div>
@@ -31,7 +33,7 @@
   </div>
   <div id="book-cover" style="display: none">
     <div class="row mb-4">
-      <div class="col-auto" style="font-size: 1.2rem">Projektowanie księgi</div>
+      <div class="col-auto" style="font-size: 1.2rem">Strona tytułowa</div>
     </div>
 
     <div class="row">
@@ -69,59 +71,8 @@
             </div>
           </div>
           <div class="col-sm text-right">
-            <div class="btn px-5 py-2 app-button mt-5" onclick="toBookTitlePage()">
+            <div class="btn px-5 py-2 app-button mt-5" onclick="toBookSampleGreeting()">
               DALEJ
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="book-title-page" style="display: none">
-    <div class="row mb-4">
-      <div class="col-auto"><h3>Krok 2: Strona tytułowa</h3></div>
-      <div class="col mt-2"><hr></div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm">
-        <div class="card mb-5" id="greeting_preview" style="display: none">
-          <img class="card-img-top" src="" id="greeting_image_show" />
-          <div class="card-body">
-            <p class="card-text" id="text_page_show"></p>
-            <h5 class="card-title" id="title_page_show"></h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="form-group">
-          <%= label f, :title_page_title, "Tytuł", class: "control-label" %>
-          <%= text_input f, :title_page_title, class: "form-control", placeholder: "", required: true, autofocus: true %>
-          <%= error_tag f, :title_page_title %>
-        </div>
-
-        <div class="form-group">
-          <%= label f, :title_page_text, "Tekst", class: "control-label" %>
-          <%= text_input f, :title_page_text, class: "form-control", placeholder: "", required: true, autofocus: true %>
-          <%= error_tag f, :title_page_text %>
-        </div>
-
-        <div class="form-group">
-          <%= label f, :title_page_image, "Tile page image", class: "control-label" %>
-          <%= file_input f, :title_page_image, onchange: "readURL(this);", class: "form-control" %>
-          <%= error_tag f, :title_page_image %>
-        </div>
-
-        <div class="row align-items-center">
-          <div class="col-sm">
-            <div class="btn btn-secondary btn-block" onclick="toBookCoverPage()">
-              Wroc
-            </div>
-          </div>
-          <div class="col-sm">
-            <div class="btn btn-secondary btn-block" onclick="toBookSampleGreeting()">
-              Dalej
             </div>
           </div>
         </div>
@@ -131,35 +82,34 @@
 
   <div id="book-sample-greeting" style="display: none">
     <div class="row mb-4">
-      <div class="col-auto"><h3>Krok 3: Przykładowy wpis</h3></div>
-      <div class="col mt-2"><hr></div>
+      <div class="col-auto" style="font-size: 1.2rem">Przykładowy wpis</div>
     </div>
 
     <div class="row">
-      <div class="col-sm">
-        <div class="card mb-5">
-          <img class="card-img-top" src="" id="greeting-image" />
-          <div class="card-body">
-            <p class="card-text">Jakies pozdrowienia</p>
-            <h5 class="card-title">Jakis podpis </h5>
-          </div>
+      <div class="col-sm text-center no-book-info">
+        <div class="my-5 py-5">
+          <img src="/images/greeting.jpg" style="width:400px">
         </div>
       </div>
-      <div class="col-sm">
-        <div class="row align-items-center">
-          <div class="col-sm">
-            <div class="btn btn-secondary btn-block" onclick="toBookTitlePage()">
-              Wroc
+      <div class="col-sm no-book-info">
+        <div class="mx-5 my-5 py-4">
+          <div class="mt-5">Niech wszystkie dni wspólnego życia będą tak radosne i promienne jak ten dzień dzisiejszy! Z najlepszymi życzeniami w Dniu Ślubu!</div>
+          <div class="mt-5 text-right">Magda i Łukasz</div>
+        </div>
+        <div class="row mx-5">
+          <div class="col-sm px-0">
+            <div class="btn px-5 py-2 app-button" onclick="toBookCoverPage()">
+              WRÓĆ
             </div>
           </div>
-          <div class="col-sm">
-            <%= submit "Zapisz ksiege", class: "btn btn-secondary btn-block" %>
+          <div class="col-sm px-0 text-right">
+            <%= submit "ZAPISZ", class: "btn px-5 py-2 app-button" %>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+
 <% end %>
 
 <script>
@@ -170,29 +120,6 @@
   $('#book_cover_text').keyup(function(){
     $("#cover_text_show").text(this.value);
   });
-
-  $('#book_title_page_title').keyup(function(){
-    $("#title_page_show").text(this.value);
-    $('#greeting_preview').show();
-  });
-
-  $('#book_title_page_text').keyup(function(){
-    $("#text_page_show").text(this.value);
-    $('#greeting_preview').show();
-  });
-
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        $("#greeting_image_show").attr("src", e.target.result);
-        $('#greeting_preview').show();
-      };
-
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
 
   let selectedTemplate = "";
 
@@ -206,34 +133,23 @@
     }
     template.className = "card border border-secondary";
     document.getElementById('template_' + templateId).checked = true;
-    document.getElementById('greeting-image').src = template.children[0].src;
     toBookCoverPage();
   }
 
   function toBookCoverPage() {
     document.getElementById('book-template').style.display = "none";
-    document.getElementById('book-title-page').style.display = "none";
     document.getElementById('book-sample-greeting').style.display = "none";
     document.getElementById('book-cover').style.display = "block";
   }
 
   function toBookTemplatePage() {
     document.getElementById('book-template').style.display = "block";
-    document.getElementById('book-title-page').style.display = "none";
-    document.getElementById('book-sample-greeting').style.display = "none";
-    document.getElementById('book-cover').style.display = "none";
-  }
-
-  function toBookTitlePage() {
-    document.getElementById('book-template').style.display = "none";
-    document.getElementById('book-title-page').style.display = "block";
     document.getElementById('book-sample-greeting').style.display = "none";
     document.getElementById('book-cover').style.display = "none";
   }
 
   function toBookSampleGreeting() {
     document.getElementById('book-template').style.display = "none";
-    document.getElementById('book-title-page').style.display = "none";
     document.getElementById('book-sample-greeting').style.display = "block";
     document.getElementById('book-cover').style.display = "none";
   }

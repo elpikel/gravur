@@ -1,11 +1,11 @@
 <div class="row mb-4">
-  <div class="col-auto"><h3>Moja księga</h3></div>
+  <div class="col-auto"><h3>Moja księgi</h3></div>
   <div class="col mt-2"><hr></div>
 </div>
 <%= for book <- @books do %>
   <div class="row mt-1">
     <div class="col-sm">
-      <img src="<%= Gravur.Utils.BookTitlePageImage.url({ book.title_page_image, book }) %>" width="300" />
+      <img src="<%= book.template.image %>" width="300" />
     </div>
     <div class="col-sm">
       <div class="row">

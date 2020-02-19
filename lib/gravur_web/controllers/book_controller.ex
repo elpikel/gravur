@@ -17,7 +17,8 @@ defmodule GravurWeb.BookController do
 
   def new(conn, _params) do
     templates = Gravur.Core.get_templates()
-    render(conn, "new.html", changeset: conn, templates: templates)
+    has_book = Gravur.Core.has_book(Gravur.Identity.current_user_id(conn))
+    render(conn, "new.html", changeset: conn, templates: templates, has_book: has_book)
   end
 
   def create(conn, %{"book" => book_params}) do
