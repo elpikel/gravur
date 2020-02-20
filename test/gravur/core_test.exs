@@ -25,19 +25,9 @@ defmodule Gravu.CoreTest do
 
   describe "get_all_greetings" do
     test "get all greetings related to book", %{user: user, template: template} do
-      {:ok, book} = Core.create_book(%{
-        cover_title: "cover_title",
-        cover_text: "cover_text",
-        font_style: "font_style",
-        user_id: user.id,
-        template_id: template.id
-      })
-      {:ok, greeting} = Core.create_greeting(%{
-        "image" => %Plug.Upload{path: "test/fixtures/image.jpg", filename: "image.jpg"},
-        "signature" => "signature",
-        "text" => "text",
-        "book_id" => book.id
-      })
+      book = create_book(user, template)
+      greeting = create_greeting(book)
+
       greetings = Core.get_all_greetings(book.id)
       saved_greeting = Enum.at(greetings, 0)
 
@@ -48,5 +38,26 @@ defmodule Gravu.CoreTest do
       assert greeting.book_id == saved_greeting.book_id
       assert greeting.image == saved_greeting.image
     end
+  end
+
+  defp create_book(user, template) do
+    {:ok, book} = Core.create_book(%{
+      cover_title: "cover_title",
+      cover_text: "cover_text",
+      font_style: "font_style",
+      user_id: user.id,
+      template_id: template.id
+    })
+    book
+  end
+
+  defp create_greeting(book) do
+    {:ok, greeting} = Core.create_greeting(%{
+      "image" => %Plug.Upload{path: "test/fixtures/image.jpg", filename: "image.jpg"},
+      "signature" => "signature",
+      "text" => "text",
+      "book_id" => book.id
+    })
+    greeting
   end
 end
