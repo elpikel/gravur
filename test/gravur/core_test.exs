@@ -38,6 +38,16 @@ defmodule Gravu.CoreTest do
       assert greeting.book_id == saved_greeting.book_id
       assert greeting.image == saved_greeting.image
     end
+
+    test "does not get unrelated grretings to book", %{user: user, template: template} do
+      book = create_book(user, template)
+      unrelated_book = create_book(user, template)
+      greeting = create_greeting(book)
+
+      greetings = Core.get_all_greetings(unrelated_book.id)
+
+      assert 0 == length(greetings)
+    end
   end
 
   defp create_book(user, template) do
