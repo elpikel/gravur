@@ -4,20 +4,23 @@ defmodule GravurWeb.BookController do
   plug GravurWeb.Authorize
 
   def index(conn, _params) do
-    books = Gravur.Identity.current_user_id(conn)
+    books = conn
+      |> Gravur.Identity.current_user_id()
       |> Gravur.Core.get_all_books()
 
     if length(books) != 0 do
       render(conn, "index.html", books: books)
     else
-      conn
-      |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
+      redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
     end
   end
 
   def new(conn, _params) do
     templates = Gravur.Core.get_templates()
-    has_book = Gravur.Core.has_book(Gravur.Identity.current_user_id(conn))
+    has_book = conn
+      |> Gravur.Identity.current_user_id()
+      |> Gravur.Core.has_book()
+
     render(conn, "new.html", changeset: conn, templates: templates, has_book: has_book)
   end
 
