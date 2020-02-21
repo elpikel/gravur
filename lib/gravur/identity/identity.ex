@@ -6,7 +6,7 @@ defmodule Gravur.Identity do
     user = Repo.get_by(User, email: email)
 
     cond do
-      user && Comeonin.Bcrypt.checkpw(password, user.encrypted_password) ->
+      user && user.is_verified && Comeonin.Bcrypt.checkpw(password, user.encrypted_password) ->
         {:ok, user}
       true ->
         {:error, :unauthorized}
