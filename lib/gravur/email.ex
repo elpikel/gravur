@@ -4,7 +4,7 @@ defmodule Gravur.Email do
   def verify_email(conn, user) do
     new_email()
     |> to(user.email)
-    |> from("admin@gravur.herokuapp.com")
+    |> from("mailgun@sandbox8105b95b353e4017977fadc6f864f2e3.mailgun.org")
     |> subject("Welcome!")
     |> render("verify.html", conn: conn, user: user)
     |> Gravur.Externals.Mailer.deliver_later
