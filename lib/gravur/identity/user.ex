@@ -5,6 +5,8 @@ defmodule Gravur.Identity.User do
   schema "users" do
     field :email, :string
     field :encrypted_password, :string
+    field :is_verified, :boolean, default: false
+    field :verification_code, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
@@ -26,7 +28,15 @@ defmodule Gravur.Identity.User do
     |> validate_confirmation(:password)
     |> cast(attrs, [:password], [])
     |> validate_length(:password, min: 6, max: 128)
+    |> random_verification_code()
     |> encrypt_password()
+  end
+
+  defp random_verification_code(changeset) do
+    verification_code = :crypto.strong_rand_bytes(20)
+      |> Base.url_encode64
+      |> binary_part(0, 20)
+    put_change(changeset, :verification_code, verification_code)
   end
 
   defp encrypt_password(changeset) do

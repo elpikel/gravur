@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+  <div class="w-60 card login-form">
+    <img src="/images/mail.svg">
+    <h2 class="text-center pt-4">Potwierdź swój adres email!</h2>
+
+    <p class="text-center pt-5">
+      Abyś mógł zakończyć proces zakładania konta i zacząć tworzyć swoją księgę
+      gości, potwierdź swój adres email w wiadomości, którą właśnie
+      do Ciebie wysłaliśmy!
+    </p>
+
+    <p class="text-center pt-5">
+      E-mail nie dotarł? <%= link "Kliknij tutaj, żeby wysłać go ponownie." , to: Routes.verification_path(@conn, :send, @user.id), style: "color:#1F1F1F;font-weight:bold;" %>
+    </p>
+  </div>
+</div>

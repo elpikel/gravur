@@ -13,6 +13,10 @@ defmodule Gravur.Identity do
     end
   end
 
+  def get_user(user_id) do
+    Repo.get(User, user_id)
+  end
+
   def current_user(conn) do
     user_id = Plug.Conn.get_session(conn, :user_id)
     if user_id, do: Repo.get(User, user_id)
@@ -32,5 +36,15 @@ defmodule Gravur.Identity do
 
   def register(params) do
     User.registration_changeset(%User{}, params) |> Repo.insert()
+  end
+
+  def verify(user_id, verification_code) do
+    user = Repo.get(User, user_id)
+
+    if user.verification_code == verification_code do
+      {:ok, user}
+    else
+      {:error, "wrong verification code"}
+    end
   end
 end

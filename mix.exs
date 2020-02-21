@@ -51,7 +51,9 @@ defmodule Gravur.MixProject do
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6.6"},
-      {:pdf_generator, ">=0.6.0" }
+      {:pdf_generator, ">=0.6.0" },
+      {:bamboo, "~> 1.4"},
+      {:bamboo_smtp, "~> 2.1"}
     ]
   end
 

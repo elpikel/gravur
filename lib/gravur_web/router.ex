@@ -19,6 +19,9 @@ defmodule GravurWeb.Router do
     get "/", PageController, :index
     resources "/sessions", SessionController, only: [:new, :create]
     resources "/registrations", RegistrationController, only: [:new, :create]
+    get "/verification/verify/:user_id/:verification_code", VerificationController, :verify
+    get "/verification/send/:user_id", VerificationController, :send
+    get "/verification/show/:user_id", VerificationController, :show
     delete "/sign_out", SessionController, :delete
 
     resources "/books", BookController do
