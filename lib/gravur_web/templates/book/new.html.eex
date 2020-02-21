@@ -120,7 +120,11 @@
 
     if (this.value != "") {
       setColors("book_cover_title", "#2E4E43");
-      setError("book_cover_title", "")
+      setError("book_cover_title", "");
+    }
+    else {
+      setColors("book_cover_title", "#AE5D59");
+      setError("book_cover_title", "To pole nie może zostać puste.");
     }
   });
 
@@ -129,7 +133,11 @@
 
     if (this.value != "") {
       setColors("book_cover_text", "#2E4E43");
-      setError("book_cover_text", "")
+      setError("book_cover_text", "");
+    }
+    else {
+      setColors("book_cover_text", "#AE5D59");
+      setError("book_cover_text", "To pole nie może zostać puste.");
     }
   });
 
@@ -179,12 +187,12 @@
 
     if (input.value == "") {
       setColors(name, "#AE5D59");
-      setError(name, "To pole nie może zostać puste.")
+      setError(name, "To pole nie może zostać puste.");
       return false;
     }
 
     setColors(name, "#2E4E43");
-    setError(name, "")
+    setError(name, "");
 
     return true;
   }

@@ -93,6 +93,15 @@
     }, true);
     input.addEventListener("input", (e) => {
       document.getElementById(`${name}-counter`).innerHTML = `${e.target.value.length}/500`;
+
+      if (e.target.value.length > 0) {
+        setColors(name, "#2E4E43");
+        setError(name, "")
+      }
+      else {
+        setColors(name, "#AE5D59");
+        setError(name, "To pole nie może zostać puste.");
+      }
     }, true);
   }
 
@@ -110,12 +119,12 @@
 
     if (input.value == "") {
       setColors(name, "#AE5D59");
-      setError(name, "To pole nie może zostać puste.")
+      setError(name, "To pole nie może zostać puste.");
       return false;
     }
 
     setColors(name, "#2E4E43");
-    setError(name, "")
+    setError(name, "");
 
     return true;
   }
