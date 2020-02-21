@@ -3,14 +3,14 @@
     <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
       <div class="form-group">
         <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj tresc wpisu.*", required: true, autofocus: true, maxlength: "500" %>
-        <hr class="form-line"/>
+        <hr id="body-line" class="form-line"/>
         <div id="body-counter" class="text-right" style="color:#6F6D6C">0/500</div>
         <%= error_tag f, :text %>
       </div>
 
       <div class="form-group">
         <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", required: true, autofocus: true, maxlength: "100" %>
-        <hr class="orm-line"/>
+        <hr id="signature-line" class="form-line"/>
         <div id="signature-counter" class="text-right" style="color:#6F6D6C">0/100</div>
         <%= error_tag f, :signature %>
       </div>
@@ -75,11 +75,21 @@
     }
   }
 
-  document.getElementById("body").oninput = function(e) {
-    document.getElementById("body-counter").innerHTML = `${e.target.value.length}/500`;
-  };
+  function setupListeners(name) {
+    const input = document.getElementById(name);
+    input.addEventListener("focus", () => {
+      document.getElementById(`${name}-counter`).style = "color: #2E4E43";
+      document.getElementById(`${name}-line`).style = "border-top: 1px solid #2E4E43";
+    }, true);
+    input.addEventListener("blur", () => {
+      document.getElementById(`${name}-counter`).style = "color: #6F6D6C";
+      document.getElementById(`${name}-line`).style = "border-top: 1px solid rgba(0, 0, 0, 0.1)";
+    }, true);
+    input.addEventListener("input", (e) => {
+      document.getElementById(`${name}-counter`).innerHTML = `${e.target.value.length}/500`;
+    }, true);
+  }
 
-  document.getElementById("signature").oninput = function(e) {
-    document.getElementById("signature-counter").innerHTML = `${e.target.value.length}/100`;
-  };
+  setupListeners("body");
+  setupListeners("signature");
 </script>
