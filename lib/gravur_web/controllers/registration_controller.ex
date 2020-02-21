@@ -14,7 +14,6 @@ defmodule GravurWeb.RegistrationController do
         Gravur.Email.verify_email(conn, user)
         redirect(conn, to: GravurWeb.Router.Helpers.verification_path(GravurWeb.Endpoint, :show, user.id))
       {:error, changeset} ->
-        IO.inspect changeset
         render(conn, "new.html", changeset: changeset)
     end
   end

@@ -1,4 +1,5 @@
 defmodule Gravur.Identity do
+  alias Ecto.Changeset
   alias Gravur.Repo
   alias Gravur.Identity.User
 
@@ -42,10 +43,9 @@ defmodule Gravur.Identity do
     user = Repo.get(User, user_id)
 
     if user.verification_code == verification_code do
-      user = %{user | is_verified: true}
-      user = Repo.insert(user)
-
-      {:ok, user}
+      user
+        |> Changeset.change(%{is_verified: true})
+        |> Repo.update()
     else
       {:error, "wrong verification code"}
     end
