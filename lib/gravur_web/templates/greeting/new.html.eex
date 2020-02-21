@@ -1,17 +1,23 @@
 <div class="d-flex justify-content-center pt-4">
   <div class="w-50">
-    <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form"], fn f -> %>
+    <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form", onsubmit: "return validate()"], fn f -> %>
       <div class="form-group">
-        <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj tresc wpisu.*", required: true, autofocus: true, maxlength: "500" %>
+        <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj treść wpisu.*", autofocus: true, maxlength: "500" %>
         <hr id="body-line" class="form-line"/>
-        <div id="body-counter" class="text-right" style="color:#6F6D6C">0/500</div>
+        <div class="row">
+          <div id="body-error" class="col" style="color: #AE5D59"></div>
+          <div id="body-counter" class="col text-right" style="color:#6F6D6C">0/500</div>
+        </div>
         <%= error_tag f, :text %>
       </div>
 
       <div class="form-group">
-        <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", required: true, autofocus: true, maxlength: "100" %>
+        <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", maxlength: "100" %>
         <hr id="signature-line" class="form-line"/>
-        <div id="signature-counter" class="text-right" style="color:#6F6D6C">0/100</div>
+        <div class="row">
+          <div id="signature-error" class="col" style="color: #AE5D59"></div>
+          <div id="signature-counter" class="col text-right" style="color:#6F6D6C">0/100</div>
+        </div>
         <%= error_tag f, :signature %>
       </div>
       <div class="form-group pt-3">
@@ -88,6 +94,40 @@
     input.addEventListener("input", (e) => {
       document.getElementById(`${name}-counter`).innerHTML = `${e.target.value.length}/500`;
     }, true);
+  }
+
+  function setColors(name, color) {
+    document.getElementById(`${name}-counter`).style = `color: ${color}`;
+    document.getElementById(`${name}-line`).style = `border-top: 1px solid ${color}`;
+  }
+
+  function setError(name, text) {
+    document.getElementById(`${name}-error`).innerHTML = text;
+  }
+
+  function isValid(name) {
+    const input = document.getElementById(name);
+
+    if (input.value == "") {
+      setColors(name, "#AE5D59");
+      setError(name, "To pole nie może zostać puste.")
+      return false;
+    }
+
+    setColors(name, "#2E4E43");
+    setError(name, "")
+
+    return true;
+  }
+
+  function validate() {
+    const bodyIsValid = isValid("body");
+    const signatureIsValid = isValid("signature");
+
+    if (!bodyIsValid || !signatureIsValid)
+      return false;
+
+    return true;
   }
 
   setupListeners("body");

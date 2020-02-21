@@ -97,6 +97,7 @@ body {
 }
 
 .mobile-input {
+  color: #1F1F1F;
   background-color:transparent;
   border: 0px solid;
   height:30px;
@@ -107,6 +108,7 @@ body {
 }
 
 .mobile-textarea {
+  color: #1F1F1F;
   background-color:transparent;
   border: 0px solid;
   height:230px;
