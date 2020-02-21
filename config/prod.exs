@@ -74,3 +74,8 @@ config :ex_aws,
     host: "s3.eu-west-1.amazonaws.com",
     region: "eu-west-1"
   ]
+
+config :gravur, Gravur.Externals.Mailer,
+  adapter: Bamboo.MailgunAdapter,
+  api_key: System.get_env("MAILGUN_API_KEY"),
+  domain: "gravur.herokuapp.com"
