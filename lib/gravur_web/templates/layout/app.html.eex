@@ -19,20 +19,20 @@
           <ul class="navbar-nav">
             <%= if Gravur.Identity.user_signed_in?(@conn) do %>
               <li class="nav-item px-2">
-                <%= link "Moje księgi", to: Routes.book_path(@conn, :index), class: "nav-link" %>
+                <%= link "Moje księgi", to: Routes.book_path(@conn, :index), class: "nav-link #{active?(@conn, Routes.book_path(@conn, :index))}" %>
               </li>
               <li class="nav-item px-2">
-                <%= link "Załóż księgę", to: Routes.book_path(@conn, :new), class: "nav-link" %>
+                <%= link "Załóż księgę", to: Routes.book_path(@conn, :new), class: "nav-link #{active?(@conn, Routes.book_path(@conn, :new))}" %>
               </li>
               <li class="nav-item px-2">
-                <%= link "Wyloguj", to: Routes.session_path(@conn, :delete), method: :delete, class: "nav-link" %>
+                <%= link "Wyloguj", to: Routes.session_path(@conn, :delete), method: :delete, class: "nav-link #{active?(@conn, Routes.session_path(@conn, :delete))}" %>
               </li>
             <% else %>
               <li class="nav-item px-2">
-                <%= link "Zaloguj", to: Routes.session_path(@conn, :new), class: "nav-link" %>
+                <%= link "Zaloguj", to: Routes.session_path(@conn, :new), class: "nav-link #{active?(@conn, Routes.session_path(@conn, :new))}" %>
               </li>
               <li class="nav-item px-2">
-                <%= link "Zaloz konto", to: Routes.registration_path(@conn, :new), class: "nav-link" %>
+                <%= link "Zaloz konto", to: Routes.registration_path(@conn, :new), class: "nav-link #{active?(@conn, Routes.registration_path(@conn, :new))}" %>
               </li>
             <% end %>
           </ul>
