@@ -1,26 +1,26 @@
 <div class="d-flex justify-content-center">
   <div class="w-50 card login-form">
-    <%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration, class: "form-signin"], fn f -> %>
+    <%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration, class: "form-signin", onsubmit: "return validate()"], fn f -> %>
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal form-header">Zakładanie konta</h1>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :email, "Email", class: "control-label app-label" %>
-        <%= text_input f, :email, class: "app-input", required: true, autofocus: true %>
-        <%= error_tag f, :email %>
+        <%= text_input f, :email, class: "app-input", autofocus: true %>
+        <div id="registration_email_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password, "Hasło", class: "control-label app-label" %>
-        <%= password_input f, :password, class: "app-input", required: true %>
-        <%= error_tag f, :password %>
+        <%= password_input f, :password, class: "app-input" %>
+        <div id="registration_password_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password_confirmation, "Powtórz hasło", class: "control-label app-label" %>
-        <%= password_input f, :password_confirmation, class: "app-input", required: true %>
-        <%= error_tag f, :password_confirmation %>
+        <%= password_input f, :password_confirmation, class: "app-input" %>
+        <div id="registration_password_confirmation_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="text-center">
@@ -33,3 +33,87 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$('#book_cover_title').keyup(function(){
+    $("#cover_title_show").text(this.value);
+
+    if (this.value != "") {
+      setColors("book_cover_title", "#2E4E43");
+      setError("book_cover_title", "");
+    }
+    else {
+      setColors("book_cover_title", "#AE5D59");
+      setError("book_cover_title", "To pole nie może zostać puste.");
+    }
+  });
+
+  function onKeyUp(name) {
+    $(`#${name}`).keyup(function(){
+    if (this.value != "") {
+      setColors(name, "#2E4E43");
+      setError(name, "");
+    }
+    else {
+      setColors(name, "#AE5D59");
+      setError(name, "To pole nie może zostać puste.");
+    }
+  });
+  }
+
+  function setColors(name, color) {
+    document.getElementById(name).style = `border-bottom: 1px solid ${color}`;
+  }
+
+  function setError(name, text) {
+    document.getElementById(`${name}_error`).innerHTML = text;
+  }
+
+  function isValid(name) {
+    const input = document.getElementById(name);
+
+    if (input.value == "") {
+      setColors(name, "#AE5D59");
+      setError(name, "To pole nie może zostać puste.");
+      return false;
+    }
+
+    setColors(name, "#2E4E43");
+    setError(name, "");
+
+    return true;
+  }
+
+  function isTheSame(passwordInputName, confirmationInputName) {
+    const password = document.getElementById(passwordInputName);
+    const confirmation = document.getElementById(confirmationInputName);
+
+    if (password.value == confirmation.value) {
+      setColors(confirmationInputName, "#2E4E43");
+      setError(confirmationInputName, "");
+
+      return true;
+    }
+
+    setColors(confirmationInputName, "#AE5D59");
+    setError(confirmationInputName, "Powtórz dwa razy to samo hasło.");
+
+    return false;
+  }
+
+  function validate() {
+    const emailIsValid = isValid("registration_email");
+    const passwordIsValid = isValid("registration_password");
+    const passwordConfirmationIsValid = isValid("registration_password_confirmation");
+    const passwordsAreTheSame = isTheSame("registration_password", "registration_password_confirmation");
+
+    if (!emailIsValid || !passwordIsValid || !passwordConfirmationIsValid || !passwordsAreTheSame)
+      return false;
+
+    return true;
+  }
+
+  onKeyUp("registration_email");
+  onKeyUp("registration_password");
+  onKeyUp("registration_password_confirmation");
+</script>

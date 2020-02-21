@@ -5,7 +5,7 @@ defmodule GravurWeb.SessionController do
   plug :put_layout, "login.html"
 
   def new(conn, _params) do
-    render conn, "new.html", changeset: conn
+    render(conn, "new.html", changeset: conn)
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
@@ -16,7 +16,7 @@ defmodule GravurWeb.SessionController do
         |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
       {:error, _reason} ->
         conn
-        |> put_flash(:error, "Invalid Email or Password")
+        |> put_flash(:error, "Niepoprawny email lub hasło.")
         |> render("new.html")
     end
   end

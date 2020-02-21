@@ -25,9 +25,9 @@ defmodule Gravur.Identity.User do
   def registration_changeset(user, attrs) do
     user
     |> changeset(attrs)
-    |> validate_confirmation(:password)
+    |> validate_confirmation(:password, message: "Powtórz dwa razy to samo hasło.")
     |> cast(attrs, [:password], [])
-    |> validate_length(:password, min: 6, max: 128)
+    |> validate_length(:password, min: 6, max: 128, message: "Hasło powinno mieć przynajmniej 6 znaków.")
     |> random_verification_code()
     |> encrypt_password()
   end
