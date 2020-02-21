@@ -22,7 +22,8 @@ defmodule Gravur.Printing do
   end
 
   defp generate_html(book) do
-    # pick right template based on template_id (in future)
-    EEx.eval_file("#{__DIR__}/templates/general.html.eex", greetings: book.greetings)
+    EEx.eval_file(
+      Path.join(:code.priv_dir(:gravur), "templates/general.html.eex"),
+      greetings: book.greetings)
   end
 end
