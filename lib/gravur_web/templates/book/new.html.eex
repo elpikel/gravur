@@ -1,4 +1,4 @@
-<%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form"], fn f -> %>
+<%= form_for @changeset, Routes.book_path(@conn, :create), [as: :book, multipart: true, class: "form", onsubmit: "return validate()"], fn f -> %>
 
   <div id="book-template">
     <%= unless @has_book do %>
@@ -46,13 +46,15 @@
       <div class="col-sm no-book-info p-5">
         <div class="form-group mt-5">
           <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label app-label" %>
-          <%= text_input f, :cover_title, class: "app-input", required: true, autofocus: true %>
+          <%= text_input f, :cover_title, class: "app-input", autofocus: true %>
+          <div id="book_cover_title-error" style="color: #AE5D59"></div>
           <%= error_tag f, :cover_title %>
         </div>
 
         <div class="form-group mt-5">
           <%= label f, :cover_text, "Wpisz tekst dodatkowy (np. data ślubu)", class: "control-label" %>
-          <%= text_input f, :cover_text, class: "app-input", placeholder: "", required: true, autofocus: true %>
+          <%= text_input f, :cover_text, class: "app-input", placeholder: "" %>
+          <div id="book_cover_text-error" style="color: #AE5D59"></div>
           <%= error_tag f, :cover_text %>
         </div>
 
@@ -115,10 +117,20 @@
 <script>
   $('#book_cover_title').keyup(function(){
     $("#cover_title_show").text(this.value);
+
+    if (this.value != "") {
+      setColors("book_cover_title", "#2E4E43");
+      setError("book_cover_title", "")
+    }
   });
 
   $('#book_cover_text').keyup(function(){
     $("#cover_text_show").text(this.value);
+
+    if (this.value != "") {
+      setColors("book_cover_text", "#2E4E43");
+      setError("book_cover_text", "")
+    }
   });
 
   let selectedTemplate = "";
@@ -152,5 +164,40 @@
     document.getElementById('book-template').style.display = "none";
     document.getElementById('book-sample-greeting').style.display = "block";
     document.getElementById('book-cover').style.display = "none";
+  }
+
+  function setColors(name, color) {
+    document.getElementById(name).style = `border-bottom: 1px solid ${color}`;
+  }
+
+  function setError(name, text) {
+    document.getElementById(`${name}-error`).innerHTML = text;
+  }
+
+  function isValid(name) {
+    const input = document.getElementById(name);
+
+    if (input.value == "") {
+      setColors(name, "#AE5D59");
+      setError(name, "To pole nie może zostać puste.")
+      return false;
+    }
+
+    setColors(name, "#2E4E43");
+    setError(name, "")
+
+    return true;
+  }
+
+  function validate() {
+    const titleIsValid = isValid("book_cover_title");
+    const textIsValid = isValid("book_cover_text");
+
+    if (!titleIsValid || !textIsValid) {
+      toBookCoverPage();
+      return false;
+    }
+
+    return true;
   }
 </script>
