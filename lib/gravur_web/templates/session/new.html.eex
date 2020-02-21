@@ -1,6 +1,6 @@
- <div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center">
   <div class="w-50 card login-form">
-    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "form-signin"], fn f -> %>
+    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "form-signin", onsubmit: "return validate()"], fn f -> %>
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal form-header">Logowanie</h1>
       </div>
@@ -8,13 +8,13 @@
       <div class="form-group mt-5">
         <%= label f, :email, "Email", class: "control-label app-label" %>
         <%= text_input f, :email, class: "app-input", autofocus: true %>
-        <%= error_tag f, :email %>
+        <div id="session_email_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password, "Hasło", class: "control-label app-label" %>
         <%= password_input f, :password, class: "app-input" %>
-        <%= error_tag f, :password %>
+        <div id="session_password_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="text-center">
@@ -23,3 +23,54 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  function onKeyUp(name) {
+    $(`#${name}`).keyup(function(){
+      if (this.value != "") {
+        setColors(name, "#2E4E43");
+        setError(name, "");
+      }
+      else {
+        setColors(name, "#AE5D59");
+        setError(name, "To pole nie może zostać puste.");
+      }
+    });
+  }
+
+  function setColors(name, color) {
+    document.getElementById(name).style = `border-bottom: 1px solid ${color}`;
+  }
+
+  function setError(name, text) {
+    document.getElementById(`${name}_error`).innerHTML = text;
+  }
+
+  function isValid(name) {
+    const input = document.getElementById(name);
+
+    if (input.value == "") {
+      setColors(name, "#AE5D59");
+      setError(name, "To pole nie może zostać puste.");
+      return false;
+    }
+
+    setColors(name, "#2E4E43");
+    setError(name, "");
+
+    return true;
+  }
+
+  function validate() {
+    const emailIsValid = isValid("session_email");
+    const passwordIsValid = isValid("session_password");
+
+    if (!emailIsValid || !passwordIsValid)
+      return false;
+
+    return true;
+  }
+
+  onKeyUp("session_email");
+  onKeyUp("session_password");
+</script>

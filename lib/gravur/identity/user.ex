@@ -17,8 +17,8 @@ defmodule Gravur.Identity.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email])
-    |> validate_required([:email])
-    |> unique_constraint(:email)
+    |> validate_required([:email], message: "Podaj hasło.")
+    |> unique_constraint(:email, message: "Podany email jest już wykorzystany.")
   end
 
   @doc false

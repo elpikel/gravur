@@ -9,18 +9,21 @@
         <%= label f, :email, "Email", class: "control-label app-label" %>
         <%= text_input f, :email, class: "app-input", autofocus: true %>
         <div id="registration_email_error" style="color: #AE5D59"></div>
+        <%= error_tag f, :email %>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password, "Hasło", class: "control-label app-label" %>
         <%= password_input f, :password, class: "app-input" %>
         <div id="registration_password_error" style="color: #AE5D59"></div>
+        <%= error_tag f, :password %>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password_confirmation, "Powtórz hasło", class: "control-label app-label" %>
         <%= password_input f, :password_confirmation, class: "app-input" %>
         <div id="registration_password_confirmation_error" style="color: #AE5D59"></div>
+        <%= error_tag f, :password_confirmation %>
       </div>
 
       <div class="text-center">
@@ -35,30 +38,17 @@
 </div>
 
 <script>
-$('#book_cover_title').keyup(function(){
-    $("#cover_title_show").text(this.value);
-
-    if (this.value != "") {
-      setColors("book_cover_title", "#2E4E43");
-      setError("book_cover_title", "");
-    }
-    else {
-      setColors("book_cover_title", "#AE5D59");
-      setError("book_cover_title", "To pole nie może zostać puste.");
-    }
-  });
-
   function onKeyUp(name) {
     $(`#${name}`).keyup(function(){
-    if (this.value != "") {
-      setColors(name, "#2E4E43");
-      setError(name, "");
-    }
-    else {
-      setColors(name, "#AE5D59");
-      setError(name, "To pole nie może zostać puste.");
-    }
-  });
+      if (this.value != "") {
+        setColors(name, "#2E4E43");
+        setError(name, "");
+      }
+      else {
+        setColors(name, "#AE5D59");
+        setError(name, "To pole nie może zostać puste.");
+      }
+    });
   }
 
   function setColors(name, color) {
