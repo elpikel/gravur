@@ -6,6 +6,6 @@ defmodule GravurWeb.LayoutView do
   end
 
   def active?(conn, path) do
-    if current_path(conn) == path, do: "active", else: ""
+    if current_path(conn) == path, do: "active disabled", else: ""
   end
 end
