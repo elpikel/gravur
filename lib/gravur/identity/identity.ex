@@ -42,6 +42,9 @@ defmodule Gravur.Identity do
     user = Repo.get(User, user_id)
 
     if user.verification_code == verification_code do
+      user.is_verified = true
+      Repo.insert(user)
+
       {:ok, user}
     else
       {:error, "wrong verification code"}
