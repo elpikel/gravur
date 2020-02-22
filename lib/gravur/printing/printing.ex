@@ -4,8 +4,8 @@ defmodule Gravur.Printing do
   def generate_pdf(book) do
     html = generate_html(book)
 
-    # {:ok, filename} = PdfGenerator.generate(html, page_size: "A5")
-    {:ok, filename} = PdfGenerator.generate {:url, "http://google.com"}, page_size: "A5"
+    IO.inspect(html)
+    {:ok, filename} = PdfGenerator.generate(html, page_size: "A5")
     {:ok, content} = File.read(filename)
     {:ok, url} = Gravur.Utils.BookPdf.store({ filename, book })
 
@@ -20,8 +20,6 @@ defmodule Gravur.Printing do
     else
       "http://localhost:4000" <> url
     end
-
-    "https://gravur.s3.amazonaws.com/uploads/book/0c997136-ac1f-4cdd-ba2d-deaaf25bfd19/greetings/fLEACvsQiQ-xB2NS6psGjakub-sejkora-42069-unsplash.jpg?v=63749523978"
   end
 
   defp generate_html(book) do
