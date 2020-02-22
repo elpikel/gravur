@@ -14,6 +14,7 @@ defmodule Gravur.Printing do
   def get_image_url(greeting) do
     url = Gravur.Utils.GreetingImage.url({ greeting.image, greeting })
 
+    IO.inspect(url)
     if String.starts_with?(url, "https:") do
       url
     else
