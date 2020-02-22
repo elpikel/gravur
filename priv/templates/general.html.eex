@@ -1,15 +1,13 @@
-<html itemscope="" itemtype="http://schema.org/WebPage">
+<html>
   <head>
     <meta charset="UTF-8">
-    <meta content="origin" name="referrer">
-    <title>Google</title>
   </head>
   <body>
     <p>
       <ul style="list-style-type:none;">
         <%= for greeting <- greetings do %>
           <li>
-            <img width="500" src="<%= Gravur.Printing.get_image_url(greeting) %>" />
+            <img width="500" height="400" src="<%= Gravur.Printing.get_image_url(greeting) %>" />
             <div><%= greeting.text %></div>
             <div><%= greeting.signature %></div>
           </li>
