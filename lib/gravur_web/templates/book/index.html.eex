@@ -8,7 +8,7 @@
 </div>
 <div class="my-4" style="font-size: 1.2rem">Moja księga gości</div>
 <%= for book <- @books do %>
-  <div class="row mt-1">
+  <div class="row mt-5 mb-4">
     <div class="col-sm-8 no-book-info">
       <div class="row h-100">
         <div class="col-sm-auto align-items-center justify-content-center d-flex">
@@ -46,14 +46,14 @@
     </div>
     <div class="col-sm-4 h-100" style="padding-right:0px; padding-left:0px;">
       <div class="no-book-info ml-2 p-4">
-        <h5 class="mt-3">Udostępnianie</h5>
+        <h5 class="mt-2">Udostępnianie</h5>
         <div class="mt-3">
           <span>Udostępnij księgę swoim gościom, aby mogli dodać swoje życzenia!</span>
         </div>
         <div class="mt-5">
           <div class="input-group mb-3">
-            <input id="link-to-greetings" type="text" class="form-control" value="<%= Routes.book_greeting_url(@conn, :index, book) %>" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div id="copy-link-to-greetings" class="input-group-append">
+            <input ype="text" class="form-control link-to-greetings" value="<%= Routes.book_greeting_url(@conn, :index, book) %>" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append copy-link-to-greetings">
               <span class="input-group-text" style="background-color:#ffffff;">
                 <img src="/images/copy.svg" />
               </span>
@@ -73,8 +73,9 @@
 
 <script>
   $(function() {
-    $("#copy-link-to-greetings").bind('click', function(event) {
-      const linkToGreetings = $('#link-to-greetings');
+    $(".copy-link-to-greetings").bind('click', function(event) {
+      const inputGroup = $(this).parent();
+      const linkToGreetings = inputGroup.find(".link-to-greetings");
       linkToGreetings.select();
       document.execCommand('copy');
     });
