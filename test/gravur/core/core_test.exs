@@ -10,7 +10,6 @@ defmodule Gravur.Core.CoreTest do
   @invalid_attrs %{user_id: nil, template_id: nil, cover_text: nil, cover_title: nil, font_style: nil, image: nil}
 
   setup do
-    Ecto.Adapters.SQL.Sandbox.checkout(Repo)
     {:ok, user} = Identity.register(%{ email: "mail@mail.li", password: "superstrong", password_confirmation: "superstrong" })
     {:ok, template} = Template.changeset(%Template{}, %{ name: "name", image: "image" }) |> Repo.insert
 
