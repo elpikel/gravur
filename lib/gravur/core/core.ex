@@ -15,7 +15,7 @@ defmodule Gravur.Core do
   end
 
   def get_all_books(user_id) do
-    Book |> where(user_id: ^user_id) |> preload(:template) |> Repo.all
+    Book |> where(user_id: ^user_id) |> preload(:template) |> preload(:greetings) |> Repo.all
   end
 
   def create_book(book_params) do
