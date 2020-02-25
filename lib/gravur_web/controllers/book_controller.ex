@@ -4,7 +4,8 @@ defmodule GravurWeb.BookController do
   plug GravurWeb.Authorize
 
   def index(conn, _params) do
-    books = conn
+    books =
+      conn
       |> Gravur.Identity.current_user_id()
       |> Gravur.Core.get_all_books()
 
@@ -17,7 +18,9 @@ defmodule GravurWeb.BookController do
 
   def new(conn, _params) do
     templates = Gravur.Core.get_templates()
-    has_book = conn
+
+    has_book =
+      conn
       |> Gravur.Identity.current_user_id()
       |> Gravur.Core.has_book()
 
@@ -31,6 +34,7 @@ defmodule GravurWeb.BookController do
     case Gravur.Core.create_book(book_params) do
       {:ok, _} ->
         redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
+
       {:error, changeset} ->
         templates = Gravur.Core.get_templates()
         render(conn, "new.html", changeset: changeset, templates: templates)
@@ -40,5 +44,13 @@ defmodule GravurWeb.BookController do
   def delete(conn, %{"id" => book_id}) do
     Gravur.Core.delete_book(book_id)
     redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
+  end
+
+  def edit(_conn, %{"id" => _book_id}) do
+    # get book
+    # show page
+  end
+
+  def update(_conn, %{"book" => _book_params}) do
   end
 end
