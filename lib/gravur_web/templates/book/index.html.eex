@@ -35,9 +35,9 @@
                 <a href="#" class="btn btn-outline-secondary btn-block">EDYTUJ</a>
               </div>
               <div class="col-sm pr-4">
-                <a href="#" class="btn btn-outline-light btn-block">
+                <%= link to: Routes.book_path(@conn, :delete, book), method: :delete, class: "btn btn-outline-light btn-block" do %>
                   <img src="/images/bin.svg" />
-                </a>
+                <% end %>
               </div>
             </div>
           </div>

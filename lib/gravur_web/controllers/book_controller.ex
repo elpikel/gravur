@@ -30,11 +30,15 @@ defmodule GravurWeb.BookController do
 
     case Gravur.Core.create_book(book_params) do
       {:ok, _} ->
-        conn
-        |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
+        redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
       {:error, changeset} ->
         templates = Gravur.Core.get_templates()
         render(conn, "new.html", changeset: changeset, templates: templates)
     end
+  end
+
+  def delete(conn, %{"id" => book_id}) do
+    Gravur.Core.delete_book(book_id)
+    redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
   end
 end

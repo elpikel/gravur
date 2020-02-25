@@ -22,6 +22,10 @@ defmodule Gravur.Core do
     Book.changeset(%Book{}, book_params) |> Repo.insert()
   end
 
+  def delete_book(book_id) do
+    %Book{id: book_id} |> Repo.delete()
+  end
+
   def has_book(user_id) do
     Book |> where(user_id: ^user_id) |> Repo.exists?
   end

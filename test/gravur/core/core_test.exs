@@ -56,6 +56,19 @@ defmodule Gravur.Core.CoreTest do
   end
 
   describe "book" do
+    test "delete/1 deletes book", %{ user: user, template: template } do
+      {:ok, book} = Core.create_book(create_book(@valid_attrs, user, template))
+      create_greeting(book)
+
+      Core.delete_book(book.id)
+
+      deleted_book = Core.get_book(book.id)
+      greetings = Core.get_all_greetings(book.id)
+
+      assert 0 == length(greetings)
+      assert deleted_book == nil
+    end
+
     test "create_book/1 with valid data creates a book", %{ user: user, template: template } do
       assert {:ok, %Book{} = book} = Core.create_book(create_book(@valid_attrs, user, template))
 

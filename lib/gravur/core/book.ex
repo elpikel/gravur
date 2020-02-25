@@ -14,7 +14,7 @@ defmodule Gravur.Core.Book do
 
     belongs_to :user, Gravur.Identity.User
     belongs_to :template, Gravur.Core.Template
-    has_many :greetings, Gravur.Core.Greeting
+    has_many :greetings, Gravur.Core.Greeting, on_delete: :delete_all
 
     timestamps()
   end
