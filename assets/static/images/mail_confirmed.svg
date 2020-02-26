@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="243.646" height="160.223" viewBox="0 0 243.646 160.223">
+  <g id="Group_315" data-name="Group 315" transform="translate(-753.14 -242.377)">
+    <g id="Group_248" data-name="Group 248" transform="translate(-85 28)">
+      <path id="Path_12" data-name="Path 12" d="M64.576,22.365c47.616-8.013,193.008,25.327,146.579,73.074s-17.1,38.45-73.02,28.262-20.424,57.186-90.916,8.251S16.96,30.378,64.576,22.365Z" transform="translate(833.329 227.908) rotate(-9)" fill="#a9b8a2" opacity="0.333"/>
+      <path id="Path_27" data-name="Path 27" d="M71.842,22.521c53.857-9.064,218.3,28.646,165.791,82.651s-19.341,43.489-82.591,31.966-23.1,64.681-102.832,9.332S17.985,31.584,71.842,22.521Z" transform="translate(828.27 205.019) rotate(-2)" fill="#a9b8a2" opacity="0.103"/>
+      <g id="Group_246" data-name="Group 246">
+        <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(888 254)" fill="#fff" stroke="#1f1f1f" stroke-width="3">
+          <rect width="144" height="94" stroke="none"/>
+          <rect x="-1.5" y="-1.5" width="147" height="97" fill="none"/>
+        </g>
+        <line id="Line_10" data-name="Line 10" x2="72" y2="52.413" transform="translate(888.5 254.5)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+        <line id="Line_11" data-name="Line 11" x1="71" y2="52.413" transform="translate(960.5 254.5)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+        <path id="Path_18" data-name="Path 18" d="M0,41.587,63.474-5.94" transform="translate(888.5 306.913)" fill="#fff" stroke="#1f1f1f" stroke-width="3"/>
+        <line id="Line_13" data-name="Line 13" x1="64" y1="47" transform="translate(968.5 301.5)" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+      </g>
+      <g id="Path_26" data-name="Path 26" transform="translate(896.5 224)" fill="#fff">
+        <path d="M 64.05246734619141 82.47630310058594 L 1.429195523262024 37.02367782592773 L 1.497138738632202 1.50000262260437 L 126.5034103393555 1.50000262260437 L 126.5832290649414 36.55915451049805 L 64.05246734619141 82.47630310058594 Z" stroke="none"/>
+        <path d="M 2.9942626953125 2.999984741210938 L 2.930656433105469 36.25998306274414 L 64.04731750488281 80.61909484863281 L 125.0814971923828 35.80091857910156 L 125.0068054199219 2.999984741210938 L 2.9942626953125 2.999984741210938 M -1.52587890625e-05 -1.52587890625e-05 L 127.9999847412109 -1.52587890625e-05 L 128.0849609375 37.31738662719727 L 64.05760955810547 84.33348846435547 L -0.072265625 37.78734970092773 L -1.52587890625e-05 -1.52587890625e-05 Z" stroke="none" fill="#1f1f1f"/>
+      </g>
+    </g>
+  </g>
+</svg>

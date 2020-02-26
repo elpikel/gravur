@@ -20,7 +20,9 @@ defmodule GravurWeb.VerificationController do
       {:ok, user} ->
         conn
         |> put_session(:user_id, user.id)
+        |> put_flash(:verified, "User verified successfully.")
         |> redirect(to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
+
       {:error, _changeset} ->
         render(conn, "wrong_verification_code.html")
     end

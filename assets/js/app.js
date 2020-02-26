@@ -13,6 +13,10 @@ import "phoenix_html";
 
 import 'bootstrap';
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gravur</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
     <header>
@@ -43,7 +43,33 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
+
+      <%= if get_flash(@conn, :verified) do %>
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="max-width: 750px;">
+          <div class="modal-content p-5">
+            <div class="modal-body">
+              <div class="text-center">
+                <img src="/images/mail_confirmed.svg">
+              </div>
+              <h2 class="text-center pt-4">Dziękujemy za potwierdzenie adresu email!</h2>
+              <p class="text-center pt-5">
+                Możesz teraz zacząć tworzyć swoją własną księgę gości! Miłej zabawy!
+              </p>
+
+              <div class="text-center pt-5">
+                <button type="button" class="btn px-4 py-2 app-button" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
     </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#myModal').modal('show');
+        });
+    </script>
   </body>
 </html>
