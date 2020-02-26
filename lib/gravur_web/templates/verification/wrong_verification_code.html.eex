@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+  <div class="w-60 card login-form">
+    <img src="/images/mail.svg">
+    <h2 class="text-center pt-4">Niepoprawny kod weryfikacyjny!</h2>
+
+    <p class="text-center pt-5">
+      Abyś mógł zakończyć proces zakładania konta i zacząć tworzyć swoją księgę
+      gości, potwierdź swój adres email w wiadomości, którą do Ciebie wysłaliśmy!
+    </p>
+  </div>
+</div>

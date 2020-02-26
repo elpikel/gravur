@@ -9,6 +9,7 @@ defmodule Gravur.Identity do
     cond do
       user && user.is_verified && Comeonin.Bcrypt.checkpw(password, user.encrypted_password) ->
         {:ok, user}
+
       true ->
         {:error, :unauthorized}
     end
@@ -42,12 +43,14 @@ defmodule Gravur.Identity do
   def verify(user_id, verification_code) do
     user = Repo.get(User, user_id)
 
-    if user.verification_code == verification_code do
-      user
+    cond do
+      user && user.verification_code == verification_code ->
+        user
         |> Changeset.change(%{is_verified: true})
         |> Repo.update()
-    else
-      {:error, "wrong verification code"}
+
+      true ->
+        {:error, "wrong verification code"}
     end
   end
 end
