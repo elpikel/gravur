@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gravur</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
@@ -45,7 +46,7 @@
       <%= render @view_module, @view_template, assigns %>
 
       <%= if get_flash(@conn, :verified) do %>
-      <div id="myModal" class="modal fade" role="dialog">
+      <div id="verified-email-modal" class="modal fade" role="dialog">
         <div class="modal-dialog" style="max-width: 750px;">
           <div class="modal-content p-5">
             <div class="modal-body">
@@ -68,7 +69,7 @@
     </main>
     <script type="text/javascript">
         $(window).on('load',function(){
-            $('#myModal').modal('show');
+            $('#verified-email-modal').modal('show');
         });
     </script>
   </body>
