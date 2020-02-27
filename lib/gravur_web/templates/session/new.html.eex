@@ -19,7 +19,11 @@
 
       <div class="text-center">
         <%= submit "ZALOGUJ SIĘ", class: "btn px-5 py-2 app-button mt-5" %>
+        <div style="color:#6F6D6C; font-size: 14px">
+          <%= link "Nie mam jeszcze zalożonej księgi.", to: Routes.registration_path(@conn, :new), style: "color:#6F6D6C;font-weight:bold;" %>
+        </div>
       </div>
+
     <% end %>
   </div>
 </div>
