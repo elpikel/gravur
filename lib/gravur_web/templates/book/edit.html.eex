@@ -1,0 +1,20 @@
+<div id="slideLeft" class="left"><img src="/images/left.svg"/></div>
+<ul class="center horizontal-slide" id="greetings-container">
+  <%= for greeting <- @book.greetings do %>
+    <li class="span2 mx-2">
+      <img style="width:120px;height:80px;" src="<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>" />
+    </li>
+  <% end %>
+</ul>
+<div id="slideRight" class="right"><img src="/images/right.svg"/></div>
+<script>
+  const buttonRight = document.getElementById('slideRight');
+  const buttonLeft = document.getElementById('slideLeft');
+
+  buttonRight.onclick = function () {
+    document.getElementById('greetings-container').scrollLeft += 20;
+  };
+  buttonLeft.onclick = function () {
+    document.getElementById('greetings-container').scrollLeft -= 20;
+  };
+</script>

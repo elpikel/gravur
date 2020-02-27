@@ -46,9 +46,9 @@ defmodule GravurWeb.BookController do
     redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :index))
   end
 
-  def edit(_conn, %{"id" => _book_id}) do
-    # get book
-    # show page
+  def edit(conn, %{"id" => book_id}) do
+    book = Gravur.Core.get_book_with_greetings(book_id)
+    render(conn, "edit.html", book: book)
   end
 
   def update(_conn, %{"book" => _book_params}) do

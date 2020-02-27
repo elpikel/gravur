@@ -32,7 +32,7 @@
                 <a href="#" class="btn btn-outline-secondary btn-block">PODGLĄD</a>
               </div>
               <div class="col-sm px-1">
-                <a href="#" class="btn btn-outline-secondary btn-block">EDYTUJ</a>
+                <%= link "EDYTUJ",  to: Routes.book_path(@conn, :edit, book), class: "btn btn-outline-secondary btn-block" %>
               </div>
               <div class="col-sm pr-4">
                 <%= link to: Routes.book_path(@conn, :delete, book), method: :delete, class: "btn btn-outline-light btn-block" do %>

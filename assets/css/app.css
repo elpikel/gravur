@@ -178,3 +178,35 @@ body {
     vertical-align: middle;
     float: none;
 }
+
+ul.horizontal-slide {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    white-space: nowrap;
+}
+
+ul.horizontal-slide li[class*="span"] {
+    display: inline-block;
+    float: none;
+}
+
+ul.horizontal-slide li[class*="span"]:first-child {
+    margin-left: 0;
+}
+
+.left {
+    float: left;
+    width: 30px;
+}
+
+.center {
+    float: left;
+}
+
+.right {
+    float: left;
+    width: 30px;
+    text-align: right;
+}
