@@ -17,9 +17,10 @@ defmodule Gravur.Core.Greeting do
   @doc false
   def changeset(greeting, attrs) do
     attrs = Gravur.Utils.Image.put_random_filename("image", attrs)
+
     greeting
     |> cast(attrs, [:text, :signature, :book_id])
     |> cast_attachments(attrs, [:image])
-    |> validate_required([:image, :text, :signature])
+    |> validate_required([:text, :signature])
   end
 end

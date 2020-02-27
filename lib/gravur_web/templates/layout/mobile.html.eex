@@ -10,33 +10,38 @@
   </head>
   <body>
     <main role="main">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <div class="top-bar fixed-top">
         <h4 class="pb-3 pt-3 mobile-app-name">Gravur</h4>
       </div>
       <div class="mobile-body">
         <%= render @view_module, @view_template, assigns %>
       </div>
-      <div class="fixed-bottom mobile-bottom p-3">
-        <div class="row">
-          <div class="col ml-4">
-            <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :index, @book) do %>
-              <img src="/images/home.svg">
-            <% else %>
-              <%= link to: Routes.book_greeting_path(@conn, :index, @book) do %>
-                <img src="/images/home-active.svg">
+
+      <div class="fixed-bottom">
+        <div class="alert success-alert p-3 alert-dismissible" role="alert">
+          <%= get_flash(@conn, :info) %>
+        </div>
+        <div class="alert error-alert p-3" role="alert"><%= get_flash(@conn, :error) %></div>
+        <div class="mobile-bottom p-3"">
+          <div class="row">
+            <div class="col ml-4">
+              <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :index, @book) do %>
+                <img src="/images/home.svg">
+              <% else %>
+                <%= link to: Routes.book_greeting_path(@conn, :index, @book) do %>
+                  <img src="/images/home-active.svg">
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
-          <div class="col text-right mr-4">
-            <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :new, @book) do %>
-              <img src="/images/add.svg">
-            <% else %>
-              <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
-                <img src="/images/add-active.svg">
+            </div>
+            <div class="col text-right mr-4">
+              <%= if current_path(@conn) == Routes.book_greeting_path(@conn, :new, @book) do %>
+                <img src="/images/add.svg">
+              <% else %>
+                <%= link to: Routes.book_greeting_path(@conn, :new, @book) do %>
+                  <img src="/images/add-active.svg">
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>

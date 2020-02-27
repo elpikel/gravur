@@ -7,6 +7,18 @@ body {
     font-family: "Roboto";
 }
 
+.success-alert {
+    background-color: #2E4E43;
+    color: #FFF8F8;
+    margin: 0px;
+}
+
+.error-alert {
+    background-color: #AE5D59;
+    color: #FFF8F8;
+    margin: 0px;
+}
+
 .btn-circle.btn-xl {
     width: 70px;
     height: 70px;
