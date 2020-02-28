@@ -2,7 +2,7 @@
 
   <div id="book-template">
     <%= unless @has_book do %>
-      <div class="no-book-info px-3 row">
+      <div class="box rounded px-3 row">
         <div class="">
           <img src="/images/book.svg" />
         </div>
@@ -18,12 +18,10 @@
     <div class="row">
       <%= for template <- @templates do %>
         <div class="col-sm">
-          <div class="card no-book-info" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
+          <div class="card box" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
             <img class="card-img-top" src="<%= template.image %>" />
-            <div class="card-body text-center">
-              <div class="btn px-5 py-2 app-button">
-                WYBIERZ SZABLON
-              </div>
+            <div class="btn px-5 py-2 app-button mx-5 position-absolute fixed-bottom mb-4">
+              WYBIERZ SZABLON
             </div>
           </div>
         </div>
@@ -88,12 +86,12 @@
     </div>
 
     <div class="row">
-      <div class="col-sm text-center no-book-info">
+      <div class="col-sm text-center box rounded">
         <div class="my-5 py-5">
           <img src="/images/greeting.jpg" style="width:400px">
         </div>
       </div>
-      <div class="col-sm no-book-info">
+      <div class="col-sm box rounded">
         <div class="mx-5 my-5 py-4">
           <div class="mt-5">Niech wszystkie dni wspólnego życia będą tak radosne i promienne jak ten dzień dzisiejszy! Z najlepszymi życzeniami w Dniu Ślubu!</div>
           <div class="mt-5 text-right">Magda i Łukasz</div>
