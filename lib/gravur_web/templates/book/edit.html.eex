@@ -22,7 +22,7 @@
     <% end %>
   </ul>
   <div id="slide-right" class="right h-100" style="display: flex;align-items: center;">
-    <img src="/images/right.svg" style="vertical-align: middle;"/>
+    <img src="/images/right.svg" class="pl-3" style="vertical-align: middle;"/>
   </div>
 </div>
 <script>
