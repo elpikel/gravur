@@ -183,7 +183,7 @@ ul.horizontal-slide {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    width: 80%;
+    width: 93%;
     white-space: nowrap;
 }
 
@@ -194,6 +194,12 @@ ul.horizontal-slide li[class*="span"] {
 
 ul.horizontal-slide li[class*="span"]:first-child {
     margin-left: 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .left {
