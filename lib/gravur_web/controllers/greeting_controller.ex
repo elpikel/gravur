@@ -31,4 +31,14 @@ defmodule GravurWeb.GreetingController do
         |> render("new.html", changeset: changeset)
     end
   end
+
+  def update(conn, greeting_params) do
+    case Gravur.Core.update_greeting(greeting_params) do
+      {:ok, _} ->
+        json(conn, %{success: true})
+
+      {:error, _changeset} ->
+        json(conn, %{success: false})
+    end
+  end
 end

@@ -99,6 +99,18 @@ body {
     border-bottom: 1px solid #2E4E43;
 }
 
+.app-textarea {
+    color: #1F1F1F;
+    background-color: transparent;
+    border: 0px solid;
+    height: 150px;
+    width: 100%;
+}
+
+.app-textarea:focus {
+    outline: none;
+}
+
 .app-select {
     background-color: transparent;
     border: 0px solid;
