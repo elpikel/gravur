@@ -60,7 +60,7 @@
 <script>
   let greetings = [
     <%= for greeting <- @book.greetings do %>
-      { id: '<%= greeting.id %>', image: '<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>', text: '<%= greeting.text %>', signature: '<%= greeting.signature %>'},
+      { id: '<%= greeting.id %>', image: '<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>', text: '<%= javascript_escape(greeting.text) %>', signature: '<%= javascript_escape(greeting.signature) %>'},
     <% end %>
   ];
   const buttonRight = document.getElementById('slide-right');
