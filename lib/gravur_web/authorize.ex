@@ -8,8 +8,8 @@ defmodule GravurWeb.Authorize do
       conn
     else
       conn
-        |> send_resp(401, "unauthorized")
-        |> halt()
+      |> send_resp(401, "unauthorized")
+      |> halt()
     end
   end
 end

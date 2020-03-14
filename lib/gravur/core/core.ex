@@ -21,6 +21,13 @@ defmodule Gravur.Core do
     |> Repo.update()
   end
 
+  def update_book(book_params) do
+    Book
+    |> Repo.get(book_params["id"])
+    |> Book.changeset(book_params)
+    |> Repo.update()
+  end
+
   def get_all_books(user_id) do
     Book |> where(user_id: ^user_id) |> preload(:template) |> preload(:greetings) |> Repo.all()
   end

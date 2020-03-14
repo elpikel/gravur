@@ -1,17 +1,73 @@
 <h5 class="pb-4">Moja księga > Edycja księgi</h5>
 <div id="greeting-details" class="row pb-5">
-  <div class="col-sm text-center no-book-info">
-    <div class="my-5 py-5">
-      <img id="greeting-image" src="" style="max-width:300px;max-height:400px">
+  <div id="greeting" style="display: none">
+    <div class="col-sm no-book-info">
+      <div class="my-5 py-5 h-100 align-items-center">
+        <img id="greeting-image" src="" style="max-width:300px;max-height:400px">
+      </div>
+    </div>
+    <div class="col-sm no-book-info">
+      <div class="mx-5 my-5 py-4">
+        <div id="greeting-text" class="mt-5"></div>
+        <div id="greeting-signature" class="mt-5 text-right"></div>
+      </div>
     </div>
   </div>
-  <div class="col-sm no-book-info">
-    <div class="mx-5 my-5 py-4">
-      <div id="greeting-text" class="mt-5"></div>
-      <div id="greeting-signature" class="mt-5 text-right"></div>
+  <div class="col-sm" id="cover">
+    <div class="no-book-info">
+      <div class="mx-5 my-5 py-4">
+        <div id="cover-title" class="mt-5"></div>
+        <div id="cover-text" class="mt-5 text-right"></div>
+      </div>
     </div>
   </div>
-  <div class="col-sm pl-5">
+  <div id="cover-edit" class="col-sm pl-5">
+    <div class="box rounded">
+      <div class="pl-4 pr-3 pb-3">
+        <div class="form-group mt-5">
+          <label class="control-label app-label">Wpisz tytuł księgi (np. Wasze imiona)</label>
+          <input id="cover-title-input" class="app-input" type="text" maxlength="50">
+          <div id="cover-title-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
+          <div id="cover-title-input-error" style="color: #AE5D59"></div>
+        </div>
+
+        <div class="form-group mt-5">
+          <label class="control-label app-label">Wpisz tekst dodatkowy (np. data ślubu)</label>
+          <input id="cover-text-input" class="app-input" type="text" maxlength="50">
+          <div id="cover-text-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
+          <div id="cover-text-input-error" style="color: #AE5D59"></div>
+        </div>
+
+        <div class="form-group mt-5">
+          <label class="control-label app-label">Wybierz font w całej księdze</label>
+          <hr />
+          <select class="app-select" id="book-font-style">
+            <option value="Arial">Arial</option>
+            <option value="Calibri">Calibri</option>
+            <option value="Courier">Courier</option>
+            <option value="Verdana">Verdana</option>
+          </select>
+          <hr class="form-line" />
+        </div>
+        <div class="row">
+          <div class="col-sm pt-1">
+            <a id="save-cover" href="#" class="btn btn-outline-secondary btn-block">
+              <div class="d-flex justify-content-center">
+                <span
+                  id="save-cover-spinner"
+                  style="visibility:hidden;"
+                  class="mt-1 spinner-border spinner-border-sm position-absolute"
+                  role="status"
+                  aria-hidden="true"></span>
+              </div>
+              <span id="save-cover-text" class="">ZAPISZ</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="greeeting-edit" class="col-sm pl-5" style="display: none">
     <div class="box rounded">
       <div class="pl-4 pr-3 pb-3">
         <div class="form-group pt-3">
@@ -30,7 +86,12 @@
           <div class="col-sm pt-1">
             <a id="save-greeting" href="#" class="btn btn-outline-secondary btn-block">
               <div class="d-flex justify-content-center">
-                <span id="save-greeting-spinner" style="visibility:hidden;" class="mt-1 spinner-border spinner-border-sm position-absolute" role="status" aria-hidden="true"></span>
+                <span
+                  id="save-greeting-spinner"
+                  style="visibility:hidden;"
+                  class="mt-1 spinner-border spinner-border-sm position-absolute"
+                  role="status"
+                  aria-hidden="true"></span>
               </div>
               <span id="save-greeting-text"  class="">ZAPISZ</span>
             </a>
@@ -46,6 +107,9 @@
   </div>
   <div class="col-sm-11">
     <ul class="center horizontal-slide mb-0 pt-1 w-100" id="greetings-container" style="height:90px;">
+      <li class="span2 mx-2" onclick="selectCover('<%= @book.cover_text %>', '<%= @book.cover_title %>', '<%= @book.font_style %>')">
+        <img class="box rounded" style="width:120px;height:80px;" src="/images/book.svg" />
+      </li>
       <%= for greeting <- @book.greetings do %>
         <li class="span2 mx-2" onclick="selectGreeting('<%= greeting.id %>')">
           <img class="box rounded" style="width:120px;height:80px;" src="<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>" />
@@ -58,137 +122,188 @@
   </div>
 </div>
 <script>
-  let greetings = [
-    <%= for greeting <- @book.greetings do %>
-      { id: '<%= greeting.id %>', image: '<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>', text: '<%= javascript_escape(greeting.text) %>', signature: '<%= javascript_escape(greeting.signature) %>'},
-    <% end %>
-  ];
-  const buttonRight = document.getElementById('slide-right');
-  const buttonLeft = document.getElementById('slide-left');
-  let scrolling = false;
-  let greetingId = "";
+let greetings = [
+  <%= for greeting <- @book.greetings do %>
+    { id: '<%= greeting.id %>', image: '<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>', text: '<%= javascript_escape(greeting.text) %>', signature: '<%= javascript_escape(greeting.signature) %>'},
+  <% end %>
+];
+const bookId = '<%= @book.id %>'; 
+const buttonRight = document.getElementById('slide-right');
+const buttonLeft = document.getElementById('slide-left');
+let scrolling = false;
+let greetingId = "";
 
-  buttonRight.onmouseup = function() {
-    scrolling = false;
-  }
-  buttonRight.onmousedown = function() {
-    scrolling = true;
-    scroll(20);
-  }
+buttonRight.onmouseup = function() {
+  scrolling = false;
+}
+buttonRight.onmousedown = function() {
+  scrolling = true;
+  scroll(20);
+}
 
-  buttonLeft.onmouseup = function() {
-    scrolling = false;
-  }
-  buttonLeft.onmousedown = function() {
-    scrolling = true;
-    scroll(-20);
-  }
+buttonLeft.onmouseup = function() {
+  scrolling = false;
+}
+buttonLeft.onmousedown = function() {
+  scrolling = true;
+  scroll(-20);
+}
 
-  function scroll(width) {
-    document.getElementById('greetings-container').scrollLeft += width;
-    if (scrolling == false)
-      return;
+function scroll(width) {
+  document.getElementById('greetings-container').scrollLeft += width;
+  if (scrolling == false)
+    return;
 
-    setTimeout(function () { scroll(width) }, 80);
-  }
+  setTimeout(function () { scroll(width) }, 80);
+}
 
-  function selectGreeting(id) {
-    greetingId = id;
-    const greeting = greetings.find((greeting) => { return greeting.id == id; })
-    const greetingImage = document.getElementById('greeting-image');
-    const greetingTextDiv = document.getElementById('greeting-text');
-    const greetingTextInput = document.getElementById('greeting-text-input');
-    const greetingSignatureDiv = document.getElementById('greeting-signature');
-    const greetingSignatureInput = document.getElementById('greeting-signature-input');
+function selectCover(coverText, coverTitle, bookFont) {
+  const coverTextDiv = document.getElementById('cover-text');
+  const coverTextInput = document.getElementById('cover-text-input');
+  const coverTitleDiv = document.getElementById('cover-title');
+  const coverTitleInput = document.getElementById('cover-title-input');
+  const bookFontStyle = document.getElementById('book-font-style');
 
-    greetingImage.src = greeting.image;
-    greetingTextDiv.innerHTML = greeting.text;
-    greetingTextInput.value = greeting.text;
-    greetingSignatureDiv.innerHTML = greeting.signature;
-    greetingSignatureInput.value = greeting.signature;
-  }
+  coverTitleDiv.innerHTML = coverTitle;
+  coverTitleInput.value = coverTitle;
+  coverTextDiv.innerHTML = coverText;
+  coverTextInput.value = coverText;
+  bookFontStyle.value = bookFont;
+}
 
-  $("#save-greeting").bind('click', function(event) {
-    const button = $("#save-greeting");
-    const greetingTextInput = document.getElementById('greeting-text-input');
-    const greetingSignatureInput = document.getElementById('greeting-signature-input');
-    const spinner = document.getElementById('save-greeting-spinner');
-    const buttonText = document.getElementById('save-greeting-text');
+function selectGreeting(id) {
+  greetingId = id;
+  const greeting = greetings.find((greeting) => { return greeting.id == id; })
+  const greetingImage = document.getElementById('greeting-image');
+  const greetingTextDiv = document.getElementById('greeting-text');
+  const greetingTextInput = document.getElementById('greeting-text-input');
+  const greetingSignatureDiv = document.getElementById('greeting-signature');
+  const greetingSignatureInput = document.getElementById('greeting-signature-input');
 
-    button.addClass('disabled');
+  greetingImage.src = greeting.image;
+  greetingTextDiv.innerHTML = greeting.text;
+  greetingTextInput.value = greeting.text;
+  greetingSignatureDiv.innerHTML = greeting.signature;
+  greetingSignatureInput.value = greeting.signature;
+}
 
-    spinner.style="visibility:none;";
-    buttonText.style="visibility:hidden;";
+$("#save-greeting").bind('click', function(event) {
+  const button = $("#save-greeting");
+  const greetingTextInput = document.getElementById('greeting-text-input');
+  const greetingSignatureInput = document.getElementById('greeting-signature-input');
+  const spinner = document.getElementById('save-greeting-spinner');
+  const buttonText = document.getElementById('save-greeting-text');
 
-    $.ajax({
-      type: 'PUT',
-      url: `/books/<%= @book.id %>/greetings/${greetingId}`,
-      data: JSON.stringify({text: greetingTextInput.value, signature: greetingSignatureInput.value}),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      headers: {
-        "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
-      },
-      success: function (data) {
-        spinner.style="visibility:hidden;";
-        buttonText.style="visibility:none;";
-        button.removeClass('disabled');
-      },
-      error: function(xhr, ajaxOptions, thrownError){
-        //what to do in error
-      }
-    });
+  button.addClass('disabled');
+
+  spinner.style="visibility:none;";
+  buttonText.style="visibility:hidden;";
+
+  $.ajax({
+    type: 'PUT',
+    url: `/books/<%= @book.id %>/greetings/${greetingId}`,
+    data: JSON.stringify({text: greetingTextInput.value, signature: greetingSignatureInput.value}),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
+    },
+    success: function (data) {
+      spinner.style="visibility:hidden;";
+      buttonText.style="visibility:none;";
+      button.removeClass('disabled');
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      //what to do in error
+    }
   });
+});
 
-  function onKeyUp(name, max) {
-    $(`#${name}`).keyup(function(e){
-      document.getElementById(`${name}-counter`).innerHTML = `${e.target.value.length}/${max}`;
-      document.getElementById(`${name.replace("-input", "")}`).innerHTML = this.value;
+$("#save-cover").bind('click', function(event) {
+  const button = $("#save-eeting");
+  const coverTextInput = document.getElementById('cover-text-input');
+  const coverTitleInput = document.getElementById('cover-title-input');
+  const spinner = document.getElementById('save-cover-spinner');
+  const buttonText = document.getElementById('save-cover-text');
+  const bookFontStyle = document.getElementById('book-font-style');
+  const bookFontStyleValue = bookFontStyle.options[bookFontStyle.selectedIndex].value;
 
-      if (this.value != "") {
-        setColors(name, "#2E4E43");
-        setError(name, "");
-      }
-      else {
-        setColors(name, "#AE5D59");
-        setError(name, "To pole nie może zostać puste.");
-      }
-    });
-  }
+  button.addClass('disabled');
 
-  function setColors(name, color) {
-    document.getElementById(name).style = `border-bottom: 1px solid ${color}`;
-  }
+  spinner.style="visibility:none;";
+  buttonText.style="visibility:hidden;";
 
-  function setError(name, text) {
-    document.getElementById(`${name}-error`).innerHTML = text;
-  }
+  $.ajax({
+    type: 'PUT',
+    url: `/books/<%= @book.id %>`,
+    data: JSON.stringify({'cover_text': coverTextInput.value, 'cover_title': coverTitleInput.value, 'font_style': bookFontStyleValue}),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
+    },
+    success: function (data) {
+      spinner.style="visibility:hidden;";
+      buttonText.style="visibility:none;";
+      button.removeClass('disabled');
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      //what to do in error
+    }
+  });
+});
 
-  function isValid(name) {
-    const input = document.getElementById(name);
+function onKeyUp(name, max) {
+  $(`#${name}`).keyup(function(e){
+    document.getElementById(`${name}-counter`).innerHTML = `${e.target.value.length}/${max}`;
+    document.getElementById(`${name.replace("-input", "")}`).innerHTML = this.value;
 
-    if (input.value == "") {
+    if (this.value != "") {
+      setColors(name, "#2E4E43");
+      setError(name, "");
+    }
+    else {
       setColors(name, "#AE5D59");
       setError(name, "To pole nie może zostać puste.");
-      return false;
     }
+  });
+}
 
-    setColors(name, "#2E4E43");
-    setError(name, "");
+function setColors(name, color) {
+  document.getElementById(name).style = `border-bottom: 1px solid ${color}`;
+}
 
-    return true;
+function setError(name, text) {
+  document.getElementById(`${name}-error`).innerHTML = text;
+}
+
+function isValid(name) {
+  const input = document.getElementById(name);
+
+  if (input.value == "") {
+    setColors(name, "#AE5D59");
+    setError(name, "To pole nie może zostać puste.");
+    return false;
   }
 
-  function validate() {
-    const textIsValid = isValid("greeting-text-input");
-    const signatureIsValid = isValid("greeting-signature-input");
+  setColors(name, "#2E4E43");
+  setError(name, "");
 
-    if (!textIsValid || !signatureIsValid)
-      return false;
+  return true;
+}
 
-    return true;
-  }
+function validate() {
+  const textIsValid = isValid("greeting-text-input");
+  const signatureIsValid = isValid("greeting-signature-input");
 
-  onKeyUp("greeting-text-input", 500);
-  onKeyUp("greeting-signature-input", 50);
+  if (!textIsValid || !signatureIsValid)
+    return false;
+
+  return true;
+}
+
+onKeyUp("greeting-text-input", 500);
+onKeyUp("greeting-signature-input", 50);
+
+selectCover('<%= @book.cover_text %>', '<%= @book.cover_title %>', '<%= @book.font_style %>');
 </script>

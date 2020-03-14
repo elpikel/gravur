@@ -51,6 +51,13 @@ defmodule GravurWeb.BookController do
     render(conn, "edit.html", book: book)
   end
 
-  def update(_conn, %{"book" => _book_params}) do
+  def update(conn, book_params) do
+    case Gravur.Core.update_book(book_params) do
+      {:ok, _} ->
+        json(conn, %{success: true})
+
+      {:error, _changeset} ->
+        json(conn, %{success: false})
+    end
   end
 end
