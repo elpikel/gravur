@@ -45,13 +45,13 @@ defmodule Gravur.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:arc_ecto, "~> 0.11.2"},
+      {:arc_ecto, "~> 0.11.3"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_s3, "~> 2.0"},
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6.6"},
-      {:pdf_generator, ">=0.6.0" },
+      {:pdf_generator, ">=0.6.0"},
       {:bamboo, "~> 1.4"},
       {:bamboo_smtp, "~> 2.1"}
     ]
