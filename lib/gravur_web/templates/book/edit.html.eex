@@ -1,16 +1,14 @@
 <h5 class="pb-4">Moja księga > Edycja księgi</h5>
 <div id="greeting-details" class="row pb-5">
-  <div id="greeting" style="display: none">
-    <div class="col-sm no-book-info">
-      <div class="my-5 py-5 h-100 align-items-center">
-        <img id="greeting-image" src="" style="max-width:300px;max-height:400px">
-      </div>
+  <div class="greeting col-sm no-book-info" style="display:none">
+    <div class="my-5 py-5 h-100 align-items-center">
+      <img id="greeting-image" src="" style="max-width:300px;max-height:400px">
     </div>
-    <div class="col-sm no-book-info">
-      <div class="mx-5 my-5 py-4">
-        <div id="greeting-text" class="mt-5"></div>
-        <div id="greeting-signature" class="mt-5 text-right"></div>
-      </div>
+  </div>
+  <div class="greeting col-sm no-book-info" style="display:none">
+    <div class="mx-5 my-5 py-4">
+      <div id="greeting-text" class="mt-5"></div>
+      <div id="greeting-signature" class="mt-5 text-right"></div>
     </div>
   </div>
   <div class="col-sm" id="cover">
@@ -24,7 +22,7 @@
   <div id="cover-edit" class="col-sm pl-5">
     <div class="box rounded">
       <div class="pl-4 pr-3 pb-3">
-        <div class="form-group mt-5">
+        <div class="form-group pt-3">
           <label class="control-label app-label">Wpisz tytuł księgi (np. Wasze imiona)</label>
           <input id="cover-title-input" class="app-input" type="text" maxlength="50">
           <div id="cover-title-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
@@ -67,7 +65,7 @@
       </div>
     </div>
   </div>
-  <div id="greeeting-edit" class="col-sm pl-5" style="display: none">
+  <div id="greeting-edit" class="col-sm pl-5" style="display: none">
     <div class="box rounded">
       <div class="pl-4 pr-3 pb-3">
         <div class="form-group pt-3">
@@ -169,6 +167,20 @@ function selectCover(coverText, coverTitle, bookFont) {
   coverTextDiv.innerHTML = coverText;
   coverTextInput.value = coverText;
   bookFontStyle.value = bookFont;
+
+  document.getElementById('cover-title-input-counter').innerHTML = `${coverTitle.length}/50`;
+  document.getElementById('cover-text-input-counter').innerHTML = `${coverText.length}/50`;
+
+  const coverDiv = document.getElementById('cover');
+  const greetingDivs = document.getElementsByClassName('greeting');
+  const greetingEditDiv = document.getElementById('greeting-edit');
+  const coverEditDiv = document.getElementById('cover-edit');
+
+  coverDiv.style.display="block";
+  for (let i = 0; i < greetingDivs.length; i++)
+    greetingDivs[i].style.display="none";
+  coverEditDiv.style.display="block";
+  greetingEditDiv.style.display="none";
 }
 
 function selectGreeting(id) {
@@ -185,9 +197,26 @@ function selectGreeting(id) {
   greetingTextInput.value = greeting.text;
   greetingSignatureDiv.innerHTML = greeting.signature;
   greetingSignatureInput.value = greeting.signature;
+
+  document.getElementById('greeting-text-input-counter').innerHTML = `${greeting.text.length}/500`;
+  document.getElementById('greeting-signature-input-counter').innerHTML = `${greeting.signature.length}/50`;
+
+  const coverDiv = document.getElementById('cover');
+  const greetingDivs = document.getElementsByClassName('greeting');
+  const greetingEditDiv = document.getElementById('greeting-edit');
+  const coverEditDiv = document.getElementById('cover-edit');
+
+  for (let i = 0; i < greetingDivs.length; i++)
+    greetingDivs[i].style.display="block";
+  coverDiv.style.display="none";
+  greetingEditDiv.style.display="block";
+  coverEditDiv.style.display="none";
 }
 
 $("#save-greeting").bind('click', function(event) {
+  if (!isGreetingValid())
+    return;
+
   const button = $("#save-greeting");
   const greetingTextInput = document.getElementById('greeting-text-input');
   const greetingSignatureInput = document.getElementById('greeting-signature-input');
@@ -220,6 +249,9 @@ $("#save-greeting").bind('click', function(event) {
 });
 
 $("#save-cover").bind('click', function(event) {
+  if (!isCoverValid())
+    return;
+
   const button = $("#save-eeting");
   const coverTextInput = document.getElementById('cover-text-input');
   const coverTitleInput = document.getElementById('cover-title-input');
@@ -292,7 +324,7 @@ function isValid(name) {
   return true;
 }
 
-function validate() {
+function isGreetingValid() {
   const textIsValid = isValid("greeting-text-input");
   const signatureIsValid = isValid("greeting-signature-input");
 
@@ -302,8 +334,20 @@ function validate() {
   return true;
 }
 
+function isCoverValid() {
+  const coverTitleIsValid = isValid("cover-title-input");
+  const coverTextIsValid = isValid("cover-text-input");
+
+  if (!coverTitleIsValid || !coverTextIsValid)
+    return false;
+
+  return true;
+}
+
 onKeyUp("greeting-text-input", 500);
 onKeyUp("greeting-signature-input", 50);
+onKeyUp("cover-title-input", 50);
+onKeyUp("cover-text-input", 50);
 
 selectCover('<%= @book.cover_text %>', '<%= @book.cover_title %>', '<%= @book.font_style %>');
 </script>
