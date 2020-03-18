@@ -192,7 +192,10 @@ function selectGreeting(id) {
   const greetingSignatureDiv = document.getElementById('greeting-signature');
   const greetingSignatureInput = document.getElementById('greeting-signature-input');
 
-  greetingImage.src = greeting.image;
+  if (greeting.image == "/images/book.svg")
+    greetingImage.src = "";
+  else
+    greetingImage.src = greeting.image;
   greetingTextDiv.innerHTML = greeting.text;
   greetingTextInput.value = greeting.text;
   greetingSignatureDiv.innerHTML = greeting.signature;
