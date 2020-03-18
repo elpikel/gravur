@@ -7,8 +7,11 @@ defmodule Gravur.Email do
     new_email(
       to: user.email,
       from: "gravur@gravur.com",
-      subject: "Welcome"
+      subject: "Welcome",
+      text_body: "test"
     )
+
+    IO.inspect()
     # |> render("verify.html", conn: conn, user: user)
     |> Gravur.Externals.Mailer.deliver_later()
   end
