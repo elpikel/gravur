@@ -3,10 +3,10 @@ defmodule Gravur.Email do
 
   def verify_email(conn, user) do
     new_email()
-    |> to(user.email)
     |> from("gravur@gravur.com")
+    |> to(user.email)
     |> subject("Welcome!")
     |> render("verify.html", conn: conn, user: user)
-    |> Gravur.Externals.Mailer.deliver_later
+    |> Gravur.Externals.Mailer.deliver_later()
   end
 end
