@@ -9,7 +9,7 @@ defmodule Gravur.Email do
       from: "gravur@gravur.com",
       subject: "Welcome"
     )
-    |> render("verify.html", conn: conn, user: user)
+    # |> render("verify.html", conn: conn, user: user)
     |> Gravur.Externals.Mailer.deliver_later()
   end
 end
