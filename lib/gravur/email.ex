@@ -2,16 +2,13 @@ defmodule Gravur.Email do
   use Bamboo.Phoenix, view: Gravur.EmailView
 
   def verify_email(conn, user) do
-    IO.puts("emai: #{user.email}")
-
     new_email(
       to: user.email,
-      from: "gravur@gravur.com",
+      from: "gravur@gravur.herokuapp.com",
       subject: "Welcome",
       text_body: "test"
     )
-    |> IO.inspect()
-    # |> render("verify.html", conn: conn, user: user)
+    |> render("verify.html", conn: conn, user: user)
     |> Gravur.Externals.Mailer.deliver_later()
   end
 end
