@@ -10,8 +10,7 @@ defmodule Gravur.Email do
       subject: "Welcome",
       text_body: "test"
     )
-
-    IO.inspect()
+    |> IO.inspect()
     # |> render("verify.html", conn: conn, user: user)
     |> Gravur.Externals.Mailer.deliver_later()
   end
