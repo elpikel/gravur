@@ -1,25 +1,25 @@
 <div class="d-flex justify-content-center">
-  <div class="w-50 card login-form">
-    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "form-signin", onsubmit: "return validate()"], fn f -> %>
+  <div class="card login-form box">
+    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "form-signin mx-3", onsubmit: "return validate()"], fn f -> %>
       <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal form-header">Logowanie</h1>
+        <h1 class="h3 mb-4 font-weight-normal form-header">Logowanie</h1>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :email, "Email", class: "control-label app-label" %>
-        <%= text_input f, :email, class: "app-input", autofocus: true %>
+        <%= text_input f, :email, class: "app-input login-input", autofocus: true %>
         <div id="session_email_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="form-group mt-5">
         <%= label f, :password, "Hasło", class: "control-label app-label" %>
-        <%= password_input f, :password, class: "app-input" %>
+        <%= password_input f, :password, class: "app-input login-input" %>
         <div id="session_password_error" style="color: #AE5D59"></div>
       </div>
 
       <div class="text-center">
-        <%= submit "ZALOGUJ SIĘ", class: "btn px-5 py-2 app-button mt-5" %>
-        <div style="color:#6F6D6C; font-size: 14px">
+        <%= submit "ZALOGUJ SIĘ", class: "btn px-5 py-2 app-button mt-5 btn-block" %>
+        <div class="pt-3" style="color:#6F6D6C; font-size: 14px">
           <%= link "Nie mam jeszcze zalożonej księgi.", to: Routes.registration_path(@conn, :new), style: "color:#6F6D6C;font-weight:bold;" %>
         </div>
       </div>
