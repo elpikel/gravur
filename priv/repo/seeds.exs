@@ -10,10 +10,20 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-Gravur.Repo.insert!(%Gravur.Core.Template{name: "wzór drzewny", image: "/images/one.jpg"})
-Gravur.Repo.insert!(%Gravur.Core.Template{name: "wzór kwiatowy", image: "/images/two.jpg"})
+Gravur.Repo.insert!(%Gravur.Core.Template{
+  name: "wzór drzewny",
+  image: "/images/templates/one.jpg",
+  cover: "/images/templates/ove_cover.jpg"
+})
+
+Gravur.Repo.insert!(%Gravur.Core.Template{
+  name: "wzór kwiatowy",
+  image: "/images/templates/two.jpg",
+  cover: "/images/templates/two_cover.jpg"
+})
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
   name: "wzór minimalistyczny",
-  image: "/images/three.jpg"
+  image: "/images/templates/three.jpg",
+  cover: "/images/templates/three_cover.jpg"
 })

@@ -5,6 +5,7 @@ defmodule Gravur.Core.Template do
   schema "templates" do
     field :name, :string
     field :image, :string
+    field :cover, :string
 
     has_many :books, Gravur.Core.Book
 
@@ -14,7 +15,7 @@ defmodule Gravur.Core.Template do
   @doc false
   def changeset(template, attrs) do
     template
-    |> cast(attrs, [:name, :image])
-    |> validate_required([:name, :image])
+    |> cast(attrs, [:name, :image, :cover])
+    |> validate_required([:name, :image, :cover])
   end
 end

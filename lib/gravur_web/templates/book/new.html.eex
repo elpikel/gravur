@@ -35,13 +35,13 @@
     </div>
 
     <div class="row">
-      <div class="col-sm text-center no-book-info">
+      <div id="book_cover" class="col-sm text-center no-book-info">
         <div class="mt-5 pt-5">
           <div class="mt-5" id="cover_title_show"></div>
           <div class="mt-5" id="cover_text_show"></div>
         </div>
       </div>
-      <div class="col-sm no-book-info p-5">
+      <div class="col-sm box p-5 ml-5">
         <div class="form-group mt-5">
           <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label app-label" %>
           <%= text_input f, :cover_title, class: "app-input", autofocus: true %>
@@ -151,6 +151,10 @@
     }
     template.className = "card border border-secondary";
     document.getElementById('template_' + templateId).checked = true;
+    const bookCover = document.getElementById('book_cover');
+    // TODO: change to dynamic
+    book_cover.style['background-image'] = "url('/images/templates/one_cover.png')";
+    book_cover.style['background-size'] = "cover";
     toBookCoverPage();
   }
 
