@@ -11,11 +11,13 @@
       <div id="greeting-signature" class="mt-5 text-right"></div>
     </div>
   </div>
-  <div class="col-sm" id="cover">
-    <div class="no-book-info">
-      <div class="mx-5 my-5 py-4">
-        <div id="cover-title" class="mt-5"></div>
-        <div id="cover-text" class="mt-5 text-right"></div>
+  <div class="col-sm box mx-auto" id="cover">
+    <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
+      <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;background-image:url('<%= @book.template.cover %>'); background-size: cover;">
+        <div class="book_info" style="padding-top: 165px;">
+          <div id="cover-title" style="font-size: 40px;color: #919191;font-family:ItalicC"></div>
+          <div id="cover-text" style="font-size: 28px;color: #919191;padding-top:20px;font-family:ItalicC"></div>
+        </div>
       </div>
     </div>
   </div>

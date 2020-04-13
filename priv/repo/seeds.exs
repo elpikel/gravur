@@ -13,17 +13,17 @@
 Gravur.Repo.insert!(%Gravur.Core.Template{
   name: "wzór drzewny",
   image: "/images/templates/one.jpg",
-  cover: "/images/templates/ove_cover.jpg"
+  cover: "/images/templates/ove_cover.png"
 })
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
   name: "wzór kwiatowy",
   image: "/images/templates/two.jpg",
-  cover: "/images/templates/two_cover.jpg"
+  cover: "/images/templates/two_cover.png"
 })
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
   name: "wzór minimalistyczny",
   image: "/images/templates/three.jpg",
-  cover: "/images/templates/three_cover.jpg"
+  cover: "/images/templates/three_cover.png"
 })

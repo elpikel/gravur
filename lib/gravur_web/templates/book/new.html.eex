@@ -34,39 +34,44 @@
       <div class="col-auto" style="font-size: 1.2rem">Strona tytułowa</div>
     </div>
 
-    <div class="row">
-      <div id="book_cover" class="col-sm text-center no-book-info">
-        <div class="mt-5 pt-5">
-          <div class="mt-5" id="cover_title_show"></div>
-          <div class="mt-5" id="cover_text_show"></div>
+    <div class="row" style="height: 580px;">
+      <div class="col-8 box">
+        <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
+          <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;">
+            <div class="book_info" style="padding-top: 165px;">
+              <div id="cover_title_show" style="font-size: 40px;color: #919191;font-family:ItalicC"></div>
+              <div id="cover_text_show" style="font-size: 28px;color: #919191;padding-top:20px;font-family:ItalicC"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm box p-5 ml-5">
-        <div class="form-group mt-5">
-          <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label app-label" %>
-          <%= text_input f, :cover_title, class: "app-input", autofocus: true %>
-          <div id="book_cover_title-error" style="color: #AE5D59"></div>
-          <%= error_tag f, :cover_title %>
-        </div>
+      <div class="col-3 box ml-5 d-flex flex-column">
+        <div class="h-100">
+          <div class="form-group mt-5">
+            <%= label f, :cover_title, "Wpisz tytuł księgi (np. Wasze imiona)", class: "control-label app-label" %>
+            <%= text_input f, :cover_title, class: "app-input", autofocus: true %>
+            <div id="book_cover_title-error" style="color: #AE5D59"></div>
+            <%= error_tag f, :cover_title %>
+          </div>
 
-        <div class="form-group mt-5">
-          <%= label f, :cover_text, "Wpisz tekst dodatkowy (np. data ślubu)", class: "control-label" %>
-          <%= text_input f, :cover_text, class: "app-input", placeholder: "" %>
-          <div id="book_cover_text-error" style="color: #AE5D59"></div>
-          <%= error_tag f, :cover_text %>
-        </div>
+          <div class="form-group mt-5">
+            <%= label f, :cover_text, "Wpisz tekst dodatkowy (np. data ślubu)", class: "control-label app-label" %>
+            <%= text_input f, :cover_text, class: "app-input", placeholder: "" %>
+            <div id="book_cover_text-error" style="color: #AE5D59"></div>
+            <%= error_tag f, :cover_text %>
+          </div>
 
-        <div class="form-group mt-5">
-          <%= label f, :font_style, "Wybierz font w całej księdze", class: "control-label" %>
-          <hr />
-          <%= select f , :font_style, [Arial: "Arial", Calibri: "Calibri", Courier: "Courier", Verdana: "Verdana"], class: "app-select" %>
-          <hr class="form-line" />
-          <%= error_tag f, :font_style %>
+          <div class="form-group mt-5">
+            <%= label f, :font_style, "Wybierz font w całej księdze", class: "control-label app-label" %>
+            <hr />
+            <%= select f , :font_style, [Arial: "Arial", Calibri: "Calibri", Courier: "Courier", Verdana: "Verdana"], class: "app-select" %>
+            <hr class="form-line" />
+            <%= error_tag f, :font_style %>
+          </div>
         </div>
-
-        <div class="row align-items-center">
+        <div class="row align-items-center pb-3">
           <div class="col-sm">
-            <div class="btn px-5 py-2 app-button mt-5" onclick="toBookTemplatePage()">
+            <div class="px-5 py-2 btn btn-outline-secondary btn-block mt-5" onclick="toBookTemplatePage()">
               WRÓĆ
             </div>
           </div>
@@ -85,25 +90,45 @@
       <div class="col-auto" style="font-size: 1.2rem">Przykładowy wpis</div>
     </div>
 
-    <div class="row">
-      <div class="col-sm text-center box rounded">
-        <div class="my-5 py-5">
-          <img src="/images/greeting.jpg" style="width:400px">
+    <div class="row" style="height: 580px;">
+      <div class="col-8 box p-5" style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
+        <div class="row">
+          <div class="col-sm pt-5 text-center box rounded" style="width:400px; height:400px;">
+            <div style="padding-top: 35px;">
+              <img src="/images/greeting.jpg" class="mx-auto" style="width:390px">
+            </div>
+          </div>
+          <div class="col-sm box rounded" style="widht:400px; height:400px;">
+            <div class="mx-5" style="padding-top:100px">
+              <div class="mt-5">Niech wszystkie dni wspólnego życia będą tak radosne i promienne jak ten dzień dzisiejszy! Z najlepszymi życzeniami w Dniu Ślubu!</div>
+              <div class="mt-5 text-right">Magda i Łukasz</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm box rounded">
-        <div class="mx-5 my-5 py-4">
-          <div class="mt-5">Niech wszystkie dni wspólnego życia będą tak radosne i promienne jak ten dzień dzisiejszy! Z najlepszymi życzeniami w Dniu Ślubu!</div>
-          <div class="mt-5 text-right">Magda i Łukasz</div>
+      <div class="col-3 box ml-5 d-flex flex-column">
+        <div class="h-100">
+          <div class="form-group pt-5">
+            <label class="control-label app-label">Podgląd wpisu</label>
+            <textarea id="greeting-text-input" class="app-textarea" disabled maxlength="500">Niech wszystkie dni wspólnego życia będą tak radosne i promienne jak ten dzień dzisiejszy! Z najlepszymi życzeniami w Dniu Ślubu!</textarea>
+            <div id="greeting-text-input-counter" class="text-right" style="color:#6F6D6C">128/500</div>
+            <div id="greeting-text-input-error" style="color: #AE5D59"></div>
+          </div>
+          <div class="form-group mt-5">
+            <label class="control-label app-label" for="">Podgląd podpisu</label>
+            <input id="greeting-signature-input" class="app-input" type="text" maxlength="50" disabled value="Magda i Łukasz"/>
+            <div id="greeting-signature-input-counter" class="text-right" style="color:#6F6D6C">14/50</div>
+            <div id="greeting-signature-input-error" style="color: #AE5D59"></div>
+          </div>
         </div>
-        <div class="row mx-5">
-          <div class="col-sm px-0">
-            <div class="btn px-5 py-2 app-button" onclick="toBookCoverPage()">
+        <div class="row align-items-center pb-3">
+          <div class="col-sm">
+            <div class="px-5 py-2 btn btn-outline-secondary btn-block mt-5" onclick="toBookCoverPage()">
               WRÓĆ
             </div>
           </div>
-          <div class="col-sm px-0 text-right">
-            <%= submit "ZAPISZ", class: "btn px-5 py-2 app-button" %>
+          <div class="col-sm text-right">
+            <%= submit "ZAPISZ", class: "btn px-5 py-2 app-button mt-5" %>
           </div>
         </div>
       </div>
@@ -113,6 +138,11 @@
 <% end %>
 
 <script>
+  let templates = [
+    <%= for template <- @templates do %>
+      {id: <%= template.id %>, name: '<%= template.name %>', image: '<%= template.image %>', cover: '<%= template.cover %>'},
+    <% end %>
+  ];
   $('#book_cover_title').keyup(function(){
     $("#cover_title_show").text(this.value);
 
@@ -152,8 +182,8 @@
     template.className = "card border border-secondary";
     document.getElementById('template_' + templateId).checked = true;
     const bookCover = document.getElementById('book_cover');
-    // TODO: change to dynamic
-    book_cover.style['background-image'] = "url('/images/templates/one_cover.png')";
+    selectedTemplate = templates.find(t => { return t.id == templateId });
+    book_cover.style['background-image'] = `url('${selectedTemplate.cover}')`;
     book_cover.style['background-size'] = "cover";
     toBookCoverPage();
   }
@@ -211,3 +241,10 @@
     return true;
   }
 </script>
+<style>
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1540px !important;
+  }
+}
+</style>

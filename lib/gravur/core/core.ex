@@ -57,9 +57,10 @@ defmodule Gravur.Core do
     Repo.one(
       from b in Book,
         left_join: g in assoc(b, :greetings),
+        left_join: t in assoc(b, :template),
         where: b.id == ^book_id,
         order_by: [desc: g.inserted_at],
-        preload: [greetings: g]
+        preload: [greetings: g, template: t]
     )
   end
 
