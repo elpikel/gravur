@@ -1,17 +1,24 @@
 <h5 class="pb-4">Moja księga > Edycja księgi</h5>
-<div id="greeting-details" class="row pb-5">
-  <div class="greeting col-sm no-book-info" style="display:none">
-    <div class="my-5 py-5 h-100 align-items-center">
-      <img id="greeting-image" src="" style="max-width:300px;max-height:400px">
+<div id="greeting-details" class="row pb-5" style="height: 580px">
+  <div class="greeting col-8 box p-5">
+    <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
+      <div class="row" style="width:100%">
+        <div class="col-sm text-center box rounded" style="width:400px; height:400px;text-align: center;display:flex;align-items: center;justify-content: center;flex-flow: column;">
+          <div style="display: table;margin: auto;">
+            <img id="greeting-image" class="mx-auto" style="width:390px">
+          </div>
+        </div>
+        <div class="col-sm box rounded" style="widht:400px; height:400px;text-align: center;display:flex;align-items: center;justify-content: center;flex-flow: column;">
+          <div class="mx-5" style="display: table; margin: auto;">
+            <div id="greeting-text" class="mt-5"></div>
+            <div id="greeting-signature" class="mt-5 text-right"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="greeting col-sm no-book-info" style="display:none">
-    <div class="mx-5 my-5 py-4">
-      <div id="greeting-text" class="mt-5"></div>
-      <div id="greeting-signature" class="mt-5 text-right"></div>
-    </div>
-  </div>
-  <div class="col-sm box mx-auto" id="cover">
+
+  <div class="col-8 box" id="cover">
     <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
       <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;background-image:url('<%= @book.template.cover %>'); background-size: cover;">
         <div class="book_info" style="padding-top: 165px;">
@@ -21,33 +28,35 @@
       </div>
     </div>
   </div>
-  <div id="cover-edit" class="col-sm pl-5">
-    <div class="box rounded">
-      <div class="pl-4 pr-3 pb-3">
-        <div class="form-group pt-3">
-          <label class="control-label app-label">Wpisz tytuł księgi (np. Wasze imiona)</label>
-          <input id="cover-title-input" class="app-input" type="text" maxlength="50">
-          <div id="cover-title-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
-          <div id="cover-title-input-error" style="color: #AE5D59"></div>
-        </div>
+  <div id="cover-edit" class="col-4">
+    <div class="box rounded h-100 ml-5">
+      <div class="pl-4 pr-3 pb-3 d-flex flex-column h-100">
+        <div class="h-100">
+          <div class="form-group pt-3">
+            <label class="control-label app-label">Wpisz tytuł księgi (np. Wasze imiona)</label>
+            <input id="cover-title-input" class="app-input" type="text" maxlength="50">
+            <div id="cover-title-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
+            <div id="cover-title-input-error" style="color: #AE5D59"></div>
+          </div>
 
-        <div class="form-group mt-5">
-          <label class="control-label app-label">Wpisz tekst dodatkowy (np. data ślubu)</label>
-          <input id="cover-text-input" class="app-input" type="text" maxlength="50">
-          <div id="cover-text-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
-          <div id="cover-text-input-error" style="color: #AE5D59"></div>
-        </div>
+          <div class="form-group mt-5">
+            <label class="control-label app-label">Wpisz tekst dodatkowy (np. data ślubu)</label>
+            <input id="cover-text-input" class="app-input" type="text" maxlength="50">
+            <div id="cover-text-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
+            <div id="cover-text-input-error" style="color: #AE5D59"></div>
+          </div>
 
-        <div class="form-group mt-5">
-          <label class="control-label app-label">Wybierz font w całej księdze</label>
-          <hr />
-          <select class="app-select" id="book-font-style">
-            <option value="Arial">Arial</option>
-            <option value="Calibri">Calibri</option>
-            <option value="Courier">Courier</option>
-            <option value="Verdana">Verdana</option>
-          </select>
-          <hr class="form-line" />
+          <div class="form-group mt-5">
+            <label class="control-label app-label">Wybierz font w całej księdze</label>
+            <hr />
+            <select class="app-select" id="book-font-style">
+              <option value="Arial">Arial</option>
+              <option value="Calibri">Calibri</option>
+              <option value="Courier">Courier</option>
+              <option value="Verdana">Verdana</option>
+            </select>
+            <hr class="form-line" />
+          </div>
         </div>
         <div class="row">
           <div class="col-sm pt-1">
@@ -67,20 +76,22 @@
       </div>
     </div>
   </div>
-  <div id="greeting-edit" class="col-sm pl-5" style="display: none">
-    <div class="box rounded">
-      <div class="pl-4 pr-3 pb-3">
-        <div class="form-group pt-3">
-          <label class="control-label app-label">Edytuj wpis</label>
-          <textarea id="greeting-text-input" class="app-textarea" maxlength="500"></textarea>
-          <div id="greeting-text-input-counter" class="text-right" style="color:#6F6D6C">0/500</div>
-          <div id="greeting-text-input-error" style="color: #AE5D59"></div>
-        </div>
-        <div class="form-group mt-5">
-          <label class="control-label app-label" for="">Edytuj podpis</label>
-          <input id="greeting-signature-input" class="app-input" type="text" maxlength="50">
-          <div id="greeting-signature-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
-          <div id="greeting-signature-input-error" style="color: #AE5D59"></div>
+  <div id="greeting-edit" class="col-4" style="display: none">
+    <div class="box rounded h-100 ml-5">
+      <div class="pl-4 pr-3 pb-3 d-flex flex-column h-100">
+        <div class="h-100">
+          <div class="form-group pt-3">
+            <label class="control-label app-label">Edytuj wpis</label>
+            <textarea id="greeting-text-input" class="app-textarea" maxlength="500"></textarea>
+            <div id="greeting-text-input-counter" class="text-right" style="color:#6F6D6C">0/500</div>
+            <div id="greeting-text-input-error" style="color: #AE5D59"></div>
+          </div>
+          <div class="form-group mt-5">
+            <label class="control-label app-label" for="">Edytuj podpis</label>
+            <input id="greeting-signature-input" class="app-input" type="text" maxlength="50">
+            <div id="greeting-signature-input-counter" class="text-right" style="color:#6F6D6C">0/50</div>
+            <div id="greeting-signature-input-error" style="color: #AE5D59"></div>
+          </div>
         </div>
         <div class="row">
           <div class="col-sm pt-1">
@@ -356,3 +367,10 @@ onKeyUp("cover-text-input", 50);
 
 selectCover('<%= @book.cover_text %>', '<%= @book.cover_title %>', '<%= @book.font_style %>');
 </script>
+<style>
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1540px !important;
+  }
+}
+</style>
