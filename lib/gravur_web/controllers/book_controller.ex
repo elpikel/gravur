@@ -2,6 +2,7 @@ defmodule GravurWeb.BookController do
   use GravurWeb, :controller
 
   plug GravurWeb.Authorize
+  plug :put_layout, false when action in [:show]
 
   def index(conn, _params) do
     books =
@@ -59,5 +60,10 @@ defmodule GravurWeb.BookController do
       {:error, _changeset} ->
         json(conn, %{success: false})
     end
+  end
+
+  def show(conn, %{"id" => book_id}) do
+    book = Gravur.Core.get_book_with_greetings(book_id)
+    render(conn, "show.html", greetings: book.greetings)
   end
 end

@@ -29,7 +29,7 @@
           <div>
             <div class="row">
               <div class="col-sm px-1">
-                <a href="#" class="btn btn-outline-secondary btn-block">PODGLĄD</a>
+                <%= link "PODGLĄD",  to: Routes.book_path(@conn, :show, book), class: "btn btn-outline-secondary btn-block" %>
               </div>
               <div class="col-sm px-1">
                 <%= link "EDYTUJ",  to: Routes.book_path(@conn, :edit, book), class: "btn btn-outline-secondary btn-block" %>

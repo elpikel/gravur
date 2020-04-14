@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <%= for greeting <- @greetings do %>
+      <div style="width:216mm;height:216mm;background-color:red;page-break-before:always;">
+        <img width="2000mm" src="<%= Gravur.Printing.get_image_url(greeting) %>" />
+      </div>
+      <div style="width:216mm;height:216mm;background-color:blue;page-break-before: always;">
+        <div><%= greeting.text %></div>
+        <div><%= greeting.signature %></div>
+      </div>
+    <% end %>
+  </body>
+</html>

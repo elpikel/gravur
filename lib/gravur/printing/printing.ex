@@ -5,7 +5,14 @@ defmodule Gravur.Printing do
     html = generate_html(book)
 
     {:ok, filename} =
-      PdfGenerator.generate(html, page_size: "Custom(Millimeters(200), Millimeters(200))")
+      PdfGenerator.generate(html,
+        shell_params: [
+          "--page-height",
+          "216mm",
+          "--page-width",
+          "216mm"
+        ]
+      )
 
     {:ok, content} = File.read(filename)
     {:ok, url} = Gravur.Utils.BookPdf.store({filename, book})
