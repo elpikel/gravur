@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="ml-4 pt-2" id="<%= book.id %>">
-        <a href="#" class="mt-3 btn app-button btn-block">ZAMÓW SWOJĄ KSIĘGĘ GOŚCI</a>
+        <a id="generate-pdf" href="#" class="mt-3 btn app-button btn-block">ZAMÓW SWOJĄ KSIĘGĘ GOŚCI</a>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@
       document.execCommand('copy');
     });
 
-    $(".generate-pdf").bind('click', function(event) {
+    $("#generate-pdf").bind('click', function(event) {
       const bookRow = $(this).parent();
       const spinner = bookRow.find(".spinner-border");
       const linkText = bookRow.find(".link-text");

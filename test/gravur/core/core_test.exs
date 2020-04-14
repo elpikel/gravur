@@ -32,7 +32,12 @@ defmodule Gravur.Core.CoreTest do
       })
 
     {:ok, template} =
-      Template.changeset(%Template{}, %{name: "name", image: "image", cover: "cover"})
+      Template.changeset(%Template{}, %{
+        name: "name",
+        image: "image",
+        cover: "cover",
+        html: "html"
+      })
       |> Repo.insert()
 
     %{user: user, template: template}
@@ -40,13 +45,28 @@ defmodule Gravur.Core.CoreTest do
 
   describe "template" do
     test "get_templates/1 get all templates", %{user: _user, template: _template} do
-      Template.changeset(%Template{}, %{name: "name", image: "image", cover: "cover"})
+      Template.changeset(%Template{}, %{
+        name: "name",
+        image: "image",
+        cover: "cover",
+        html: "html"
+      })
       |> Repo.insert()
 
-      Template.changeset(%Template{}, %{name: "name", image: "image", cover: "cover"})
+      Template.changeset(%Template{}, %{
+        name: "name",
+        image: "image",
+        cover: "cover",
+        html: "html"
+      })
       |> Repo.insert()
 
-      Template.changeset(%Template{}, %{name: "name", image: "image", cover: "cover"})
+      Template.changeset(%Template{}, %{
+        name: "name",
+        image: "image",
+        cover: "cover",
+        html: "html"
+      })
       |> Repo.insert()
 
       templates = Core.get_templates()
