@@ -8,7 +8,7 @@ defmodule Gravur.Email do
       subject: "Gravur"
     )
     |> render("verify.html", conn: conn, user: user)
-    |> Gravur.Externals.Mailer.deliver_now()
+    |> Gravur.Externals.Mailer.deliver_later()
   end
 
   def invite_to_guest_book(conn, user) do
