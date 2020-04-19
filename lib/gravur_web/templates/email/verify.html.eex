@@ -7,7 +7,7 @@
   </head>
   <body style="font-family: Roboto;">
     <div style="text-align:center">
-      <img src="<%= "#{String.replace(GravurWeb.Endpoint.url, "https", "http")}/images/verify.svg" %>" alt="img"/>
+      <img src="http://gravur.s3-eu-west-1.amazonaws.com/verify.svg" alt="img"/>
       <p style="font-size: 17px">
       Cieszymy się, że zdecydowałeś się do nas dołączyć.
       </p>
