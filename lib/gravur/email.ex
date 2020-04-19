@@ -4,7 +4,7 @@ defmodule Gravur.Email do
   def verify_email(conn, user) do
     new_email(
       to: user.email,
-      from: "el.pikel@gmail.com",
+      from: "gravur@gravur.herokuapp.com",
       subject: "Gravur"
     )
     |> render("verify.html", conn: conn, user: user)
