@@ -22,6 +22,7 @@ defmodule GravurWeb.Router do
     get "/verification/verify/:user_id/:verification_code", VerificationController, :verify
     get "/verification/send/:user_id", VerificationController, :send
     get "/verification/show/:user_id", VerificationController, :show
+    post "/invitation", InvitationController, :send
     delete "/sign_out", SessionController, :delete
 
     resources "/books", BookController do

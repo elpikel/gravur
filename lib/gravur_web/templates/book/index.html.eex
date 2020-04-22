@@ -60,8 +60,8 @@
             </div>
           </div>
         </div>
-        <div>
-          <a href="#" class="mt-3 btn btn-outline-secondary btn-block">UDOSTĘPNIJ PRZEZ EMAIL</a>
+        <div id="<%= book.id %>">
+          <a id="share-link" href="#" class="mt-3 btn btn-outline-secondary btn-block">UDOSTĘPNIJ PRZEZ EMAIL</a>
         </div>
       </div>
       <div class="ml-4 pt-2" id="<%= book.id %>">
@@ -101,6 +101,26 @@
 
           pdfLink.attr("href", data.url);
           pdfLink.show();
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          //what to do in error
+        }
+      });
+
+      return false;
+    });
+
+    $("#share-link").bind('click', function(event) {
+      const bookRow = $(this).parent();
+
+      $.post({
+        url: `/invitation`,
+        data: {user_id: <%= @user_id %>, book_id: bookRow.attr('id'), name: 'what'},
+        headers: {
+          "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
+        },
+        success: function (data) {
+          console.log(data)
         },
         error: function(xhr, ajaxOptions, thrownError){
           //what to do in error

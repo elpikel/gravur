@@ -5,13 +5,11 @@ defmodule GravurWeb.BookController do
   plug :put_layout, false when action in [:show]
 
   def index(conn, _params) do
-    books =
-      conn
-      |> Gravur.Identity.current_user_id()
-      |> Gravur.Core.get_all_books()
+    user_id = Gravur.Identity.current_user_id(conn)
+    books = Gravur.Core.get_all_books(user_id)
 
     if length(books) != 0 do
-      render(conn, "index.html", books: books)
+      render(conn, "index.html", books: books, user_id: user_id)
     else
       redirect(conn, to: GravurWeb.Router.Helpers.book_path(GravurWeb.Endpoint, :new))
     end
