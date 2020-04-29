@@ -11,19 +11,19 @@
 # and so on) as they will fail if something goes wrong.
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
-  name: "wzór drzewny",
+  name: "watercolor",
   image: "/images/templates/one.jpg",
   cover: "/images/templates/ove_cover.png"
 })
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
-  name: "wzór kwiatowy",
+  name: "picture",
   image: "/images/templates/two.jpg",
   cover: "/images/templates/two_cover.png"
 })
 
 Gravur.Repo.insert!(%Gravur.Core.Template{
-  name: "wzór minimalistyczny",
+  name: "stripes",
   image: "/images/templates/three.jpg",
   cover: "/images/templates/three_cover.png"
 })

@@ -39,8 +39,10 @@
         <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
           <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;">
             <div class="book_info" id="cover_box">
-              <div id="cover_title_show"></div>
-              <div id="cover_text_show"></div>
+              <div id="cover_text_box">
+                <div id="cover_title_show"></div>
+                <div id="cover_text_show"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -187,23 +189,80 @@
     book_cover.style['background-image'] = `url('${selectedTemplate.cover}')`;
     book_cover.style['background-size'] = "cover";
 
-    if(selectedTemplate.name == 'wzór minimalistyczny')
+    if(selectedTemplate.name == 'stripes')
     {
       let cover_box = document.getElementById("cover_box");
+      cover_box.style = '';
       cover_box.style['padding-top'] = '240px';
 
       let cover_title_show = document.getElementById('cover_title_show')
+      cover_title_show.style = '';
       cover_title_show.style['font-size'] = '40px';
-      cover_title_show.style['color'] = '#919191';
-      cover_title_show.style['font-family'] = 'Multi';
+      cover_title_show.style['color'] = '#a39c8c';
+      cover_title_show.style['font-family'] = 'Muli';
       cover_title_show.style['padding-left'] = '20px';
 
       let cover_text_show = document.getElementById('cover_text_show')
+      cover_text_show.style = '';
       cover_text_show.style['font-size'] = '20px';
-      cover_text_show.style['color'] = '#919191';
-      cover_text_show.style['font-family'] = 'Multi';
+      cover_text_show.style['color'] = '#a39c8c';
+      cover_text_show.style['font-family'] = 'Muli';
       cover_text_show.style['padding-left'] = '20px';
       cover_text_show.style['padding-top'] = '5px';
+
+      let cover_text_box = document.getElementById('cover_text_box');
+      cover_text_box.style = '';
+    }
+    else if(selectedTemplate.name == 'watercolor')
+    {
+      let cover_box = document.getElementById("cover_box");
+      cover_box.style = '';
+      cover_box.style['padding-top'] = '160px';
+
+      let cover_title_show = document.getElementById('cover_title_show');
+      cover_title_show.style = '';
+      cover_title_show.style['font-size'] = '40px';
+      cover_title_show.style['color'] = '#a39c8c';
+      cover_title_show.style['font-family'] = 'Bad Script';
+      cover_title_show.style['padding-left'] = '20px';
+
+      let cover_text_show = document.getElementById('cover_text_show');
+      cover_text_show.style = '';
+      cover_text_show.style['font-size'] = '20px';
+      cover_text_show.style['color'] = '#a39c8c';
+      cover_text_show.style['font-family'] = 'Bad Script';
+      cover_text_show.style['padding-left'] = '20px';
+      cover_text_show.style['padding-top'] = '115px';
+
+      let cover_text_box = document.getElementById('cover_text_box');
+      cover_text_box.style = '';
+    }
+    else if(selectedTemplate.name == 'picture')
+    {
+      let cover_box = document.getElementById("cover_box");
+      cover_box.style = '';
+      cover_box.style['padding-top'] = '315px';
+
+      let cover_title_show = document.getElementById('cover_title_show');
+      cover_title_show.style = '';
+      cover_title_show.style['font-size'] = '30px';
+      cover_title_show.style['color'] = '#FFFFFF';
+      cover_title_show.style['font-family'] = 'Lato';
+      cover_title_show.style['padding-left'] = '20px';
+
+      let cover_text_show = document.getElementById('cover_text_show');
+      cover_text_show.style = '';
+      cover_text_show.style['font-size'] = '17px';
+      cover_text_show.style['color'] = '#FFFFFF';
+      cover_text_show.style['font-family'] = 'Lato';
+      cover_text_show.style['padding-left'] = '20px';
+      cover_text_show.style['padding-top'] = '0px';
+      cover_text_show.style['padding-bottom'] = '20px';
+
+      let cover_text_box = document.getElementById('cover_text_box');
+      cover_text_box.style = '';
+      cover_text_box.style['background'] = 'rgba(0, 0, 0, 0.5)';
+      cover_text_box.style['height'] = '90px';
     }
 
     toBookCoverPage();
