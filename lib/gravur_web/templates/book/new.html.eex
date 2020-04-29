@@ -38,9 +38,9 @@
       <div class="col-8 box">
         <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
           <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;">
-            <div class="book_info" style="padding-top: 165px;">
-              <div id="cover_title_show" style="font-size: 40px;color: #919191;font-family:ItalicC"></div>
-              <div id="cover_text_show" style="font-size: 28px;color: #919191;padding-top:20px;font-family:ItalicC"></div>
+            <div class="book_info" id="cover_box">
+              <div id="cover_title_show"></div>
+              <div id="cover_text_show"></div>
             </div>
           </div>
         </div>
@@ -143,6 +143,7 @@
       {id: <%= template.id %>, name: '<%= template.name %>', image: '<%= template.image %>', cover: '<%= template.cover %>'},
     <% end %>
   ];
+
   $('#book_cover_title').keyup(function(){
     $("#cover_title_show").text(this.value);
 
@@ -185,6 +186,26 @@
     selectedTemplate = templates.find(t => { return t.id == templateId });
     book_cover.style['background-image'] = `url('${selectedTemplate.cover}')`;
     book_cover.style['background-size'] = "cover";
+
+    if(selectedTemplate.name == 'wzór minimalistyczny')
+    {
+      let cover_box = document.getElementById("cover_box");
+      cover_box.style['padding-top'] = '240px';
+
+      let cover_title_show = document.getElementById('cover_title_show')
+      cover_title_show.style['font-size'] = '40px';
+      cover_title_show.style['color'] = '#919191';
+      cover_title_show.style['font-family'] = 'Multi';
+      cover_title_show.style['padding-left'] = '20px';
+
+      let cover_text_show = document.getElementById('cover_text_show')
+      cover_text_show.style['font-size'] = '20px';
+      cover_text_show.style['color'] = '#919191';
+      cover_text_show.style['font-family'] = 'Multi';
+      cover_text_show.style['padding-left'] = '20px';
+      cover_text_show.style['padding-top'] = '5px';
+    }
+
     toBookCoverPage();
   }
 
