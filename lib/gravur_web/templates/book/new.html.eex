@@ -222,14 +222,14 @@
       let cover_title_show = document.getElementById('cover_title_show');
       cover_title_show.style = '';
       cover_title_show.style['font-size'] = '40px';
-      cover_title_show.style['color'] = '#a39c8c';
+      cover_title_show.style['color'] = '#55434f';
       cover_title_show.style['font-family'] = 'Bad Script';
       cover_title_show.style['padding-left'] = '20px';
 
       let cover_text_show = document.getElementById('cover_text_show');
       cover_text_show.style = '';
       cover_text_show.style['font-size'] = '20px';
-      cover_text_show.style['color'] = '#a39c8c';
+      cover_text_show.style['color'] = '#55434f';
       cover_text_show.style['font-family'] = 'Bad Script';
       cover_text_show.style['padding-left'] = '20px';
       cover_text_show.style['padding-top'] = '115px';
