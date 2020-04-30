@@ -18,15 +18,19 @@
     <div class="row">
       <%= for template <- @templates do %>
         <div class="col-sm">
-          <div class="card box" style="cursor: pointer;" onclick="selectTemplate(this, '<%= template.id %>')">
+          <div class="card box" style="cursor: pointer;" onclick="showTemplate(this, '<%= template.id %>')">
             <img class="card-img-top" src="<%= template.image %>" />
-            <div class="btn px-5 py-2 app-button mx-5 position-absolute fixed-bottom mb-4">
+            <div class="btn px-5 py-2 app-button mx-5 position-absolute fixed-bottom mb-4" onclick="selectTemplate(this, '<%= template.id %>')">
               WYBIERZ SZABLON
             </div>
           </div>
         </div>
         <%= radio_button f, :template_id, template.id, hidden: "true", id: "template_#{template.id}" %>
       <% end %>
+    </div>
+
+    <div id="template-details-box" style="padding-top: 100px;">
+      <img id="template-details"/>
     </div>
   </div>
   <div id="book-cover" style="display: none">
@@ -174,15 +178,17 @@
 
   let selectedTemplate = "";
 
+  function showTemplate(template, templateId) {
+    templateToShow = templates.find(t => { return t.id == templateId });
+
+    const templateDetails = document.getElementById('template-details');
+    templateDetails.src = '/images/' + templateToShow.name + '_all.jpg';
+
+    markTemplate(template);
+  }
+
   function selectTemplate(template, templateId) {
-    let parent = template.parentElement.parentElement;
-    for (let i = 0; i < parent.children.length; i++) {
-      if(parent.children[i].className == "col-sm"
-        && parent.children[i].children[0].className == "card border border-secondary") {
-        parent.children[i].children[0].className = "card border";
-      }
-    }
-    template.className = "card border border-secondary";
+    markTemplate(template.parentElement);
     document.getElementById('template_' + templateId).checked = true;
     const bookCover = document.getElementById('book_cover');
     selectedTemplate = templates.find(t => { return t.id == templateId });
@@ -266,6 +272,17 @@
     }
 
     toBookCoverPage();
+  }
+
+  function markTemplate(template) {
+    let parent = template.parentElement.parentElement;
+    for (let i = 0; i < parent.children.length; i++) {
+      if(parent.children[i].className == "col-sm"
+        && parent.children[i].children[0].className == "card") {
+        parent.children[i].children[0].className = "card box";
+      }
+    }
+    template.className = "card";
   }
 
   function toBookCoverPage() {
