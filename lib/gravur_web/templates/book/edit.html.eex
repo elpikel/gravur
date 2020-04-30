@@ -21,10 +21,30 @@
   <div class="col-8 box" id="cover">
     <div style="width:100%;text-align: center;display:flex;align-items: center;justify-content: center;height:100%;flex-flow: column;">
       <div id="book_cover" class="no-book-info" style="width:400px;height:400px;display: table;margin: auto;background-image:url('<%= @book.template.cover %>'); background-size: cover;">
-        <div class="book_info" style="padding-top: 165px;">
-          <div id="cover-title" style="font-size: 40px;color: #919191;font-family:ItalicC"></div>
-          <div id="cover-text" style="font-size: 28px;color: #919191;padding-top:20px;font-family:ItalicC"></div>
+        <%= if @book.template.name == "stripes" do %>
+        <div class="book_info" style="padding-top: 240px;">
+          <div id="cover_text_box">
+            <div id="cover-title" style="font-size:40px;color:#a39c8c;font-family:Muli;padding-left:20px;"></div>
+            <div id="cover-text" style="font-size:20px;color:#a39c8c;font-family:Muli;padding-left:20px;padding-top:5px;"></div>
+          </div>
         </div>
+        <% end %>
+        <%= if @book.template.name == "watercolor" do %>
+        <div class="book_info" style="padding-top: 160px;">
+          <div id="cover_text_box">
+            <div id="cover-title" style="font-size:40px;color:#55434f;font-family:Bad Script;padding-left:20px;"></div>
+            <div id="cover-text" style="font-size:20px;color:#55434f;font-family:Bad Script;padding-left:20px;padding-top:115px;"></div>
+          </div>
+        </div>
+        <% end %>
+        <%= if @book.template.name == "picture" do %>
+        <div class="book_info" style="padding-top: 315px;">
+          <div id="cover_text_box" style="background:rgba(0,0,0,0.5);height:90px;">
+            <div id="cover-title" style="font-size:30px;color:#FFFFFF;font-family:Lato;padding-left:20px;"></div>
+            <div id="cover-text" style="font-size:17px;color:#FFFFFF;font-family:Lato;padding-left:20px;padding-bottom:20px;"></div>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
