@@ -13,9 +13,16 @@ defmodule GravurWeb.GreetingController do
     render(conn, "new.html", changeset: conn, book: book)
   end
 
-  def create(conn, %{"greeting" => greeting_params, "book_id" => book_id}) do
+  def create(conn, %{"greeting" => %{"image" => image} = greeting_params, "book_id" => book_id}) do
     book = Gravur.Core.get_book(book_id)
     greeting_params = Map.put(greeting_params, "book_id", book_id)
+
+    # create thumbnails
+    # {:ok, thumb, content_type} =
+    #  Gravur.Utils.Image.thumb(image.path, %{height: 400})
+    #  |> IO.inspect()
+
+    # File.write("/Users/arkadiuszplichta/Pictures/thumb.jpg", thumb)
 
     case Gravur.Core.create_greeting(greeting_params) do
       {:ok, _} ->
