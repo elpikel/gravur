@@ -13,31 +13,34 @@ defmodule Gravur.Utils.Image do
     (:crypto.strong_rand_bytes(20) |> Base.url_encode64() |> binary_part(0, 20)) <> name
   end
 
+  def scale(original, preferred) do
+    ratio_w = ratio(original.width, preferred.width)
+    ratio_h = ratio(original.height, preferred.height)
+    ratio = if ratio_w > ratio_h, do: ratio_h, else: ratio_w
+
+    %{width: trunc(original.width * ratio), height: trunc(original.height * ratio)}
+  end
+
+  defp ratio(original, preferred) do
+    cond do
+      original > preferred -> preferred / original
+      original < preferred -> original / preferred
+      true -> 1
+    end
+  end
+
   def thumb(img, dimensions) do
     {img, format} =
       ExMagick.init!()
       |> ExMagick.image_load!(img)
-      |> (&gen_thumb(&1, ratio(ExMagick.size!(&1), dimensions), dimensions)).()
+      |> (&thumb!(&1, scale(ExMagick.size!(&1), dimensions))).()
       |> (&{ExMagick.image_dump!(&1), ExMagick.attr!(&1, :magick)}).()
 
     {:ok, img, content_type(format)}
   end
 
-  defp gen_thumb(img, _, %{width: width, height: height}),
+  defp thumb!(img, %{width: width, height: height}),
     do: ExMagick.thumb!(img, width, height)
-
-  defp gen_thumb(img, _, %{width: width, height: height}),
-    do: ExMagick.thumb!(img, width, height)
-
-  defp gen_thumb(img, ratio, %{width: width}),
-    do: gen_thumb(img, ratio, %{width: width, height: round(width * ratio)})
-
-  defp gen_thumb(img, ratio, %{height: height}),
-    do: gen_thumb(img, ratio, %{width: round(height / ratio), height: height})
-
-  defp ratio(dimensions, %{width: _}), do: dimensions.width / dimensions.height
-
-  defp ratio(dimensions, %{height: _}), do: dimensions.height / dimensions.width
 
   defp content_type(format),
     do: "image/" <> String.downcase(format)

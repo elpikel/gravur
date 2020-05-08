@@ -19,13 +19,14 @@ defmodule GravurWeb.GreetingController do
 
     # create thumbnails
     # {:ok, thumb, content_type} =
-    #  Gravur.Utils.Image.thumb(image.path, %{height: 400})
-    #  |> IO.inspect()
+    # Gravur.Utils.Image.thumb(image.path, %{width: 400, height: 400})
+    # |> IO.inspect()
 
     # File.write("/Users/arkadiuszplichta/Pictures/thumb.jpg", thumb)
 
     case Gravur.Core.create_greeting(greeting_params) do
       {:ok, _} ->
+        # upload image
         conn
         |> put_flash(:info, "Twój wpis został dodany do księgi.")
         |> redirect(
