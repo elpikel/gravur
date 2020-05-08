@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :gravur,
+  local_storage: true
+
 # Configure your database
 config :gravur, Gravur.Repo,
   username: "postgres",
