@@ -17,7 +17,7 @@ defmodule GravurWeb.GreetingController do
     book = Gravur.Core.get_book(book_id)
     greeting_params = Map.put(greeting_params, "book_id", book_id)
 
-    # Gravur.Utils.File.upload_greeting(book_id, image.filename, image.path)
+    # Gravur.Utils.FileUploader.upload_greeting(book_id, image.filename, image.path)
 
     # create thumbnails
     # {:ok, thumb, content_type} =

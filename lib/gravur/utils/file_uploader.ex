@@ -1,4 +1,4 @@
-defmodule Gravur.Utils.File do
+defmodule Gravur.Utils.FileUploader do
   """
   uploads file to:
   /book/id/
