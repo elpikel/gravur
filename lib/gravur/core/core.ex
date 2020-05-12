@@ -14,6 +14,14 @@ defmodule Gravur.Core do
     Greeting.changeset(%Greeting{}, greeting_params) |> Repo.insert()
   end
 
+  def upload_greeting_images(greeting, content) do
+    Gravur.Utils.FileUploader.upload_greeting(greeting, content)
+
+    content = Gravur.Utils.Image.thumb(content, %{width: 400, height: 400})
+
+    Gravur.Utils.FileUploader.upload_greeting_small(greeting, content)
+  end
+
   def update_greeting(greeting_params) do
     Greeting
     |> Repo.get(greeting_params["id"])
@@ -45,7 +53,7 @@ defmodule Gravur.Core do
   end
 
   def update_pdf(book, file_name) do
-    Ecto.Changeset.change(book, pdf: %{file_name: file_name, updated_at: nil})
+    Ecto.Changeset.change(book, pdf: file_name)
     |> Gravur.Repo.update!()
   end
 

@@ -1,15 +1,5 @@
 defmodule Gravur.Utils.Image do
-  def put_random_filename(param_name, params) do
-    if Map.has_key?(params, param_name) do
-      %{^param_name => %Plug.Upload{filename: name} = image} = params
-      image = %Plug.Upload{image | filename: random_filename(name)}
-      %{params | param_name => image}
-    else
-      params
-    end
-  end
-
-  defp random_filename(name) do
+  def random_filename(name) do
     (:crypto.strong_rand_bytes(20) |> Base.url_encode64() |> binary_part(0, 20)) <> name
   end
 
@@ -30,18 +20,15 @@ defmodule Gravur.Utils.Image do
   end
 
   def thumb(img, dimensions) do
-    {img, format} =
+    {img, _format} =
       ExMagick.init!()
-      |> ExMagick.image_load!(img)
+      |> ExMagick.image_load!({:blob, img})
       |> (&thumb!(&1, scale(ExMagick.size!(&1), dimensions))).()
       |> (&{ExMagick.image_dump!(&1), ExMagick.attr!(&1, :magick)}).()
 
-    {:ok, img, content_type(format)}
+    img
   end
 
   defp thumb!(img, %{width: width, height: height}),
     do: ExMagick.thumb!(img, width, height)
-
-  defp content_type(format),
-    do: "image/" <> String.downcase(format)
 end

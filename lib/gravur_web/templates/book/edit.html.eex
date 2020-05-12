@@ -143,7 +143,7 @@
       </li>
       <%= for greeting <- @book.greetings do %>
         <li class="span2 mx-2" onclick="selectGreeting('<%= greeting.id %>')">
-          <img class="box rounded" style="width:120px;height:80px;" src="<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>" />
+          <img class="box rounded" style="width:120px;height:80px;" src="<%= Gravur.Core.Greeting.image_small_url(greeting) %>" />
         </li>
       <% end %>
     </ul>
@@ -155,7 +155,7 @@
 <script>
 let greetings = [
   <%= for greeting <- @book.greetings do %>
-    { id: '<%= greeting.id %>', image: '<%= Gravur.Utils.GreetingImage.url_or_default({ greeting.image, greeting }) %>', text: '<%= javascript_escape(greeting.text) %>', signature: '<%= javascript_escape(greeting.signature) %>'},
+    { id: '<%= greeting.id %>', image: '<%= Gravur.Core.Greeting.image_small_url(greeting) %>', text: '<%= javascript_escape(greeting.text) %>', signature: '<%= javascript_escape(greeting.signature) %>'},
   <% end %>
 ];
 const bookId = '<%= @book.id %>'; 

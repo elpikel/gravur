@@ -45,7 +45,6 @@ defmodule Gravur.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:arc_ecto, "~> 0.11.3"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_s3, "~> 2.0"},
       {:poison, "~> 3.0"},

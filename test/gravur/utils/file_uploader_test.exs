@@ -1,12 +1,13 @@
 defmodule Gravur.Utils.FileUploaderTest do
   use ExUnit.Case
 
+  alias Gravur.Core.Greeting
   alias Gravur.Utils.FileUploader
 
   test "uploads book to local storage" do
     content = "content"
     File.write("tmp_book", content)
-    file_path = FileUploader.upload_book(1, "book.jpg", "tmp_book")
+    file_path = FileUploader.upload_book(1, "book.jpg", content)
 
     assert File.read!(file_path) == content
 
@@ -18,7 +19,11 @@ defmodule Gravur.Utils.FileUploaderTest do
     content = "content"
     File.write("tmp_greeting", content)
 
-    file_path = FileUploader.upload_greeting(1, "greeting.jpg", "tmp_greeting")
+    file_path =
+      FileUploader.upload_greeting(
+        %Greeting{id: 1, book_id: 1, image: "greeting.jpg"},
+        content
+      )
 
     assert File.read!(file_path) == content
 
@@ -32,6 +37,9 @@ defmodule Gravur.Utils.FileUploaderTest do
     content = "content"
     File.write("tmp_greeting", content)
 
-    FileUploader.upload_greeting(1, "greeting.jpg", "tmp_greeting")
+    FileUploader.upload_greeting(
+      %Greeting{id: 1, book_id: 1, image: "greeting.jpg"},
+      content
+    )
   end
 end

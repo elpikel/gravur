@@ -232,7 +232,7 @@ defmodule Gravur.Core.CoreTest do
   defp create_greeting(book) do
     {:ok, greeting} =
       Core.create_greeting(%{
-        "image" => %Plug.Upload{path: "test/fixtures/image.jpg", filename: "image.jpg"},
+        "image" => "image.jpg",
         "signature" => "signature",
         "text" => "text",
         "book_id" => book.id

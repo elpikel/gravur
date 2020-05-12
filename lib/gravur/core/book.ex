@@ -1,6 +1,5 @@
 defmodule Gravur.Core.Book do
   use Ecto.Schema
-  use Arc.Ecto.Schema
 
   import Ecto.Changeset
 
@@ -10,7 +9,7 @@ defmodule Gravur.Core.Book do
     field :cover_text, :string
     field :cover_title, :string
     field :font_style, :string
-    field :pdf, Gravur.Utils.BookPdf.Type
+    field :pdf, :string
 
     belongs_to :user, Gravur.Identity.User
     belongs_to :template, Gravur.Core.Template
@@ -22,8 +21,7 @@ defmodule Gravur.Core.Book do
   @doc false
   def changeset(book, attrs) do
     book
-    |> cast(attrs, [:cover_title, :cover_text, :font_style, :user_id, :template_id])
-    |> cast_attachments(attrs, [:pdf])
+    |> cast(attrs, [:cover_title, :cover_text, :font_style, :user_id, :template_id, :pdf])
     |> validate_required([:cover_title, :cover_text, :font_style, :user_id, :template_id])
   end
 end

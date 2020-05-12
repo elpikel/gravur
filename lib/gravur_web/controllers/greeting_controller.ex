@@ -1,6 +1,8 @@
 defmodule GravurWeb.GreetingController do
   use GravurWeb, :controller
 
+  alias Gravur.Utils.Image
+
   plug :put_layout, "mobile.html"
 
   def index(conn, params) do
@@ -14,21 +16,18 @@ defmodule GravurWeb.GreetingController do
   end
 
   def create(conn, %{"greeting" => %{"image" => image} = greeting_params, "book_id" => book_id}) do
-    book = Gravur.Core.get_book(book_id)
+    image_name = Image.random_filename(image.filename)
     greeting_params = Map.put(greeting_params, "book_id", book_id)
-
-    # Gravur.Utils.FileUploader.upload_greeting(book_id, image.filename, image.path)
-
-    # create thumbnails
-    # {:ok, thumb, content_type} =
-    # Gravur.Utils.Image.thumb(image.path, %{width: 400, height: 400})
-    # |> IO.inspect()
-
-    # File.write("/Users/arkadiuszplichta/Pictures/thumb.jpg", thumb)
+    greeting_params = Map.put(greeting_params, "image", image_name)
 
     case Gravur.Core.create_greeting(greeting_params) do
-      {:ok, _} ->
-        # upload image
+      {:ok, greeting} ->
+        content = File.read!(image.path)
+
+        Gravur.Core.upload_greeting_images(greeting, content)
+
+        book = Gravur.Core.get_book(book_id)
+
         conn
         |> put_flash(:info, "Twój wpis został dodany do księgi.")
         |> redirect(
@@ -36,6 +35,8 @@ defmodule GravurWeb.GreetingController do
         )
 
       {:error, changeset} ->
+        IO.inspect(changeset)
+
         conn
         |> put_flash(:error, "Coś poszło nie tak, spróbuj dodać swój wpis ponownie!")
         |> render("new.html", changeset: changeset)
