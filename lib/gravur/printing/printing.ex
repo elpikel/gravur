@@ -15,13 +15,17 @@ defmodule Gravur.Printing do
       )
 
     {:ok, content} = File.read(filename)
-    {:ok, url} = Gravur.Utils.BookPdf.store({filename, book})
+
+    filename = Gravur.Utils.Image.random_filename("#{book.id}.pdf")
+    book = Gravur.Core.update_pdf(book, filename)
+
+    url = Gravur.Utils.FileUploader.upload_book(book, content) |> IO.inspect()
 
     %Gravur.Printing{filename: filename, content: content, url: url}
   end
 
   def get_image_url(greeting) do
-    url = Gravur.Utils.GreetingImage.url({greeting.image, greeting})
+    url = Gravur.Core.Greeting.image_url(greeting)
 
     # small hack for heroku and https
     if String.starts_with?(url, "https:") do

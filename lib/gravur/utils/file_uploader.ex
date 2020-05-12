@@ -1,8 +1,8 @@
 defmodule Gravur.Utils.FileUploader do
-  def upload_book(id, file_name, content) do
-    path = "uploads/book/#{id}"
+  def upload_book(book, content) do
+    path = Gravur.Core.Book.pdf_path(book)
 
-    upload(path, file_name, content)
+    upload(path, book.pdf, content)
   end
 
   def upload_greeting(greeting, content) do

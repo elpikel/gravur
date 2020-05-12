@@ -7,9 +7,6 @@ defmodule GravurWeb.PrintingController do
     book = Gravur.Core.get_book_with_greetings(book_id)
     pdf = Gravur.Printing.generate_pdf(book)
 
-    # todo add pdf uploading
-    Gravur.Core.update_pdf(book, pdf.url)
-
-    json(conn, %{url: "test"})
+    json(conn, %{url: pdf.url}) |> IO.inspect()
   end
 end

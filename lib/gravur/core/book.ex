@@ -24,4 +24,20 @@ defmodule Gravur.Core.Book do
     |> cast(attrs, [:cover_title, :cover_text, :font_style, :user_id, :template_id, :pdf])
     |> validate_required([:cover_title, :cover_text, :font_style, :user_id, :template_id])
   end
+
+  def pdf_url(book) do
+    if Application.get_env(:gravur, :local_storage) do
+      "/uploads/book/#{book.id}/#{book.pdf}"
+    else
+      "#{System.get_env("S3_BUCKET")}/uploads/book/#{book.id}/#{book.pdf}"
+    end
+  end
+
+  def pdf_path(book) do
+    if Application.get_env(:gravur, :local_storage) do
+      "uploads/book/#{book.id}/"
+    else
+      "#{System.get_env("S3_BUCKET")}/uploads/book/#{book.id}/"
+    end
+  end
 end
