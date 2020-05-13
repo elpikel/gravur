@@ -19,7 +19,7 @@ defmodule Gravur.Printing do
     filename = Gravur.Utils.Image.random_filename("#{book.id}.pdf")
     book = Gravur.Core.update_pdf(book, filename)
 
-    url = Gravur.Utils.FileUploader.upload_book(book, content) |> IO.inspect()
+    url = Gravur.Utils.FileUploader.upload_book(book, content)
 
     %Gravur.Printing{filename: filename, content: content, url: url}
   end

@@ -29,7 +29,11 @@ defmodule Gravur.Core.Book do
     if Application.get_env(:gravur, :local_storage) do
       "/uploads/book/#{book.id}/#{book.pdf}"
     else
-      "#{System.get_env("S3_BUCKET")}/uploads/book/#{book.id}/#{book.pdf}"
+      s3 = Application.get_env(:ex_aws, :s3)
+
+      "#{s3[:scheme]}#{s3[:host]}/#{System.get_env("S3_BUCKET")}/uploads/book/#{book.id}/#{
+        book.pdf
+      }"
     end
   end
 

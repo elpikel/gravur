@@ -24,9 +24,11 @@ defmodule Gravur.Core.Greeting do
     if Application.get_env(:gravur, :local_storage) do
       "/uploads/book/#{greeting.book_id}/greetings/#{greeting.id}/#{size}#{greeting.image}"
     else
-      "#{System.get_env("S3_BUCKET")}/uploads/book/#{greeting.book_id}/greetings/#{greeting.id}/#{
-        subpath(size)
-      }#{greeting.image}"
+      s3 = Application.get_env(:ex_aws, :s3)
+
+      "#{s3[:scheme]}#{s3[:host]}/#{System.get_env("S3_BUCKET")}/uploads/book/#{greeting.book_id}/greetings/#{
+        greeting.id
+      }/#{subpath(size)}#{greeting.image}"
     end
   end
 

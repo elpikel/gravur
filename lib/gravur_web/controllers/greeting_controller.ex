@@ -35,8 +35,6 @@ defmodule GravurWeb.GreetingController do
         )
 
       {:error, changeset} ->
-        IO.inspect(changeset)
-
         conn
         |> put_flash(:error, "Coś poszło nie tak, spróbuj dodać swój wpis ponownie!")
         |> render("new.html", changeset: changeset)
