@@ -20,7 +20,10 @@ defmodule Gravur.Core.Greeting do
     |> validate_required([:text, :signature, :book_id])
   end
 
-  def image_url(greeting, size \\ "") do
+  def image_url(greeting, size \\ "")
+  def image_url(%__MODULE__{image: nil}, _), do: "/images/book.svg"
+
+  def image_url(greeting, size) do
     if Application.get_env(:gravur, :local_storage) do
       "/uploads/book/#{greeting.book_id}/greetings/#{greeting.id}/#{size}#{greeting.image}"
     else

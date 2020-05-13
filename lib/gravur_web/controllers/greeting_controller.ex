@@ -41,6 +41,26 @@ defmodule GravurWeb.GreetingController do
     end
   end
 
+  def create(conn, %{"greeting" => greeting_params, "book_id" => book_id}) do
+    greeting_params = Map.put(greeting_params, "book_id", book_id)
+
+    case Gravur.Core.create_greeting(greeting_params) do
+      {:ok, _greeting} ->
+        book = Gravur.Core.get_book(book_id)
+
+        conn
+        |> put_flash(:info, "Twój wpis został dodany do księgi.")
+        |> redirect(
+          to: GravurWeb.Router.Helpers.book_greeting_path(GravurWeb.Endpoint, :index, book)
+        )
+
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Coś poszło nie tak, spróbuj dodać swój wpis ponownie!")
+        |> render("new.html", changeset: changeset)
+    end
+  end
+
   def update(conn, greeting_params) do
     case Gravur.Core.update_greeting(greeting_params) do
       {:ok, _} ->
