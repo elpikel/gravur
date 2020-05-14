@@ -11,13 +11,13 @@ defmodule Gravur.Email do
     |> Gravur.Externals.Mailer.deliver_later()
   end
 
-  def invite_to_guest_book(conn, owner, user, book) do
+  def invite_to_guest_book(conn, owner, guest, book) do
     new_email(
-      to: user.email,
-      from: "el.pikelt@gmail.com",
+      to: guest,
+      from: "gravur@gravur.herokuapp.com",
       subject: "Gravur"
     )
-    |> render("invite.html", conn: conn, owner: owner, user: user, book: book)
+    |> render("invite.html", conn: conn, owner: owner, book: book)
     |> Gravur.Externals.Mailer.deliver_later()
   end
 end

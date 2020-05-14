@@ -1,3 +1,29 @@
+<div id="invite-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="max-width: 750px;">
+    <div class="modal-content p-1">
+      <div class="modal-body">
+        <div class="form-group mt-1">
+          <label class="control-label app-label">
+            Zaproś najbliższych do wpisywania się do księgi gości!
+          </label>
+          <input type="text" id="people" class="app-input login-input" />
+        </div>
+
+        <div class="form-group mt-5">
+          <label class="control-label app-label">
+            Dodaj podpis.
+          </label>
+          <input type="text" id="signature" class="app-input login-input" />
+        </div>
+
+        <div class="text-center pt-3">
+          <button type="button" class="btn px-4 py-2 btn-outline-secondary" data-dismiss="modal">ANULUJ</button>
+          <button id="send-invitation" type="button" class="btn px-4 py-2 ml-3 app-button">UDOSTĘPNIJ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="box px-3 row rounded">
   <div class="">
     <img src="/images/book.svg" />
@@ -110,12 +136,16 @@
       return false;
     });
 
-    $("#share-link").bind('click', function(event) {
-      const bookRow = $(this).parent();
+
+    let selected_book_id = '';
+
+    $("#send-invitation").bind('click', function(event) {
+      const name = $("#signature").val();
+      const people = $("#people").val();
 
       $.post({
         url: `/invitation`,
-        data: {user_id: <%= @user_id %>, book_id: bookRow.attr('id'), name: 'what'},
+        data: {book_id: selected_book_id, name: name, people: people},
         headers: {
           "X-CSRF-TOKEN": '<%= Plug.CSRFProtection.get_csrf_token() %>'
         },
@@ -128,6 +158,12 @@
       });
 
       return false;
+    });
+
+    $("#share-link").bind('click', function(event) {
+      $('#invite-modal').modal('show');
+      const bookRow = $(this).parent();
+      selected_book_id = bookRow.attr('id');
     });
   });
 </script>
