@@ -3,3 +3,4 @@ make
 libtool-bin
 libtool
 graphicsmagick
+imagemagick
