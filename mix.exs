@@ -53,7 +53,8 @@ defmodule Gravur.MixProject do
       {:pdf_generator, ">=0.6.0"},
       {:bamboo, "~> 1.4"},
       {:bamboo_smtp, "~> 2.1"},
-      {:exmagick, "~> 0.0.5"}
+      {:exmagick, "~> 0.0.5"},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 

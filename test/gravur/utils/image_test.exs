@@ -9,7 +9,7 @@ defmodule Gravu.Utils.ImageTest do
     assert random_filename != name
   end
 
-  describe "thumb/2" do
+  describe "scale/2" do
     test "generates the same when is equal" do
       original = %{width: 400, height: 400}
       preferred = %{width: 400, height: 400}
@@ -44,6 +44,14 @@ defmodule Gravu.Utils.ImageTest do
       scaled = Gravur.Utils.Image.scale(original, preferred)
 
       assert %{width: 200, height: 400} == scaled
+    end
+  end
+
+  describe "thumb/2" do
+    test "generates thumb" do
+      image = File.read!("test/fixtures/image.jpg")
+      thumb = Gravur.Utils.Image.thumb(image, %{width: 400, height: 400})
+      assert thumb
     end
   end
 end

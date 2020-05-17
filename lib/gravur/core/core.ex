@@ -17,9 +17,11 @@ defmodule Gravur.Core do
   def upload_greeting_images(greeting, content) do
     Gravur.Utils.FileUploader.upload_greeting(greeting, content)
 
-    content = Gravur.Utils.Image.thumb(content, %{width: 400, height: 400})
+    Task.async(fn ->
+      content = Gravur.Utils.Image.thumb(content, %{width: 400, height: 400})
 
-    Gravur.Utils.FileUploader.upload_greeting_small(greeting, content)
+      Gravur.Utils.FileUploader.upload_greeting_small(greeting, content)
+    end)
   end
 
   def update_greeting(greeting_params) do
