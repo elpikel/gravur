@@ -20,15 +20,20 @@ defmodule Gravur.Utils.Image do
   end
 
   def thumb(img, dimensions) do
-    with {:ok, handler} <- ExMagick.init(),
-         {:ok, loaded_image} <- ExMagick.image_load(handler, {:blob, img}),
-         {:ok, size} <- ExMagick.size(loaded_image),
-         thumb_size <- scale(size, dimensions),
-         {:ok, thumb} <- ExMagick.thumb(loaded_image, thumb_size.width, thumb_size.height),
-         {:ok, image_dump} <- ExMagick.image_dump(thumb) do
-      image_dump
-    else
-      {:error, _} ->
+    try do
+      with {:ok, handler} <- ExMagick.init(),
+           {:ok, loaded_image} <- ExMagick.image_load(handler, {:blob, img}),
+           {:ok, size} <- ExMagick.size(loaded_image),
+           thumb_size <- scale(size, dimensions),
+           {:ok, thumb} <- ExMagick.thumb(loaded_image, thumb_size.width, thumb_size.height),
+           {:ok, image_dump} <- ExMagick.image_dump(thumb) do
+        image_dump
+      else
+        {:error, _} ->
+          nil
+      end
+    catch
+      _ ->
         nil
     end
   end
