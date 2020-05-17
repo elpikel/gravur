@@ -24,3 +24,7 @@ sharutils
 transfig
 x11proto-core-dev
 zlib1g-dev
+gcc
+make
+libtool-bin
+libgraphicsmagick1-dev
