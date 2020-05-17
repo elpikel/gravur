@@ -2,3 +2,4 @@ gcc
 make
 libtool-bin
 libgraphicsmagick1-dev
+graphicsmagick
