@@ -1,2 +1,5 @@
 build-essential
+libtool
+libgraphicsmagick++1-dev
+libwebp-dev
 graphicsmagick-libmagick-dev-compat
