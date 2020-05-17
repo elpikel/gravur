@@ -1,10 +1,2 @@
-gcc
-make
-libtool-bin
 build-essential
-software-properties-common
-libjpeg-dev
-libtiff5-dev
-libpng16-dev
-graphicsmagick
-graphicsmagick-dbg
+graphicsmagick-libmagick-dev-compat
