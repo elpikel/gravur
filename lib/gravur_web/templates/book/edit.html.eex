@@ -196,9 +196,9 @@ function selectCover(coverText, coverTitle, bookFont) {
   const bookFontStyle = document.getElementById('book-font-style');
 
   coverTitleDiv.innerHTML = coverTitle;
-  coverTitleInput.value = coverTitle;
+  coverTitleInput.value = $.parseHTML(coverTitle)[0].textContent;
   coverTextDiv.innerHTML = coverText;
-  coverTextInput.value = coverText;
+  coverTextInput.value = $.parseHTML(coverText)[0].textContent;
   bookFontStyle.value = bookFont;
 
   document.getElementById('cover-title-input-counter').innerHTML = `${coverTitle.length}/50`;
@@ -230,9 +230,9 @@ function selectGreeting(id) {
   else
     greetingImage.src = greeting.image;
   greetingTextDiv.innerHTML = greeting.text;
-  greetingTextInput.value = greeting.text;
+  greetingTextInput.value = $.parseHTML(greeting.text)[0].textContent;
   greetingSignatureDiv.innerHTML = greeting.signature;
-  greetingSignatureInput.value = greeting.signature;
+  greetingSignatureInput.value = $.parseHTML(greeting.signature)[0].textContent;
 
   document.getElementById('greeting-text-input-counter').innerHTML = `${greeting.text.length}/500`;
   document.getElementById('greeting-signature-input-counter').innerHTML = `${greeting.signature.length}/50`;
