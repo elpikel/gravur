@@ -1,6 +1,7 @@
 build-essential
 libtool
 autoconf
+graphicsmagick
 libgraphicsmagick++1-dev
 libwebp-dev
 graphicsmagick-libmagick-dev-compat
