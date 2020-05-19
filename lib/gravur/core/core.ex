@@ -3,8 +3,15 @@ defmodule Gravur.Core do
   alias Gravur.Core.Greeting
   alias Gravur.Core.Book
   alias Gravur.Core.Template
+  alias Gravur.Core.Order
 
   import Ecto.Query
+
+  def create_order(order_params) do
+    %Order{}
+    |> Order.changeset(order_params)
+    |> Repo.insert()
+  end
 
   def get_all_greetings(book_id) do
     Greeting |> where(book_id: ^book_id) |> Repo.all()
