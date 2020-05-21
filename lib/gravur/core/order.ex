@@ -3,12 +3,13 @@ defmodule Gravur.Core.Order do
 
   import Ecto.Changeset
 
-  @primary_key {:id, :binary_id, autogenerate: true}
-
   schema "orders" do
-    # TODO: add fields
+    field :name, :string
+    field :address1, :string
+    field :address2, :string
+
     belongs_to :user, Gravur.Identity.User
-    belongs_to :book, Gravur.Core.Book
+    belongs_to :book, Gravur.Core.Book, type: :binary_id
 
     timestamps()
   end
@@ -16,7 +17,7 @@ defmodule Gravur.Core.Order do
   @doc false
   def changeset(order, attrs) do
     order
-    |> cast(attrs, [:user_id, :book_id])
-    |> validate_required([:user_id, :book_id])
+    |> cast(attrs, [:user_id, :book_id, :name, :address1, :address2])
+    |> validate_required([:user_id, :book_id, :name, :address1, :address2])
   end
 end

@@ -25,10 +25,9 @@ defmodule GravurWeb.Router do
     post "/invitation", InvitationController, :send
     delete "/sign_out", SessionController, :delete
 
-    resources "/orders", OrderController, only: [:new, :create]
-    get "/orders/:order_id/confirmed", OrderController, :confirmed
-
     resources "/books", BookController do
+      resources "/orders", OrderController, only: [:new, :create]
+      get "/orders/:order_id/confirmed", OrderController, :confirmed
       resources "/greetings", GreetingController
       resources "/printings", PrintingController, only: [:create]
     end
