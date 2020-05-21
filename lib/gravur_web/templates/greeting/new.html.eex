@@ -1,54 +1,51 @@
-<div class="d-flex justify-content-center pt-4">
-  <div class="w-50">
-    <%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form", onsubmit: "return validate()"], fn f -> %>
-      <div class="form-group">
-        <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj treść wpisu.*", autofocus: true, maxlength: "500" %>
-        <hr id="body-line" class="form-line"/>
-        <div class="row">
-          <div id="body-error" class="col" style="color: #AE5D59"></div>
-          <div id="body-counter" class="col text-right" style="color:#6F6D6C">0/500</div>
-        </div>
-        <%= error_tag f, :text %>
-      </div>
-
-      <div class="form-group">
-        <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", maxlength: "100" %>
-        <hr id="signature-line" class="form-line"/>
-        <div class="row">
-          <div id="signature-error" class="col" style="color: #AE5D59"></div>
-          <div id="signature-counter" class="col text-right" style="color:#6F6D6C">0/100</div>
-        </div>
-        <%= error_tag f, :signature %>
-      </div>
-      <div class="form-group pt-3">
-        <hr class="form-line"/>
-        <div class="row mt-3">
-          <div id="image-form" class="col-sm">
-            <a onclick="openFilePicker();" style="cursor: pointer;">
-              <div>
-                <img src="/images/camera.svg">
-                <span class="ml-3 align-middle" style="color:#6F6D6C">Dodaj zdjęcie</span>
-              </div>
-            </a>
-          </div>
-          <div id="image-preview-container" class="col-sm text-center" style="display:none;">
-            <button type="button" class="close-button" aria-label="Close" onclick="clearImage();" style="position:absolute;height: 29px;width: 29px;">
-              &times;
-            </button>
-            <img id="image-preview" src="" style="padding-top:13px;padding-left:7px;"/>
-          </div>
-        </div>
-        <%= file_input f, :image, id: "file-picker", onchange: "readURL(this);", hidden: "true" %>
-        <%= error_tag f, :image %>
-        <hr class="form-line"/>
-      </div>
-
-      <div class="text-center">
-        <%= submit "DODAJ WPIS  DO KSIĘGI", class: "btn px-4 py-2 app-button mt-5" %>
-      </div>
-    <% end %>
+<%= form_for @changeset, Routes.book_greeting_path(@conn, :create, @book), [as: :greeting, multipart: true, class: "form", onsubmit: "return validate()"], fn f -> %>
+  <div class="form-group">
+    <%= textarea f, :text, class: "mobile-textarea", id: "body", placeholder: "Tutaj dodaj treść wpisu.*", autofocus: true, maxlength: "500" %>
+    <hr id="body-line" class="form-line"/>
+    <div>
+      <div id="body-error" class="col" style="color: #AE5D59"></div>
+      <div id="body-counter" class="col text-right" style="color:#6F6D6C">0/500</div>
+    </div>
+    <%= error_tag f, :text %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= text_input f, :signature, class: "mobile-input", id: "signature", placeholder: "Tutaj dodaj podpis.*", maxlength: "100" %>
+    <hr id="signature-line" class="form-line"/>
+    <div>
+      <div id="signature-error" class="col" style="color: #AE5D59"></div>
+      <div id="signature-counter" class="col text-right" style="color:#6F6D6C">0/100</div>
+    </div>
+    <%= error_tag f, :signature %>
+  </div>
+
+  <div class="form-group pt-3">
+    <hr class="form-line"/>
+    <div class="mt-3 mobile-image-input">
+      <div id="image-form">
+        <a onclick="openFilePicker();" style="cursor: pointer;">
+          <div>
+            <img src="/images/camera.svg">
+            <span class="ml-3 align-middle" style="color:#6F6D6C">Dodaj zdjęcie</span>
+          </div>
+        </a>
+      </div>
+      <div id="image-preview-container" class="col-sm text-center" style="display:none;">
+        <button type="button" class="close-button" aria-label="Close" onclick="clearImage();" style="position:absolute;height: 29px;width: 29px;">
+          &times;
+        </button>
+        <img id="image-preview" src="" style="padding-top:13px;padding-left:7px;"/>
+      </div>
+    </div>
+    <%= file_input f, :image, id: "file-picker", onchange: "readURL(this);", hidden: "true" %>
+    <%= error_tag f, :image %>
+    <hr class="form-line"/>
+  </div>
+
+  <div class="text-center">
+    <%= submit "DODAJ WPIS  DO KSIĘGI", class: "btn px-4 py-2 app-button mt-5" %>
+  </div>
+<% end %>
 
 <script>
   function openFilePicker() {

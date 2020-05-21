@@ -127,11 +127,16 @@ body {
     background-color: transparent;
     border: 0px solid;
     height: 30px;
-    width: 100%;
+    min-width: 95%;
+    margin-left: 20px;
 }
 
 .mobile-input:focus {
     outline: none;
+}
+
+.mobile-image-input {
+    margin-left: 5px;
 }
 
 .mobile-textarea {
@@ -140,6 +145,7 @@ body {
     border: 0px solid;
     height: 230px;
     width: 100%;
+    padding-left: 20px;
 }
 
 .mobile-textarea:focus {
