@@ -7,13 +7,21 @@ defmodule GravurWeb.OrderController do
     render(conn, "confirmed.html")
   end
 
-  def new(conn, _params) do
-    render(conn, "new.html")
+  def new(conn, %{"book_id" => book_id}) do
+    book = Gravur.Core.get_book_with_template(book_id)
+
+    render(conn, "new.html",
+      changeset: Gravur.Core.Order.empty(),
+      book: book,
+      total: Gravur.Core.Template.total(1),
+      total_with_delivery: Gravur.Core.Template.total_with_delivery(1)
+    )
   end
 
   def create(conn, %{
         "order" => %{
           "name" => name,
+          "items" => items,
           "address1" => address1,
           "address2" => address2
         },
@@ -25,6 +33,7 @@ defmodule GravurWeb.OrderController do
            user_id: user_id,
            book_id: book_id,
            name: name,
+           items: items,
            address1: address1,
            address2: address2
          }) do
@@ -40,7 +49,15 @@ defmodule GravurWeb.OrderController do
         )
 
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        book = Gravur.Core.get_book_with_template(book_id)
+        {items, _} = Integer.parse(items)
+
+        render(conn, "new.html",
+          changeset: changeset,
+          book: book,
+          total: Gravur.Core.Template.total(items),
+          total_with_delivery: Gravur.Core.Template.total_with_delivery(items)
+        )
     end
   end
 end

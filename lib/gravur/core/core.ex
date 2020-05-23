@@ -70,6 +70,15 @@ defmodule Gravur.Core do
     Repo.get_by(Book, id: book_id)
   end
 
+  def get_book_with_template(book_id) do
+    Repo.one(
+      from b in Book,
+        join: t in assoc(b, :template),
+        preload: [template: t],
+        where: b.id == ^book_id
+    )
+  end
+
   def get_book_with_greetings(book_id) do
     Repo.one(
       from b in Book,

@@ -1,1 +1,81 @@
-Dane i dostawa
+<div class="pb-4">Moja księga > Dane i dostawa</div>
+<%= form_for @changeset, Routes.book_order_path(@conn, :create, @book), [as: :order, class: "form", onsubmit: "return validate()"], fn f -> %>
+  <div>
+    <h5>Twoje szczegóły zamówienia</h5>
+    <table class="w-100 mt-5">
+      <tr>
+        <th>Produkt</th>
+        <th style="text-align:center;">Ilość</th>
+        <th style="text-align:center;">Cena 1 sztuki</th>
+        <th style="text-align:center;">Wartość zamówienia</th>
+      </tr>
+      <tr>
+        <td>
+          <img class="my-3" src="<%= @book.template.image %>" width="100" />
+          <span class="ml-5">Księga gości, Szablon <%= @book.template.name %></span>
+        </td>
+        <td style="text-align:center;">
+          <%= text_input f, :items, style: "width:40px;height:40px;text-align:center", required: true %>
+        </td>
+        <td style="text-align:center;"><%= Gravur.Core.Template.price() %> zł</td>
+        <td id="items-price" style="text-align:center;"><%= @total %> zł</td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <h5>Adres dostawy</h5>
+      <div>
+        <div class="form-group mt-5">
+          <%= label f, :name, "Imię i Nazwisko", class: "control-label app-label" %>
+          <%= text_input f, :name, class: "app-input", required: true, placeholder: "Joanna Kowalska" %>
+          <%= error_tag f, :name %>
+        </div>
+        <div class="form-group mt-5">
+          <%= label f, :address1, "Address dostawy", class: "control-label app-label" %>
+          <%= text_input f, :address1, class: "app-input", required: true, placeholder: "Mieszkalna 1/20" %>
+          <%= error_tag f, :address1 %>
+        </div>
+        <div class="form-group mt-5">
+          <%= label f, :address2, "Miasto i kod pocztowy", class: "control-label app-label" %>
+          <%= text_input f, :address2, class: "app-input", required: false, placeholder: "Gdańsk 80-000" %>
+          <%= error_tag f, :address2 %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-5">
+      <div>
+      </div>
+      <div class="ml-4 pt-2">
+        <table class="w-100 table table-borderless">
+          <tr>
+            <td>Koszt przesyłki:</td>
+            <td><%= Gravur.Core.Template.delivery() %> zł</td>
+          </tr>
+          <tr>
+            <td>Do zapłaty</td>
+            <td id="total-price"><h5><%= @total_with_delivery %> zł</h5></td>
+          </tr>
+        </table>
+        <%= submit "ZAMÓW", class: "mt-5 btn app-button btn-block" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script>
+  $(function() {
+    const itemPrice = <%= Gravur.Core.Template.price() %>;
+    const itemDelivery = <%= Gravur.Core.Template.delivery() %>;
+    let items = 1;
+
+    function update_prices() {
+      var items = $('#order_items').val();
+      $('#total-price').text(items * itemPrice + itemDelivery + " zł");
+      $('#items-price').text(items * itemPrice + " zł");
+    }
+
+    $('#order_items').keyup(update_prices);
+  });
+</script>

@@ -19,4 +19,20 @@ defmodule Gravur.Core.Template do
     |> cast(attrs, [:name, :image, :cover, :html])
     |> validate_required([:name, :image, :cover, :html])
   end
+
+  def price() do
+    99
+  end
+
+  def delivery() do
+    10.99
+  end
+
+  def total(items) do
+    price() * items
+  end
+
+  def total_with_delivery(items) do
+    delivery() + price() * items
+  end
 end

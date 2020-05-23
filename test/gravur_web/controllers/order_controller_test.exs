@@ -46,7 +46,12 @@ defmodule GravurWeb.OrderControllerTest do
   test "creates order page", %{conn: conn, book: book} do
     conn =
       post(conn, Routes.book_order_path(conn, :create, book.id), %{
-        "order" => %{"name" => "name", "address1" => "address1", "address2" => "address2"},
+        "order" => %{
+          "name" => "name",
+          "address1" => "address1",
+          "address2" => "address2",
+          "items" => "1"
+        },
         "book_id" => book.id
       })
 
