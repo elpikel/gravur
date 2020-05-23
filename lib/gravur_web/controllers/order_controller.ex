@@ -3,8 +3,8 @@ defmodule GravurWeb.OrderController do
 
   plug GravurWeb.Authorize
 
-  def confirmed(conn, _params) do
-    render(conn, "confirmed.html")
+  def confirmed(conn, %{"order_id" => order_id}) do
+    render(conn, "confirmed.html", order_id: order_id)
   end
 
   def new(conn, %{"book_id" => book_id}) do

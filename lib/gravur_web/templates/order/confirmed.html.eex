@@ -1,0 +1,21 @@
+<div class="justify-content-center">
+  <div class="text-center">
+    <img src="/images/mail.svg">
+  </div>
+  <h2 class="text-center pt-4">Dziękujemy za złożenie zamówienia!</h2>
+
+  <div class="text-center pt-5">
+    Wysłaliśmy potwierdzenie Twojego zamówienia <b>numer <%= @order_id %></b> na podany adres e-mail, wraz ze szczegółami płatności.Prosimy o dokonanie płatności w przeciągu <b>3</b> dni od daty złożenia zamówienia.
+  </div>
+
+  <div class="text-center pt-5">Dane do przelewu:</div>
+  <div class="text-center">Imię i Nazwisko</div>
+  <div class="text-center">ul. Firmowa 1/40, Gdańsk 80-456</div>
+  <div class="text-center">Nr konta 00 0000 0000 0000 0000 0000 0000 0000</div>
+
+  <div class="text-center">W tytule przelewu prosimy o podanie numeru zamówienia.</div>
+
+  <div class="text-center pt-5">
+    <%= link "Wróć do strony głównej", to: Routes.book_path(@conn, :index), class: "" %>
+  </div>
+</div>
