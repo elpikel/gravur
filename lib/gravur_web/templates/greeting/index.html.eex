@@ -12,7 +12,7 @@
     <%= for greeting <- @book.greetings do %>
       <div>
         <%= if greeting.image do %>
-        <img class="card-img" style="border-radius: 0;" src="<%= Gravur.Core.Greeting.image_url(greeting) %>" />
+        <img class="card-img" style="border-radius: 0;" src="<%= Gravur.Core.Greeting.image_medium_url(greeting) %>" />
       <% end %>
         <div class="card-body">
           <p class="card-text"><%= greeting.text %></p>

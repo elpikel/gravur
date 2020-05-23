@@ -17,6 +17,12 @@ defmodule Gravur.Utils.FileUploader do
     upload(path, greeting.image, content)
   end
 
+  def upload_greeting_medium(greeting, content) do
+    path = Gravur.Core.Greeting.image_medium_path(greeting)
+
+    upload(path, greeting.image, content)
+  end
+
   defp upload(path, file_name, content) do
     if Application.get_env(:gravur, :local_storage) do
       upload_local(path, file_name, content)

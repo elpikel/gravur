@@ -42,6 +42,10 @@ defmodule Gravur.Core.Greeting do
     image_url(greeting, "400_400")
   end
 
+  def image_medium_url(greeting) do
+    image_url(greeting, "1000_1000")
+  end
+
   def image_path(greeting, size \\ "") do
     if Application.get_env(:gravur, :local_storage) do
       "uploads/book/#{greeting.book_id}/greetings/#{greeting.id}/#{size}"
@@ -54,5 +58,9 @@ defmodule Gravur.Core.Greeting do
 
   def image_small_path(greeting) do
     image_path(greeting, "400_400")
+  end
+
+  def image_medium_path(greeting) do
+    image_path(greeting, "1000_1000")
   end
 end
