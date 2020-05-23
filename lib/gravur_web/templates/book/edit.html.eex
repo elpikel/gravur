@@ -139,11 +139,11 @@
   <div class="col-sm-11">
     <ul class="center horizontal-slide mb-0 pt-1 w-100" id="greetings-container" style="height:90px;">
       <li class="span2 mx-2" onclick="selectCover('<%= @book.cover_text %>', '<%= @book.cover_title %>', '<%= @book.font_style %>')">
-        <img class="box rounded" style="width:120px;height:80px;" src="/images/book.svg" />
+        <img class="box rounded" style="width:80px;height:80px;" src="<%= @book.template.image %>" />
       </li>
       <%= for greeting <- @book.greetings do %>
         <li class="span2 mx-2" onclick="selectGreeting('<%= greeting.id %>')">
-          <img class="box rounded" style="width:120px;height:80px;" src="<%= Gravur.Core.Greeting.image_small_url(greeting) %>" />
+          <img class="box rounded" style="width:100px;height:80px;" src="<%= Gravur.Core.Greeting.image_small_url(greeting) %>" />
         </li>
       <% end %>
     </ul>
