@@ -37,6 +37,39 @@
         </div>
       </nav>
     </header>
+    <img class="img-fluid" src="/images/top.jpg"/>
+    <div class="text-center ml-5 mr-5" style="margin-top: -8%">
+      <div>
+      <img class="img-fluid" src="/images/middle.svg"/>
+      </div>
+      <div>
+      <img class="img-fluid border" src="/images/sample_book.svg"/>
+      </div>
+      <div style="max-width:1520px;" class="row mt-1 mx-auto">
+        <div class="col-sm px-0">
+          <div class="card">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm px-0">
+          <div class="card">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <main role="main" class="container mt-5">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
