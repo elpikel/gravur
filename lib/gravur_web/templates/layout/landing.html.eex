@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm row-center-column">
           <div class="card">
             <div class="card-body">
               This is some text within a card body.

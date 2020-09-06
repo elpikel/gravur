@@ -252,3 +252,10 @@ ul.horizontal-slide li[class*="span"]:first-child {
     text-align: right;
 }
 
+@media (max-width: 575px) {
+    .row-center-column {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
