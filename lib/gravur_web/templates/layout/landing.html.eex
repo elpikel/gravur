@@ -39,11 +39,11 @@
     </header>
     <img class="img-fluid" src="/images/top.jpg"/>
     <div class="text-center ml-5 mr-5" style="margin-top: -8%">
-      <div>
-      <img class="img-fluid" src="/images/middle.svg"/>
+      <div style="z-index: 2; position: relative;">
+        <img class="img-fluid" src="/images/middle.svg"/>
       </div>
-      <div>
-      <img class="img-fluid border" src="/images/sample_book.svg"/>
+      <div style="z-index: 1; position: relative; margin-top: -10%">
+        <img class="img-fluid border" src="/images/sample_book.svg"/>
       </div>
       <div style="max-width:1520px;" class="row mt-1 mx-auto">
         <div class="col-sm px-0">
