@@ -37,7 +37,13 @@
         </div>
       </nav>
     </header>
-    <img class="img-fluid" src="/images/top.jpg"/>
+    <div>
+      <div style="position: absolute; top: 35%; left: 60%; max-width: 300px;" class="text-center img-fluid">
+        <p>Stwórz własną księgę gości i udostępniaj wspomnienia swoim znajomym!</p>
+        <%= link "ZAŁÓŻ SWOJĄ KSIĘGĘ GOŚCI", to: Routes.registration_path(@conn, :new), class: "btn px-4 py-2 app-button" %>
+      </div>
+      <img style="" class="img-fluid" src="/images/top.jpg"/>
+    </div>
     <div class="text-center ml-5 mr-5" style="margin-top: -8%">
       <div style="z-index: 2; position: relative;">
         <img class="img-fluid" src="/images/middle.svg"/>
