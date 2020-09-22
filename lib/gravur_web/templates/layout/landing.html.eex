@@ -38,14 +38,21 @@
       </nav>
     </header>
     <div>
-      <div style="position: absolute; top: 35%; left: 60%; max-width: 300px;" class="text-center img-fluid">
-        <p>Stwórz własną księgę gości i udostępniaj wspomnienia swoim znajomym!</p>
+      <div style="position: absolute; top: 35%; left: 50%;" class="text-center img-fluid">
+        <h2>Stwórz wspomnienia z najbliższymi!</h2>
+        <p>Twórz swoją księgę gości ze swoimi najbliższymi, a wspomnienia z imprezy zostaną z wami na dłużej.</p>
         <%= link "ZAŁÓŻ SWOJĄ KSIĘGĘ GOŚCI", to: Routes.registration_path(@conn, :new), class: "btn px-4 py-2 app-button" %>
       </div>
       <img style="" class="img-fluid" src="/images/top.jpg"/>
     </div>
     <div class="text-center ml-5 mr-5" style="margin-top: -8%">
       <div style="z-index: 2; position: relative;">
+        <div style="position: absolute; top: 20%; left: 0;" class="text-center img-fluid">
+          Załóż konto i przygotuj swój własny szablon, okładkę oraz stronę tytułową w zaledwie kilku krokach.
+        </div>
+        <div style="position: absolute; top: 65%; left: 50%;" class="text-center img-fluid">
+          A następnie udostępnij do niej link swoim najbliższym, aby mogli swobodnie dodać wpisy i zdjęcia. Kiedy chcą i jak chcą!
+        </div>
         <img class="img-fluid" src="/images/middle.svg"/>
       </div>
       <div style="z-index: 1; position: relative; margin-top: -10%">
