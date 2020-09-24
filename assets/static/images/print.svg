@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350.173" height="315.818" viewBox="0 0 350.173 315.818">
+  <g id="Group_234" data-name="Group 234" transform="translate(5.978 20.101)">
+    <g id="Group_278" data-name="Group 278" transform="translate(-25.665 -26.951)">
+      <g id="Group_277" data-name="Group 277" transform="translate(48.987 316.635) rotate(-90)">
+        <path id="Path_12" data-name="Path 12" d="M102.482,40.43c27.6-46.977,84.036-73.036,147.152,37.19s-83.8,90.349-121.474,94.94S24.183,251.73,3.1,164.814,74.4,88.22,102.482,40.43Z" transform="matrix(0.53, 0.848, -0.848, 0.53, 169.258, -13.552)" fill="#a9b8a2" opacity="0.333"/>
+        <path id="Path_25" data-name="Path 25" d="M96.429,38.042C122.4-6.16,175.5-30.679,234.889,73.035s-78.847,85.012-114.3,89.332S22.755,236.86,2.916,155.078,70.006,83.009,96.429,38.042Z" transform="translate(231.075 -29.3) rotate(79)" fill="#a9b8a2" opacity="0.104"/>
+      </g>
+      <g id="Rectangle_220" data-name="Rectangle 220" transform="translate(103.436 108.619)" fill="#fff" stroke="#1f1f1f" stroke-width="2.5">
+        <rect width="180.19" height="141.899" stroke="none"/>
+        <rect x="1.25" y="1.25" width="177.69" height="139.399" fill="none"/>
+      </g>
+    </g>
+    <line id="Line_6" data-name="Line 6" x2="71.914" transform="translate(167.867 117.757)" fill="none" stroke="#1f1f1f" stroke-width="2.5"/>
+    <line id="Line_7" data-name="Line 7" x2="71.914" transform="translate(167.867 142.224)" fill="none" stroke="#1f1f1f" stroke-width="2.5"/>
+    <line id="Line_8" data-name="Line 8" x2="71.914" transform="translate(167.867 166.691)" fill="none" stroke="#1f1f1f" stroke-width="2.5"/>
+    <line id="Line_9" data-name="Line 9" x2="71.914" transform="translate(167.867 191.159)" fill="none" stroke="#1f1f1f" stroke-width="2.5"/>
+  </g>
+</svg>

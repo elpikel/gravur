@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="368.415" height="391.935" viewBox="0 0 368.415 391.935">
+  <g id="Group_377" data-name="Group 377" transform="translate(-775.325 -2526.774)">
+    <g id="Group_352" data-name="Group 352" transform="translate(41 72)">
+      <path id="Path_40" data-name="Path 40" d="M162.944,39.277c74.173-50.856,123.308-33.719,143.1,63.733,46.263,114.211-32.778,72.5-126.828,121.939s-84.885-32.206-137.041-79.4S88.771,90.133,162.944,39.277Z" transform="translate(884.75 2427.242) rotate(45)" fill="#a9b8a2" opacity="0.333"/>
+      <path id="Path_41" data-name="Path 41" d="M144.1,29.714C223.052-24.42,275.354-6.178,296.417,97.556c49.246,121.574-34.891,77.178-135,129.8S71.056,193.074,15.538,142.834,65.143,83.849,144.1,29.714Z" transform="matrix(0.342, 0.94, -0.94, 0.342, 995.424, 2471.206)" fill="#a9b8a2" opacity="0.104"/>
+      <g id="Group_351" data-name="Group 351" transform="translate(752.337 2492.01)">
+        <g id="monitor" transform="translate(76.663 104.549)">
+          <rect id="Rectangle_217" data-name="Rectangle 217" width="186" height="128" rx="2" transform="translate(0 0.442)" stroke-width="3" stroke="#1f1f1f" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+          <line id="Line_4" data-name="Line 4" x2="74" transform="translate(55 166.442)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+          <line id="Line_5" data-name="Line 5" y2="38" transform="translate(93 128.442)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        </g>
+      </g>
+      <g id="Group_350" data-name="Group 350" transform="translate(11.501 2366.587)">
+        <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(888 254)" fill="#fff" stroke="#1f1f1f" stroke-width="3">
+          <rect width="126.207" height="82.385" stroke="none"/>
+          <rect x="-1.5" y="-1.5" width="129.207" height="85.385" fill="none"/>
+        </g>
+        <line id="Line_10" data-name="Line 10" x2="63.103" y2="45.936" transform="translate(888.438 254.438)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+        <line id="Line_11" data-name="Line 11" x1="62.227" y2="45.936" transform="translate(951.542 254.438)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+        <path id="Path_18" data-name="Path 18" d="M0,35.715,55.63-5.94" transform="translate(888.438 301.108)" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+        <line id="Line_13" data-name="Line 13" x1="56.092" y1="41.192" transform="translate(958.553 295.631)" fill="none" stroke="#1f1f1f" stroke-width="3"/>
+      </g>
+    </g>
+    <text id="_" data-name="@" transform="translate(876 2710)" fill="#1f1f1f" font-size="36" font-family="AvenirNext-Medium, Avenir Next" font-weight="500"><tspan x="14.6" y="36">@</tspan></text>
+  </g>
+</svg>

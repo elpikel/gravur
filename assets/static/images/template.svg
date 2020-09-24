@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="315.42" height="285.141" viewBox="0 0 315.42 285.141">
+  <g id="Group_348" data-name="Group 348" transform="translate(-842.898 -3649.52)">
+    <path id="Path_19" data-name="Path 19" d="M110.037,40.812C133.748-4.95,201.9-33.3,256.121,74.076s-31.313,81.946-95.406,68.94S20.257,214.635,2.145,129.965,85.917,87.365,110.037,40.812Z" transform="matrix(0.934, -0.358, 0.358, 0.934, 842.896, 3767.742)" fill="#a9b8a2" opacity="0.1"/>
+    <path id="Path_12" data-name="Path 12" d="M101.1,32.975C122.847-3.9,185.433-26.7,235.3,59.89s-28.712,66.034-87.59,55.505S18.738,173.03,2.05,104.765,78.97,70.484,101.1,32.975Z" transform="translate(875.25 3866.952) rotate(-60)" fill="#a9b8a2" opacity="0.333"/>
+    <g id="Group_246" data-name="Group 246" transform="translate(28 3491)">
+      <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(888 254)" fill="#fff" stroke="#1f1f1f" stroke-width="3">
+        <rect width="144" height="94" stroke="none"/>
+        <rect x="-1.5" y="-1.5" width="147" height="97" fill="none"/>
+      </g>
+      <line id="Line_10" data-name="Line 10" x2="144" y2="94" transform="translate(888.5 254.5)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+      <line id="Line_11" data-name="Line 11" x1="143" y2="94" transform="translate(888.5 254.5)" fill="none" stroke="#1f1f1f" stroke-linecap="round" stroke-width="3"/>
+    </g>
+    <g id="Group_349" data-name="Group 349" transform="translate(79 3498)">
+      <g id="Rectangle_221-2" data-name="Rectangle 221" transform="translate(995 247)" fill="#fff" stroke="#1f1f1f" stroke-width="3">
+        <rect width="46" height="94" stroke="none"/>
+        <rect x="-1.5" y="-1.5" width="49" height="97" fill="none"/>
+      </g>
+      <g id="Rectangle_273" data-name="Rectangle 273" transform="translate(837 354)" fill="#fff" stroke="#1f1f1f" stroke-width="3">
+        <rect width="204" height="29" stroke="none"/>
+        <rect x="-1.5" y="-1.5" width="207" height="32" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

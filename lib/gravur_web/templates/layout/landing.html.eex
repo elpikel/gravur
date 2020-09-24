@@ -58,27 +58,26 @@
       <div style="z-index: 1; position: relative; margin-top: -10%">
         <img class="img-fluid border" src="/images/sample_book.svg"/>
       </div>
-      <div style="max-width:1520px;" class="row mt-1 mx-auto">
+      <div style="max-width:1520px;" class="row mt-1 mx-auto pt-5">
         <div class="col-sm px-0">
-          <div class="card">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>
+          <img class="card-img-top" src="/images/template.svg">
         </div>
         <div class="col-sm row-center-column">
-          <div class="card">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>
+          <img class="card-img-top" src="/images/share.svg">
         </div>
         <div class="col-sm px-0">
-          <div class="card">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>
+          <img class="card-img-top" src="/images/print.svg">
+        </div>
+      </div>
+      <div style="max-width:1520px;" class="row mt-1 mx-auto">
+        <div class="col-sm px-0">
+          Gotowe szablony z Twoimi zdjęciami.
+        </div>
+        <div class="col-sm row-center-column">
+          Udostępnianie bądź zapraszanie gości do twojej księgi.
+        </div>
+        <div class="col-sm px-0">
+          Wydruk na wysokiej jakości papierze.
         </div>
       </div>
     </div>
