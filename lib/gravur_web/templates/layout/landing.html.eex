@@ -81,11 +81,19 @@
         </div>
       </div>
     </div>
-    
-    <main role="main" class="container mt-5">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
+    <div class="text-center m-5 pt-5">
+      <h2>Zobacz jakie księgi tworzą nasi kliencie</h2>
+      <div class="row mt-5">
+        <div class="col-sm">
+          <img class="card-img-top" style="max-width: 300px" src="/images/sample1.svg">
+        </div>
+        <div class="col-sm">
+          <img class="card-img-top" style="max-width: 300px" src="/images/sample2.svg">
+        </div>
+        <div class="col-sm">
+          <img class="card-img-top" style="max-width: 300px" src="/images/sample3.svg">
+        </div>
+      </div>
+    </div>
   </body>
 </html>
