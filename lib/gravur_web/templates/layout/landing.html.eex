@@ -61,33 +61,31 @@
       <div style="max-width:1520px;" class="row mt-1 mx-auto pt-5">
         <div class="col-sm px-0">
           <img class="card-img-top" src="/images/template.svg">
+          <p>
+          Gotowe szablony z Twoimi zdjęciami.
+          </p>
         </div>
         <div class="col-sm row-center-column">
           <img class="card-img-top" src="/images/share.svg">
+          <p>
+          Udostępnianie bądź zapraszanie gości do twojej księgi.
+          </p>
         </div>
         <div class="col-sm px-0">
           <img class="card-img-top" src="/images/print.svg">
-        </div>
-      </div>
-      <div style="max-width:1520px;" class="row mt-1 mx-auto">
-        <div class="col-sm px-0">
-          Gotowe szablony z Twoimi zdjęciami.
-        </div>
-        <div class="col-sm row-center-column">
-          Udostępnianie bądź zapraszanie gości do twojej księgi.
-        </div>
-        <div class="col-sm px-0">
+          <p>
           Wydruk na wysokiej jakości papierze.
+          </p>
         </div>
       </div>
     </div>
     <div class="text-center m-5 pt-5">
       <h2>Zobacz jakie księgi tworzą nasi kliencie</h2>
       <div class="row mt-5">
-        <div class="col-sm">
+        <div class="col-sm pb-3">
           <img class="card-img-top" style="max-width: 300px" src="/images/sample1.svg">
         </div>
-        <div class="col-sm">
+        <div class="col-sm pb-3">
           <img class="card-img-top" style="max-width: 300px" src="/images/sample2.svg">
         </div>
         <div class="col-sm">
@@ -95,5 +93,8 @@
         </div>
       </div>
     </div>
+    <footer class="page-footer font-small blue border-top" style="box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);">
+      <div class="footer-copyright text-center py-3">© 2020 Copyright: Company Name</div>
+    </footer>
   </body>
 </html>
